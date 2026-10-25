@@ -1,11 +1,12 @@
-# Bible Aventure v1.1 — Joseph en Égypte
+# Bible Aventure v2.0 — 50 labyrinthes
 
-Trois récits et quinze chapitres : Adam et Ève (Genèse 2–3), Noé (Genèse 6–9), Joseph (Genèse 37 et 39–45). Gratuit, HTML autonome, mobile-first, sans compte ni API, progression locale et voix françaises disponibles sur l'appareil.
+10 histoires bibliques et cinq chapitres par récit, de Genèse 2–3 à Jean 20, adaptés aux 7–11 ans. Deux difficultés, 50 labyrinthes, étoiles, albums, 33 anciens et 105 nouveaux événements à découvrir, 105 nouvelles énigmes, narrations françaises selon les voix de l'appareil, sauvegarde locale, réglage des tailles de police.
 
-Joseph : rêves à Canaan, route vers l'Égypte, maison de Potiphar et prison, rêves du Pharaon, retrouvailles familiales.
+Récits : Adam et Ève, Noé, Joseph, Moïse, David et Goliath, Jonas, naissance de Jésus, pains et poissons, bon Samaritain (parabole), Pâques.
 
-Les décors sont des reconstitutions imaginées, distinctes des textes bibliques reformulés. Sensibilité protestante évangélique.
+Source : Bible Louis Segond 1910. Résumés originaux ; les illustrations et actions des joueurs ne modifient jamais les événements bibliques.
 
-Tests v1.1 : 5 chapitres Joseph (20 livres, 15 énigmes, 20 souvenirs, album, finale) ; 114 vérifications réussies ; régression des 10 chapitres précédents ; labyrinthes accessibles dans les deux difficultés ; tailles d'écran 320 à 1280 px ; sauvegarde locale et migration de la v1.
+## Vérification
+50 chapitres parcourus en Playwright, 100 configurations de labyrinthe validées, 1 414 vérifications des séquences principales + 46 vérifications de sauvegarde, migration et affichage. Aucun échec constaté. Vérification vocale sur tablette réelle à faire.
 
-Le code de v1.0 est conservé dans `backups/2026-10-25-v1.0-avant-joseph.html`.
+Historique archivé : `bible-aventure/backups/2026-10-25-v1.1-avant-v2.0.html`.
