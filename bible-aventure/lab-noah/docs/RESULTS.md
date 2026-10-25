@@ -79,4 +79,4 @@ Voir [README](../README.md) et [choix techniques](TECHNICAL.md). Les tests `brow
 
 ## Livraison distante
 
-Le pilote est enregistré dans une branche locale. L’envoi sur GitHub n’a pas été effectué : la validation automatique a refusé le push, estimant que la consigne « ne pas publier automatiquement » exige une autorisation explicite pour cet envoi distant. Aucun contournement ni envoi forcé n’a été tenté. Le code, les ressources, les captures et les rapports sont complets dans le dépôt local.
+Après le refus initial de la validation automatique, l’utilisateur a explicitement autorisé l’envoi de la seule branche `experimental/bible-aventure-noah-pixel-lab` sur GitHub, sans fusion ni déploiement. Cet envoi utilise Git sans forçage. L’autorisation ne porte sur aucune modification de `main` ni de la branche v2.1 ; le workflow GitHub Pages reste limité aux pushes sur `main` et à son déclenchement manuel.
