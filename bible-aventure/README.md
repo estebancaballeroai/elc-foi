@@ -1,6 +1,6 @@
 # Bible Aventure v2.0 — 50 labyrinthes
 
-10 histoires bibliques et cinq chapitres par récit, de Genèse 2–3 à Jean 20, adaptés aux 7–11 ans. Deux difficultés, 50 labyrinthes, étoiles, albums, 33 anciens et 105 nouveaux événements à découvrir, 105 nouvelles énigmes, narrations françaises selon les voix de l'appareil, sauvegarde locale, réglage des tailles de police.
+10 histoires bibliques et cinq chapitres par récit, de Genèse 2–3 à Jean 20, adaptés aux 7–11 ans. Deux difficultés, 50 labyrinthes, étoiles, albums, 53 anciens et 105 nouveaux événements à découvrir, 105 nouvelles énigmes, narrations françaises selon les voix de l'appareil, sauvegarde locale, réglage des tailles de police.
 
 Récits : Adam et Ève, Noé, Joseph, Moïse, David et Goliath, Jonas, naissance de Jésus, pains et poissons, bon Samaritain (parabole), Pâques.
 
