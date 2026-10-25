@@ -76,3 +76,7 @@ Le workflow Pages et le portail de la base ne sont pas modifiés. La clé du pil
 ## Reproduire
 
 Voir [README](../README.md) et [choix techniques](TECHNICAL.md). Les tests `browser.py`, `extra_browser.py`, `existing-smoke.py` et `validate_assets.py` sont livrés. Les captures et rapports sont ceux des exécutions finales ; les essais intermédiaires ayant conduit aux corrections restent dans le dossier de travail local et ne sont pas présentés comme des succès finaux.
+
+## Livraison distante
+
+Le pilote est enregistré dans une branche locale. L’envoi sur GitHub n’a pas été effectué : la validation automatique a refusé le push, estimant que la consigne « ne pas publier automatiquement » exige une autorisation explicite pour cet envoi distant. Aucun contournement ni envoi forcé n’a été tenté. Le code, les ressources, les captures et les rapports sont complets dans le dépôt local.
