@@ -1,12 +1,25 @@
-# Bible Aventure v2.0 — 50 labyrinthes
+# Bible Aventure v2.1 — Design LAB (expérimental)
 
-10 histoires bibliques et cinq chapitres par récit, de Genèse 2–3 à Jean 20, adaptés aux 7–11 ans. Deux difficultés, 50 labyrinthes, étoiles, albums, 53 anciens et 105 nouveaux événements à découvrir, 105 nouvelles énigmes, narrations françaises selon les voix de l'appareil, sauvegarde locale, réglage des tailles de police.
+Prototype de refonte de la **v2.0 : 10 récits / 50 labyrinthes**. Ne pas fusionner dans `main` sans validation.
 
-Récits : Adam et Ève, Noé, Joseph, Moïse, David et Goliath, Jonas, naissance de Jésus, pains et poissons, bon Samaritain (parabole), Pâques.
+**Figma :** https://www.figma.com/design/rUUAvcffXe9FVzmcqBWy3T
 
-Source : Bible Louis Segond 1910. Résumés originaux ; les illustrations et actions des joueurs ne modifient jamais les événements bibliques.
+## Travail effectué
+- Accueil repensé pour mobile, cartes des 10 récits défilantes horizontalement.
+- Écran de Noé : mission et déplacements mieux différenciés, contrastes et dimensions optimisés.
+- Récompenses : médaillons, insignes, albums et gros caractères.
+- Code JavaScript de v2.0 inchangé (SHA-256 74986fee49df413eb197790c577d1d97ece1eada4ece992233dbe6966201920b). Les 10 récits, questions, étoiles et la clé de sauvegarde locale sont conservés.
 
-## Vérification
-50 chapitres parcourus en Playwright, 100 configurations de labyrinthe validées, 1 414 vérifications des séquences principales + 46 vérifications de sauvegarde, migration et affichage. Aucun échec constaté. Vérification vocale sur tablette réelle à faire.
+## Recette
+- 100 labyrinthes (50 chapitres × 2 difficultés) franchissables.
+- 50 chapitres joués automatiquement de bout en bout.
+- 46 contrôles supplémentaires de migration, paramètres, sauvegarde et rendu responsive.
+- Écrans vérifiés à 320, 390, 768 et 1280 px, sans erreur JavaScript détectée.
 
-Historique archivé : `bible-aventure/backups/2026-10-25-v1.1-avant-v2.0.html`.
+## Limite
+Quota Figma MCP Starter atteint : comparaison exacte avec les trois maquettes inaccessible. Cette interface est une **proposition graphique inspirée du cahier des charges**, pas une reproduction certifiée des maquettes. Elle doit faire l'objet d'une validation graphique et d'un test réel sur ancienne tablette.
+
+## Versions
+- Production : branche `main` (v2.0), inchangée.
+- Sauvegarde : `backup/bible-aventure-v2.0-20261025`.
+- Prototype : `experimental/bible-aventure-v2.1-design`.
