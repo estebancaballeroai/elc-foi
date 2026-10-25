@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#223d35">
-<meta name="description" content="Bible Aventure : 10 histoires bibliques, 50 labyrinthes illustrés, des livres et des énigmes pour les enfants de 7 à 11 ans.">
-<title>Bible Aventure 2.0 | 50 labyrinthes et 10 récits</title>
+<meta name="description" content="Bible Aventure 2.1 Design LAB : aperçu graphique expérimental, dix histoires et cinquante labyrinthes.">
+<title>Bible Aventure 2.1 Design LAB | 50 labyrinthes</title>
 <style>
 :root{--ink:#273b31;--ink-soft:#587064;--fern:#295b48;--fern2:#46785c;--bronze:#9b663d;--gold:#e7bd72;--cream:#f8f1e2;--paper:#fff9ed;--shell:#efe1c7;--edge:#d9c5a4;--radius:22px;--shadow:0 18px 60px rgba(30,49,34,.18)}
 *{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{margin:0;background:#e7ddc9;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-width:310px}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,[tabindex]:focus-visible{outline:3px solid #e7aa4e;outline-offset:3px}button:disabled{opacity:.5;cursor:default}strong{font-weight:760}em{font-family:Georgia,serif}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:600}h2{letter-spacing:-.035em}a{color:inherit}.grain{position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.13;background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 160 160%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22f%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.58%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23f)%22 opacity=%22.22%22/%3E%3C/svg%3E')}
@@ -124,6 +124,151 @@ body{background:#d5f3e9;color:#244254;font-family:"Trebuchet MS","Arial Rounded 
 .matching-btn:disabled{opacity:1;cursor:default}
 @media(max-width:700px){.story-selector{grid-template-columns:1fr}.story-card .story-art{min-height:144px}}
 @media(max-width:350px){.matching{gap:6px}.matching-btn{min-height:70px;padding:8px;font-size:calc(12px * var(--reading-scale))}}
+
+/* ===========================================================
+   Bible Aventure 2.1 - Design LAB experimental (v2.0 intacte)
+   Axes: accueil mobile, interface Noe, album de recompenses.
+   Maquettes Figma: fidelite graphique a valider (quota Figma).
+   Aucun changement de contenu biblique ni cle localStorage.
+   =========================================================== */
+:root{
+  --lab-ink:#245268;--lab-ocean:#246d90;--lab-sky:#e9f8ff;--lab-gold:#ffce65;
+  --lab-coral:#e77b62;--lab-leaf:#72b995;--lab-paper:#fffbf1;
+  --lab-border:#d9e7de;--lab-shadow:0 7px 0 #cee0d1;
+}
+body{background:#d8eae5;color:var(--lab-ink)}
+#app{background:linear-gradient(165deg,#f8fff8 0%,#fffae9 52%,#f3f9fc 100%)}
+.main-header{border-bottom:4px solid #fce7a1;background:linear-gradient(105deg,#227e98,#2c90a2 63%,#56a997);box-shadow:0 4px 0 #cfe2cc}
+.brand-emblem{background:#fff8dc;border:3px solid #fee79f;box-shadow:0 2px 0 #dcbd6b;transform:rotate(-7deg);font-size:26px}
+.brand-text b{letter-spacing:.01em;text-shadow:0 1px 0 #12485a66}
+.design-beta{display:flex;align-items:center;justify-content:center;gap:6px;padding:6px 12px;background:#fff2c5;color:#745019;border-bottom:1px solid #efdaa3;font-size:11px;font-weight:900;letter-spacing:.045em}
+.design-beta .beta-mark{color:#c7794a}
+.design-beta .beta-label{font-weight:700;letter-spacing:0;margin-left:4px}
+.storybook-hero{background:radial-gradient(ellipse at 85% 20%,#ffdca8b8 0,transparent 37%),linear-gradient(122deg,#e3f7f7,#fdf4d5 61%,#f5e5d0);border-bottom:8px solid #ffe2a8;min-height:420px;gap:12px}
+.storybook-hero h1{color:#275e78;line-height:1.06;letter-spacing:-.06em}
+.storybook-hero h1 span{color:#e17a5e}
+.storybook-hero p{max-width:460px;line-height:1.48;color:#3e6779;font-weight:720}
+.story-label{border:2px solid #8ccbc0;background:#fffdf0;color:#2b7789;letter-spacing:.035em;box-shadow:0 4px 0 #d1ebe1}
+.storybook-hero .btn.primary{background:#ffce63;border:2px solid #eeb053;box-shadow:0 6px 0 #d69047,0 12px 22px #bd874c27;min-height:60px}
+.hero-stats span{background:#fffefd;color:#3b7080;border:1px solid #d9eee5;box-shadow:0 3px 0 #dbeade;font-size:calc(12px * var(--reading-scale));padding:8px 11px}
+.story-selector{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:15px;margin-top:18px}
+.story-swipe-hint{display:none}
+.story-card{border:3px solid #dfe9da;border-radius:25px;box-shadow:0 6px 0 #d4dfd1,0 13px 20px #315a6810;background:#fffdf7;overflow:hidden;position:relative;min-width:0;transition:transform .14s ease,box-shadow .14s ease}
+.story-card:focus-visible{outline:4px solid #eaa855;outline-offset:4px}
+.story-card[data-story-select][aria-pressed="true"]{border-color:#f2a96d;box-shadow:0 6px 0 #eab56d,0 12px 24px #dcad782c;transform:translateY(-2px)}
+.story-card[data-story-select][aria-pressed="true"]:before{content:"✓ Choisie";position:absolute;top:9px;left:9px;z-index:3;background:#fff6cb;border:2px solid #e6a655;color:#774f1e;padding:5px 10px;border-radius:100px;font-size:12px;font-weight:900;box-shadow:0 3px 0 #c98d53}
+.story-card .story-art{height:132px;min-height:0;background:#d1e8df}
+.story-card .story-art svg{width:100%;height:100%}
+.story-card-text{padding:14px 13px 15px;display:grid;grid-template-columns:44px minmax(0,1fr);gap:7px 9px;align-items:start}
+.story-card-icon{grid-row:1 / span 2;width:43px;height:43px;display:grid;place-items:center;border-radius:16px;background:#fff0cd;border:2px solid #f6d3a0;font-size:24px;flex-shrink:0}
+.story-card h3{font-size:calc(17px * var(--reading-scale));line-height:1.14;font-weight:900;color:#255573}
+.story-card p{line-height:1.3;color:#536f78;display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;font-size:calc(12px * var(--reading-scale))}
+.story-count{grid-column:2;justify-self:start;border-radius:9px;background:#e8f6f3;border:1px solid #cde6db;padding:4px 7px;font-size:calc(11px * var(--reading-scale));color:#1a6882;font-weight:900}
+.home-wrap{padding-top:28px}
+.section-title{color:#28677d}
+.section-desc{font-size:calc(16px * var(--reading-scale));line-height:1.46;color:#557581}
+.adventure-dashboard{background:#fffefa;border:3px solid #e0ede1;box-shadow:0 6px 0 #d4e4d8;border-radius:27px;padding:16px}
+.score-medallion{background:#fff1c1;border:2px solid #f5db88;box-shadow:0 4px 0 #e8cb82;border-radius:20px}
+.diary-btn{background:#ffe9db;border:2px solid #f3c1ae;box-shadow:0 4px 0 #eab89f;color:#914f41;min-height:52px}
+.chapter-intro{background:#e8f7f8;border:2px solid #cde5e2;border-radius:23px;padding:15px;margin-top:25px}
+.chapter-intro h2{color:#245a73}
+.chap-card{background:#fffefa;border-color:#dceadf;box-shadow:0 5px 0 #cadccf}
+.chap-card .art{background:linear-gradient(140deg,#aee5d1,#83c5d5 57%,#ffe0a8)}
+.chap-card .number-badge{background:#fff9e5;color:#83592b;border:2px solid #eacc99}
+.chap-card .chap-body h3{color:#215975}
+.game-screen[data-story="noah"]{background:linear-gradient(175deg,#d8f1fa 0%,#e9f7fb 43%,#fbf5e5 100%)}
+.game-screen[data-story="noah"] .chapter-heading{background:#fffefa;border:3px solid #d3e8ed;border-radius:23px;padding:13px 15px;box-shadow:0 5px 0 #c3dfe7}
+.game-screen[data-story="noah"] .chapter-heading small{color:#38778f;font-weight:900;letter-spacing:.07em}
+.game-screen[data-story="noah"] .canvas-shell{border:7px solid #87d4e6;border-radius:27px;box-shadow:0 7px 0 #5fabc3,0 16px 32px #387d9d2d;background:#a1dfe9}
+.game-screen[data-story="noah"] .controls-panel{border:3px solid #aedce5;background:#fffefa;box-shadow:0 5px 0 #bedfe7;border-radius:25px}
+.game-screen[data-story="noah"] .mission-mini{background:#f0fbff;border:2px dashed #b5dce2;border-radius:18px;padding:10px 12px}
+.game-screen[data-story="noah"] .mission-mini .label{color:#176f84;font-size:calc(13px * var(--reading-scale));font-weight:1000}
+.game-screen[data-story="noah"] .mission-mini .text{font-size:calc(17px * var(--reading-scale));line-height:1.36;color:#27596b}
+.game-screen[data-story="noah"] .mission-medallion{background:#ffdda1;color:#795320;border:2px solid #e9bf7d;border-radius:14px}
+.game-screen[data-story="noah"] .move-btn{background:#fce8c0;border:2px solid #dcb77e;box-shadow:0 4px 0 #ccab80;border-radius:15px;font-size:29px;color:#695230}
+.game-screen[data-story="noah"] .action-btn{background:#dcf6e8;border:2px solid #8fceab;box-shadow:0 4px 0 #88b9a1;border-radius:20px;color:#2c6450;min-height:85px;font-size:calc(16px * var(--reading-scale))}
+.game-screen[data-story="noah"] .sidebar{border-color:#b8dce1;box-shadow:0 5px 0 #bcdfe1}
+.chapter-heading h2{font-size:clamp(24px,3.5vw,37px);line-height:1.13}
+.chapter-pill{font-size:calc(12px * var(--reading-scale));border-radius:13px}
+.modal{background:#fffdf6;border:4px solid #f2dba9;border-radius:25px;box-shadow:0 15px 50px #2d53632e}
+.modal .modal-tag{color:#236c7d;font-weight:900}
+.modal-inner{background:linear-gradient(180deg,#fffcf4 0%,#fdf7eb 100%)}
+.modal-inner h2{font-size:calc(24px * var(--reading-scale));color:#285d73;line-height:1.16}
+.journal-stats{gap:10px;margin:20px 0 24px}
+.journal-stat{border:3px solid #efdbad!important;border-radius:20px!important;background:linear-gradient(165deg,#fff5cb,#fffdfa)!important;box-shadow:0 4px 0 #eddda9}
+.journal-stat strong{color:#9a5c26!important;font-size:calc(23px * var(--reading-scale))!important}
+.journal-stat small{color:#765e46;font-size:calc(12px * var(--reading-scale));font-weight:800}
+.badge-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:18px 0}
+.badge-tile{background:linear-gradient(160deg,#eff9fc,#fffef8)!important;border:3px solid #cde4e5!important;box-shadow:0 4px 0 #cfe4e1;border-radius:23px!important;padding:17px 11px!important;text-align:center;min-height:155px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:5px}
+.badge-symbol{width:68px;height:68px;display:grid;place-items:center;background:linear-gradient(140deg,#ffe28f,#f2ad6f);border:4px solid #fff8df;border-radius:22px;box-shadow:0 4px 0 #e9c890;color:#784a32;font-size:34px;margin:0 auto 7px;transform:rotate(-5deg)}
+.badge-tile:nth-child(3n+2) .badge-symbol{background:linear-gradient(140deg,#bfeeda,#80c6b8);transform:rotate(5deg)}
+.badge-tile:nth-child(3n+3) .badge-symbol{background:linear-gradient(140deg,#d9e2fa,#a6bedc);transform:rotate(-3deg)}
+.badge-tile strong{color:#2e5f74;font-size:calc(14px * var(--reading-scale));line-height:1.2}
+.badge-tile small{color:#5c7380;font-size:calc(11px * var(--reading-scale));line-height:1.23}
+.badge-tile.locked{opacity:.55;filter:grayscale(.75)}
+.album-switch{gap:7px;overflow-x:auto;scrollbar-width:thin;padding:4px 0 10px}
+.album-switch button{border-radius:99px;min-height:42px;font-size:calc(12px * var(--reading-scale))}
+.album-card{border:3px solid #d4e6df!important;border-radius:20px;overflow:hidden;box-shadow:0 4px 0 #d8e2d5}
+.album-card .album-body{padding:12px}
+@media(max-width:1000px){.story-selector{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:700px){
+  .design-beta{font-size:10px;gap:4px;padding:6px 8px}
+  .design-beta .beta-label{display:none}
+  .main-header{min-height:62px}
+  .storybook-hero{display:block;min-height:380px;padding:22px 19px 17px;position:relative;overflow:hidden;border-bottom-width:7px}
+  .storybook-hero-copy{max-width:none;position:relative;z-index:2}
+  .storybook-hero h1{font-size:clamp(37px,10vw,49px);margin:16px 0 12px;max-width:340px}
+  .storybook-hero p{max-width:min(68vw,280px);font-size:calc(15px * var(--reading-scale));line-height:1.4;margin:0 0 16px}
+  .storybook-hero .btn.primary{min-height:53px;padding:11px 14px;font-size:calc(15px * var(--reading-scale));max-width:70vw}
+  .hero-illustration{position:absolute;z-index:1;width:190px;max-width:none;right:-30px;bottom:66px;filter:drop-shadow(0 7px 10px #35687a30);pointer-events:none;opacity:.85}
+  .hero-stats{gap:5px;margin-top:23px;flex-wrap:wrap;position:relative;z-index:3;max-width:none}
+  .hero-stats span{padding:6px 8px;font-size:calc(10px * var(--reading-scale));white-space:nowrap}
+  .home-wrap{padding-top:21px}
+  .section-desc{font-size:calc(14px * var(--reading-scale));line-height:1.4}
+  .story-swipe-hint{display:block;margin:9px 0 0;font-size:calc(13px * var(--reading-scale));color:#28758b;font-weight:850}
+  .story-selector{display:flex;gap:12px;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;scroll-padding-inline:12px;overscroll-behavior-x:contain;padding:8px 12px 17px;margin:6px -12px 14px;scrollbar-width:thin}
+  .story-card{display:flex;flex:0 0 min(78vw,330px);min-width:0;max-width:330px;scroll-snap-align:start;min-height:0}
+  .story-card .story-art{height:150px;min-height:150px}
+  .story-card-text{padding:10px 13px 15px;grid-template-columns:38px minmax(0,1fr)}
+  .story-card-icon{width:38px;height:38px;font-size:23px}
+  .story-card h3{font-size:calc(18px * var(--reading-scale))}
+  .story-card p{font-size:calc(13px * var(--reading-scale))}
+  .adventure-dashboard{padding:12px;gap:12px}
+  .score-medallion{flex:1;min-width:0}
+  .diary-btn{flex:1;min-width:0;padding:9px 10px}
+  .difficulty-control{width:100%}
+  .chapter-intro{margin-top:18px;padding:13px}
+  .game-screen[data-story="noah"]{padding:12px 9px 30px}
+  .game-screen[data-story="noah"] .chapter-heading{padding:10px 12px;margin:0 0 14px}
+  .game-screen[data-story="noah"] .chapter-heading h2{margin:6px 0}
+  .game-screen[data-story="noah"] .canvas-shell{border-width:6px;border-radius:22px}
+  .game-screen[data-story="noah"] .controls-panel{padding:11px 12px 13px;gap:9px}
+  .game-screen[data-story="noah"] .mission-mini{width:100%;margin:0}
+  .game-screen[data-story="noah"] .control-group{width:100%;gap:14px;justify-content:center}
+  .game-screen[data-story="noah"] .dpad{width:150px;height:129px;flex-shrink:0}
+  .game-screen[data-story="noah"] .move-btn{min-width:44px;min-height:42px}
+  .game-screen[data-story="noah"] .action-btn{min-width:92px;max-width:150px;flex-shrink:1}
+  .journal-stats{gap:6px}
+  .journal-stat{padding:10px 3px!important}
+  .journal-stat strong{font-size:calc(18px * var(--reading-scale))!important}
+  .journal-stat small{font-size:calc(11px * var(--reading-scale))}
+  .badge-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+  .badge-tile{min-height:147px;padding:13px 7px!important}
+  .badge-symbol{width:61px;height:61px;font-size:29px}
+}
+@media(max-width:375px){
+  .storybook-hero{min-height:388px}
+  .storybook-hero p{max-width:65vw}
+  .hero-illustration{width:166px;right:-25px;bottom:73px}
+  .story-card{flex-basis:79vw}
+  .game-screen[data-story="noah"] .dpad{width:132px;height:113px}
+  .game-screen[data-story="noah"] .action-btn{min-width:82px}
+}
+@media(prefers-reduced-motion:reduce){.hero-illustration svg{animation:none!important}.story-card{transition:none!important}}
+
+/* Capture QA 390px: illustration hors du flux de lecture, sans recouvrement */
+@media(max-width:700px){.storybook-hero p{max-width:min(57vw,234px)}.hero-illustration{width:125px;right:-10px;bottom:76px;opacity:.93}}
+@media(max-width:375px){.storybook-hero p{max-width:58vw}.hero-illustration{width:108px;right:-8px;bottom:82px}}
 </style>
 </head>
 <body>
@@ -133,12 +278,13 @@ body{background:#d5f3e9;color:#244254;font-family:"Trebuchet MS","Arial Rounded 
  <div class="brand"><div class="brand-emblem" aria-hidden="true">📖</div><div class="brand-text"><b>BIBLE AVENTURE</b><small>Les grandes histoires de la Bible</small></div></div>
  <div class="header-actions"><button id="homeBtn" class="icon-btn only-game" aria-label="Retour aux chapitres" title="Retour aux chapitres"><svg viewBox="0 0 24 24"><path d="m3 10 9-7 9 7v11h-7v-7h-4v7H3z"/></svg></button><button id="libraryBtn" class="icon-btn" aria-label="Bibliotheque" title="Bibliotheque"><svg viewBox="0 0 24 24"><path d="M4 4.5c3-1.3 5.5-1.2 8 .5 2.5-1.7 5-1.8 8-.5v15c-3-1.3-5.5-1.2-8 .5-2.5-1.7-5-1.8-8-.5zM12 5v15"/></svg></button><button id="settingsBtn" class="icon-btn" aria-label="Parametres" title="Parametres"><svg viewBox="0 0 24 24"><path d="M4 7h16M4 17h16M8 4v6M16 14v6"/></svg></button></div>
 </header>
+<div class="design-beta" role="status"><span class="beta-mark" aria-hidden="true">✦</span> APERÇU DESIGN v2.1 <span class="beta-label">Prototype · La version publique reste la v2.0</span></div>
 <main id="homeScreen" class="screen">
  <section class="storybook-hero" aria-labelledby="heroTitle">
  <div class="storybook-hero-copy">
   <span class="story-label">✦ LE GRAND LIVRE DES AVENTURES ✦</span>
   <h1 id="heroTitle">La Bible, <span>une aventure !</span></h1>
-  <p>Explore de merveilleux décors, rencontre des personnages bibliques et découvre dix grandes histoires en jouant !</p>
+  <p>Choisis ton histoire, explore un labyrinthe et collectionne tes découvertes !</p>
   <button class="btn primary" id="startBtn">Choisir mon aventure →</button>
   <div class="hero-stats"><span>🌿 10 histoires</span><span>🧩 50 labyrinthes</span><span>⭐ Des récompenses</span></div>
  </div>
@@ -156,7 +302,7 @@ body{background:#d5f3e9;color:#244254;font-family:"Trebuchet MS","Arial Rounded 
   </svg>
  </div>
 </section></section>
- <div class="home-wrap"><div class="section-kicker">CHOISIS TON MONDE 🌍</div><h2 class="section-title">Dix histoires à explorer</h2><p class="section-desc">Commence par le récit que tu veux. Ouvre les livres, relève les défis, trouve des étoiles et découvre les événements de la Bible.</p><div id="storyCards" class="story-selector" role="group" aria-label="Choix du récit biblique"></div><div class="adventure-dashboard" aria-label="Ton carnet de voyage">
+ <div class="home-wrap"><div class="section-kicker">CHOISIS TON MONDE 🌍</div><h2 class="section-title">Dix histoires à explorer</h2><p class="section-desc">Commence par le récit que tu veux. Ouvre les livres, relève les défis, trouve des étoiles et découvre les événements de la Bible.</p><p class="story-swipe-hint">👆 Fais glisser les illustrations pour découvrir les 10 histoires</p><div id="storyCards" class="story-selector" role="group" aria-label="Choix du récit biblique"></div><div class="adventure-dashboard" aria-label="Ton carnet de voyage">
  <div class="score-medallion" aria-live="polite"><span class="score-sun">✦</span><span><strong id="homeScore">0</strong><small>Étoiles de découverte</small></span></div>
  <button class="diary-btn" id="openDiary" type="button">✧ Mon carnet et mes insignes</button>
  <div class="difficulty-control" role="group" aria-label="Choix du mode de jeu"><span>Mon parcours :</span><button id="modeDiscovery" class="mode-chip" type="button">Découverte 7–8 ans</button><button id="modeAdventure" class="mode-chip" type="button">Aventure 9–11 ans</button></div>
