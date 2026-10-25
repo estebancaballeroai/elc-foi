@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#223d35">
 <meta name="description" content="Bible Aventure 2.1 Design LAB : aperçu graphique expérimental, dix histoires et cinquante labyrinthes.">
-<title>Bible Aventure 2.1 Design LAB | 50 labyrinthes</title>
+<title>Bible Aventure 2.1.1 Design LAB - Stabilisation | 50 labyrinthes</title>
 <style>
 :root{--ink:#273b31;--ink-soft:#587064;--fern:#295b48;--fern2:#46785c;--bronze:#9b663d;--gold:#e7bd72;--cream:#f8f1e2;--paper:#fff9ed;--shell:#efe1c7;--edge:#d9c5a4;--radius:22px;--shadow:0 18px 60px rgba(30,49,34,.18)}
 *{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{margin:0;background:#e7ddc9;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-width:310px}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,[tabindex]:focus-visible{outline:3px solid #e7aa4e;outline-offset:3px}button:disabled{opacity:.5;cursor:default}strong{font-weight:760}em{font-family:Georgia,serif}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:600}h2{letter-spacing:-.035em}a{color:inherit}.grain{position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.13;background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 160 160%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22f%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.58%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23f)%22 opacity=%22.22%22/%3E%3C/svg%3E')}
@@ -126,7 +126,7 @@ body{background:#d5f3e9;color:#244254;font-family:"Trebuchet MS","Arial Rounded 
 @media(max-width:350px){.matching{gap:6px}.matching-btn{min-height:70px;padding:8px;font-size:calc(12px * var(--reading-scale))}}
 
 /* ===========================================================
-   Bible Aventure 2.1 - Design LAB experimental (v2.0 intacte)
+   Bible Aventure 2.1.1 - Design LAB stabilise experimental (v2.0 intacte)
    Axes: accueil mobile, interface Noe, album de recompenses.
    Maquettes Figma: fidelite graphique a valider (quota Figma).
    Aucun changement de contenu biblique ni cle localStorage.
@@ -269,6 +269,79 @@ body{background:#d8eae5;color:var(--lab-ink)}
 /* Capture QA 390px: illustration hors du flux de lecture, sans recouvrement */
 @media(max-width:700px){.storybook-hero p{max-width:min(57vw,234px)}.hero-illustration{width:125px;right:-10px;bottom:76px;opacity:.93}}
 @media(max-width:375px){.storybook-hero p{max-width:58vw}.hero-illustration{width:108px;right:-8px;bottom:82px}}
+
+/* v2.1.1 - stabilisation ciblée : commandes, lecture et accessibilité */
+.sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+.play-column{position:relative}
+.play-column .footer-mini{display:none}
+.controls-panel,.game-screen[data-story="noah"] .controls-panel{
+ position:absolute;z-index:8;left:13px;right:13px;bottom:13px;width:auto;min-height:0;margin:0;padding:0;
+ display:flex;flex-direction:column;align-items:stretch;justify-content:flex-end;gap:7px;
+ background:transparent;border:0;border-radius:0;box-shadow:none;pointer-events:none;
+}
+.controls-panel .mission-mini,.game-screen[data-story="noah"] .mission-mini{
+ display:block;align-self:flex-start;flex:none;max-width:min(100%,330px);margin:0;
+ padding:0;background:rgba(255,252,239,.97);border:2px solid #27768c;border-radius:14px;
+ box-shadow:0 4px 12px rgba(18,69,79,.3);color:#21516a;pointer-events:auto
+}
+.mission-mini summary{display:flex;justify-content:space-between;align-items:center;gap:10px;min-height:48px;padding:8px 13px;cursor:pointer;font-size:15px;font-weight:900;list-style:none;touch-action:manipulation}
+.mission-mini summary::-webkit-details-marker{display:none}
+.mission-mini[open] .text{padding:2px 13px 12px;font-size:calc(14px * var(--reading-scale));line-height:1.37;max-height:110px;overflow-y:auto}
+.controls-panel .control-group,.game-screen[data-story="noah"] .control-group{
+ display:flex;align-items:flex-end;justify-content:space-between;width:100%;gap:20px;flex-shrink:1;pointer-events:none
+}
+.controls-panel .dpad,.game-screen[data-story="noah"] .dpad{
+ display:grid;width:148px;height:148px;grid-template-columns:repeat(3,48px);grid-template-rows:repeat(3,48px);gap:2px;flex:none;pointer-events:auto
+}
+.controls-panel .move-btn,.game-screen[data-story="noah"] .move-btn{width:48px;height:48px;min-width:48px;min-height:48px;border:2px solid #256d88;border-radius:13px;background:#fff9de;color:#20516e;font-size:26px;font-weight:900;box-shadow:0 3px 0 #8ab9b3}
+.controls-panel .action-btn,.game-screen[data-story="noah"] .action-btn{width:92px;min-width:78px;height:76px;min-height:64px;flex:none;margin:0;pointer-events:auto;border:2px solid #307b65;background:#e1f7df;border-radius:16px;color:#27564c;box-shadow:0 3px 0 #8bb39b;font-size:calc(13px * var(--reading-scale));font-weight:900}
+.controls-panel .move-btn:focus-visible,.controls-panel .action-btn:focus-visible,.mission-mini summary:focus-visible{outline:4px solid #e8a644;outline-offset:2px}
+.storage-warning[hidden]{display:none!important}
+.storage-warning{position:fixed;z-index:99;top:calc(env(safe-area-inset-top,0px) + 78px);left:50%;transform:translateX(-50%);width:min(480px,calc(100vw - 18px));padding:12px 15px;display:flex;align-items:center;gap:8px;flex-wrap:wrap;background:#fff0d6;color:#66380d;border:3px solid #ac612a;border-radius:14px;box-shadow:0 6px 28px #3c251c55;font-size:14px;line-height:1.4}
+.storage-warning strong{font-weight:900}.storage-warning span{flex:1 1 190px}.storage-warning button{min-width:90px;min-height:48px;border-radius:12px;padding:8px 12px;font-weight:850;background:#fff;color:#673e0e;border:2px solid #945c27}
+.section-kicker{color:#76401e}
+.design-beta .beta-mark{color:#975023}
+.storybook-hero h1 span{color:#af432d}
+@media(max-width:700px){
+ .game-screen{padding:9px 7px 14px}
+ .chapter-heading{margin:0 4px 7px;gap:6px}
+ .chapter-heading h2{font-size:calc(20px * min(var(--reading-scale),1.2));margin:1px 0 0}
+ .chapter-heading small{font-size:9px;letter-spacing:.07em}
+ .chapter-pill{font-size:11px;min-height:36px;padding:7px 8px}
+ .heading-actions{gap:4px}
+ .canvas-shell{border-width:4px;border-radius:16px}
+ #world{height:clamp(320px,calc(100dvh - 186px),620px)}
+ .controls-panel,.game-screen[data-story="noah"] .controls-panel{left:9px;right:9px;bottom:9px;gap:6px}
+ .controls-panel .control-group,.game-screen[data-story="noah"] .control-group{gap:16px}
+ .controls-panel .dpad,.game-screen[data-story="noah"] .dpad{width:148px;height:148px}
+ .controls-panel .action-btn,.game-screen[data-story="noah"] .action-btn{width:84px;height:72px}
+}
+@media(max-width:360px){
+ .controls-panel,.game-screen[data-story="noah"] .controls-panel{left:6px;right:6px;bottom:7px}
+ .controls-panel .dpad,.game-screen[data-story="noah"] .dpad{width:148px;height:148px}
+ .controls-panel .action-btn,.game-screen[data-story="noah"] .action-btn{width:78px;height:68px}
+ .chapter-heading{align-items:start}
+}
+@media(max-height:620px) and (max-width:700px){#world{height:clamp(300px,calc(100dvh - 195px),425px)}}
+@media(prefers-reduced-motion:reduce){.canvas-shell *{transition:none!important}.mission-mini{animation:none!important}}
+
+
+/* v2.1.1 : disposition finale visible sans defilement sur telephone */
+.controls-panel,.game-screen[data-story="noah"] .controls-panel{top:58px;bottom:12px;justify-content:space-between}
+.controls-panel .control-group,.game-screen[data-story="noah"] .control-group{margin-top:auto}
+@media(max-width:700px){
+ .chapter-heading{display:flex;flex-wrap:nowrap!important;align-items:center;min-height:58px;padding:6px 10px!important;margin:0 3px 7px!important;gap:8px}
+ .chapter-heading>div:first-child{min-width:0;flex:1}
+ .chapter-heading small{display:none!important}
+ .chapter-heading h2{font-size:clamp(18px,5.6vw,23px);line-height:1.1;margin:0!important;overflow-wrap:break-word}
+ .chapter-heading .heading-actions{display:flex;flex:0 0 auto;flex-wrap:nowrap;gap:5px}
+ .chapter-heading #chapterCount,.chapter-heading #gameStars{display:none}
+ .chapter-heading .icon-btn{min-width:46px;min-height:46px;width:46px;height:46px;padding:0}
+ #world{height:340px;height:calc(100vh - 207px);height:clamp(310px,calc(100vh - 207px),620px);height:clamp(310px,calc(100dvh - 207px),620px)}
+ .controls-panel,.game-screen[data-story="noah"] .controls-panel{top:55px;bottom:9px;gap:7px}
+}
+@media(max-height:620px) and (max-width:700px){#world{height:calc(100vh - 201px);height:clamp(305px,calc(100vh - 201px),425px);height:clamp(305px,calc(100dvh - 201px),425px)}}
+
 </style>
 </head>
 <body>
@@ -313,11 +386,12 @@ body{background:#d8eae5;color:var(--lab-ink)}
 </main>
 <main id="gameScreen" class="screen game-screen" hidden>
  <div class="chapter-heading"><div><small id="gameKicker">Le jardin d'Eden &middot; Chapitre 1 / 5</small><h2 id="gameChapterName">Le jardin</h2></div><div class="heading-actions"><span id="gameStars" class="chapter-pill" aria-live="polite">✦ 0</span><button id="gameDiary" class="icon-btn" title="Mon carnet d’aventure" aria-label="Ouvrir le carnet">✧</button><span id="chapterCount" class="chapter-pill">0 / 2 d&eacute;couvertes</span><button id="bookBtn" class="icon-btn" style="background:#315746;color:#fff6df" title="Lire le livre" aria-label="Ouvrir le livre"><svg viewBox="0 0 24 24"><path d="M4 4.5c3-1.3 5.5-1.2 8 .5 2.5-1.7 5-1.8 8-.5v15c-3-1.3-5.5-1.2-8 .5-2.5-1.7-5-1.8-8-.5zM12 5v15"/></svg></button></div></div>
- <div class="game-layout"><div class="play-column"><div class="canvas-shell" id="canvasShell"><canvas id="world" role="img" aria-label="Labyrinthe : utilise les fleches ou touche un chemin pour te deplacer"></canvas><div class="canvas-head"><span class="floating-pill" id="canvasLocation">✦ Sentiers d&rsquo;&Eacute;den</span><div class="compass" aria-hidden="true">N</div></div><div class="toast" id="toast" aria-live="polite" hidden></div></div><div class="controls-panel"><div class="mission-mini"><div class="mission-medallion">✦</div><div><div class="label">Ta mission</div><div class="text" id="missionText">Cherche les livres du jardin</div></div></div><div class="control-group"><div class="dpad" aria-label="Commandes de deplacement"><button class="move-btn up" data-dir="up" aria-label="Monter">&uarr;</button><button class="move-btn left" data-dir="left" aria-label="Gauche">&larr;</button><button class="move-btn right" data-dir="right" aria-label="Droite">&rarr;</button><button class="move-btn down" data-dir="down" aria-label="Descendre">&darr;</button></div><button class="action-btn" id="actionBtn" aria-label="Observer un objet a proximite"><svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span>Observer</span></button></div></div><p class="footer-mini">Touche un chemin pour avancer jusqu’au prochain embranchement · Cherche les souvenirs lumineux · Les mauvaises réponses ne bloquent jamais la suite</p></div>
+ <div class="game-layout"><div class="play-column"><div class="canvas-shell" id="canvasShell"><canvas id="world" role="img" aria-label="Labyrinthe interactif : utilise les commandes de direction" aria-describedby="mapDescription"></canvas><div id="mapDescription" class="sr-only" role="status" aria-live="polite"></div><div class="canvas-head"><span class="floating-pill" id="canvasLocation">✦ Sentiers d&rsquo;&Eacute;den</span><div class="compass" aria-hidden="true">N</div></div><div class="toast" id="toast" aria-live="polite" hidden></div></div><div class="controls-panel"><details class="mission-mini" id="missionPanel"><summary>🎯 Ma mission <span aria-hidden="true">⌄</span></summary><div class="text" id="missionText">Cherche les livres du jardin</div></details><div class="control-group"><div class="dpad" aria-label="Commandes de deplacement"><button class="move-btn up" data-dir="up" aria-label="Monter">&uarr;</button><button class="move-btn left" data-dir="left" aria-label="Gauche">&larr;</button><button class="move-btn right" data-dir="right" aria-label="Droite">&rarr;</button><button class="move-btn down" data-dir="down" aria-label="Descendre">&darr;</button></div><button class="action-btn" id="actionBtn" aria-label="Observer un objet a proximite"><svg viewBox="0 0 24 24"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12z"/><circle cx="12" cy="12" r="3"/></svg><span>Observer</span></button></div></div><p class="footer-mini">Touche un chemin pour avancer jusqu’au prochain embranchement · Cherche les souvenirs lumineux · Les mauvaises réponses ne bloquent jamais la suite</p></div>
  <aside class="sidebar"><span class="eyebrow">Mon carnet magique</span><h3 id="sideTitle">Dans le jardin</h3><p id="sideDescription">Avance sur les chemins. Observe le monde autour de toi et trouve les pages de l'histoire.</p><div class="verse" id="sideVerse">&laquo; ... pour le cultiver et pour le garder. &raquo;<small>Gen&egrave;se 2,15</small></div><div class="side-progress"><p style="font-size:11px;margin-bottom:9px"><strong id="sideFound">0</strong> livres d&eacute;couverts</p><div class="progress-track"><div class="progress-fill" id="sideProgressFill"></div></div></div><div class="quest-box"><div class="quest-title">✦ Mes trouvailles du chapitre</div><div class="quest-meta" id="sideQuest">0 énigme, 0 trésor naturel</div><div class="quest-progress"><div id="sideQuestBar"></div></div></div><div class="side-actions"><button id="sideBook" class="btn pale">Relire le r&eacute;cit <span aria-hidden="true">&rarr;</span></button><button id="sideHelp" class="btn pale">Comment jouer ? <span aria-hidden="true">&rarr;</span></button></div></aside></div>
 </main>
 </div>
-<div class="overlay" id="overlay" hidden role="dialog" aria-modal="true" aria-label="Livre de l'aventure"><div id="modal" class="modal"><div id="modalBody" class="modal-inner"></div></div></div>
+<div id="storageWarning" class="storage-warning" role="alert" aria-live="assertive" hidden><strong>⚠️ Sauvegarde indisponible</strong><span id="storageWarningText">Tes progrès ne sont pas enregistrés sur cet appareil. Ne ferme pas cette page avant de réessayer.</span><button id="retrySave" type="button">Réessayer</button></div>
+<div class="overlay" id="overlay" hidden role="dialog" aria-modal="true" aria-label="Livre de l'aventure"><div id="modal" class="modal" tabindex="-1"><div id="modalBody" class="modal-inner"></div></div></div>
 <script>
 'use strict';
 (function(){
@@ -1351,13 +1425,17 @@ for(const item of [{"id":"moses","title":"Moïse et l’Exode","emoji":"🌊","f
 if(MODERN_STORY_IDS.length===7)BADGES.push({id:'50-chapitres',name:'Le grand explorateur',symbol:'🏆',desc:'Terminer les cinquante labyrinthes.',test:()=>LEVELS.every((_,i)=>dataFor(i).complete)});
 const STORAGE='bible-aventure-eden-premium-v01';
 const blank=()=>({avatar:null,sound:false,mode:'decouverte',voiceURI:'',voiceRate:.9,fontSize:'grand',story:'eden',avatarNoah:null,avatarJoseph:null,levels:{},awards:{},sequenceDone:false,noahSequenceDone:false,josephSequenceDone:false,completedStories:{},avatars:{}});
-let state=blank();
-try{let v=JSON.parse(localStorage.getItem(STORAGE)||'null');if(v&&typeof v==='object'){state=Object.assign(blank(),v,{levels:v.levels&&typeof v.levels==='object'?v.levels:{}})}}catch(e){}
-function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state))}catch(e){}}
-function dataFor(n){if(!state.levels[n])state.levels[n]={};const d=state.levels[n];if(!Array.isArray(d.seen))d.seen=[];if(!d.challenges||typeof d.challenges!=='object')d.challenges={};if(!Array.isArray(d.nature))d.nature=[];if(!Array.isArray(d.visited))d.visited=[];if(typeof d.answered!=='boolean')d.answered=false;if(typeof d.complete!=='boolean')d.complete=false;return d}
-if(!state.awards||typeof state.awards!=='object')state.awards={};
-if(!state.completedStories||typeof state.completedStories!=='object')state.completedStories={};
-if(!state.avatars||typeof state.avatars!=='object')state.avatars={};
+const isRecord=v=>!!v&&typeof v==='object'&&!Array.isArray(v);
+let state=blank(),storageReadFailed=false,saveTimer=null;
+try{let v=JSON.parse(localStorage.getItem(STORAGE)||'null');if(isRecord(v)){state=Object.assign(blank(),v,{levels:isRecord(v.levels)?v.levels:{}})}}catch(e){storageReadFailed=true}
+function warnStorage(failed,message){const el=$('storageWarning');if(!el)return;el.hidden=!failed;if(failed){text('storageWarningText',message||'Tes progrès ne sont pas enregistrés sur cet appareil. Ne ferme pas cette page avant de réessayer.')}}
+function save(){if(saveTimer!==null){clearTimeout(saveTimer);saveTimer=null}try{localStorage.setItem(STORAGE,JSON.stringify(state));warnStorage(false);return true}catch(e){warnStorage(true);return false}}
+function saveSoon(){if(saveTimer===null)saveTimer=setTimeout(save,500)}
+function dataFor(n){if(!isRecord(state.levels[n]))state.levels[n]={};const d=state.levels[n];if(!Array.isArray(d.seen))d.seen=[];if(!isRecord(d.challenges))d.challenges={};if(!Array.isArray(d.nature))d.nature=[];if(!Array.isArray(d.visited))d.visited=[];if(typeof d.answered!=='boolean')d.answered=false;if(typeof d.complete!=='boolean')d.complete=false;return d}
+if(!isRecord(state.awards))state.awards={};
+if(!isRecord(state.completedStories))state.completedStories={};
+if(!isRecord(state.avatars))state.avatars={};
+if(storageReadFailed)warnStorage(true,'Impossible de lire les anciens progrès sur cet appareil. Tu peux jouer, mais vérifie la sauvegarde avant de fermer.');
 if(state.sequenceDone&&Object.prototype.hasOwnProperty.call(state.awards,'retell-final')&&!Object.prototype.hasOwnProperty.call(state.awards,'retell-eden'))state.awards['retell-eden']=0;
 if(!['aventure','decouverte'].includes(state.mode))state.mode='decouverte';
 if(!Number.isFinite(state.voiceRate))state.voiceRate=.9;
@@ -1744,41 +1822,44 @@ function drawNatureMark(c,x,y,t,kind){
  c.restore();
 }
 function screenSize(){if(current<0||$('gameScreen').hidden)return;const r=canvas.getBoundingClientRect();if(!r.width||!r.height)return;let dpr=Math.min(window.devicePixelRatio||1,1.65);let tw=Math.round(r.width*dpr),th=Math.round(r.height*dpr);if(canvas.width!==tw||canvas.height!==th){canvas.width=tw;canvas.height=th}ctx.setTransform(dpr,0,0,dpr,0,0)}
-function render(t){requestAnimationFrame(render);if(current<0||!board||$('gameScreen').hidden||!$('overlay').hidden)return;if(t-lastFrame<34)return;let vw=canvas.clientWidth,vh=canvas.clientHeight;if(vw<=0||vh<=0)return;if(!canvas.width||Math.abs(canvas.width/(window.devicePixelRatio||1)-vw)>vw*.5)screenSize();let dpr=canvas.width/vw;ctx.setTransform(dpr,0,0,dpr,0,0);
+function render(t){requestAnimationFrame(render);if(current<0||!board||$('gameScreen').hidden||!$('overlay').hidden)return;const reduceMotion=!!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches);const artT=reduceMotion?0:t;if(t-lastFrame<(reduceMotion&&!moveAnim?140:34))return;let vw=canvas.clientWidth,vh=canvas.clientHeight;if(vw<=0||vh<=0)return;if(!canvas.width||Math.abs(canvas.width/(window.devicePixelRatio||1)-vw)>vw*.5)screenSize();let dpr=canvas.width/vw;ctx.setTransform(dpr,0,0,dpr,0,0);
  if(moveAnim){const fraction=Math.min(1,(t-moveAnim.start)/moveAnim.duration);if(fraction>=1){player={x:moveAnim.to.x,y:moveAnim.to.y};moveAnim=null;landed();if(!moveAnim&&autoSteps.length&&$('overlay').hidden)stepAuto(t)}}else if(autoSteps.length&&$('overlay').hidden){stepAuto(t)}
  let px=moveAnim?moveAnim.from.x+(moveAnim.to.x-moveAnim.from.x)*Math.max(0,Math.min(1,(t-moveAnim.start)/moveAnim.duration)):player.x;
  let py=moveAnim?moveAnim.from.y+(moveAnim.to.y-moveAnim.from.y)*Math.max(0,Math.min(1,(t-moveAnim.start)/moveAnim.duration)):player.y;
  const worldW=board.w*TILE,worldH=board.h*TILE;const camX=Math.max(0,Math.min(worldW-vw,(px+.5)*TILE-vw/2));const camY=Math.max(0,Math.min(worldH-vh,(py+.5)*TILE-vh/2));board.camX=camX;board.camY=camY;
  ctx.fillStyle='#486d53';ctx.fillRect(0,0,vw,vh);let sx=Math.floor(camX),sy=Math.floor(camY),sw=Math.min(Math.ceil(vw)+2,worldW-sx),sh=Math.min(Math.ceil(vh)+2,worldH-sy);if(sw>0&&sh>0)ctx.drawImage(board.staticLayer,sx,sy,sw,sh,-(camX-sx),-(camY-sy),sw,sh);
  ctx.save();ctx.translate(-camX,-camY);const seen=dataFor(current).seen;
- for(let ev of board.events)drawMarker(ctx,ev,t,seen.includes(ev.id));
+ for(let ev of board.events)drawMarker(ctx,ev,artT,seen.includes(ev.id));
  const d=dataFor(current);
- for(let c of board.challenges)drawChallengeMark(ctx,(c.x+.5)*TILE,(c.y+.5)*TILE,t,!!d.challenges[c.id]);
- for(let n of board.nature)if(!d.nature.includes(n.id))drawNatureMark(ctx,(n.x+.5)*TILE,(n.y+.5)*TILE,t,n.nature);
+ for(let c of board.challenges)drawChallengeMark(ctx,(c.x+.5)*TILE,(c.y+.5)*TILE,artT,!!d.challenges[c.id]);
+ for(let n of board.nature)if(!d.nature.includes(n.id))drawNatureMark(ctx,(n.x+.5)*TILE,(n.y+.5)*TILE,artT,n.nature);
  // Living but non-interactive birds and butterfly silhouettes in the painted scenery.
- for(let j=0;j<board.ambient.length;j++){
+ if(!reduceMotion)for(let j=0;j<board.ambient.length;j++){
   let a=board.ambient[j],fx=(a.x+.5)*TILE,fy=(a.y+.5)*TILE;
   if(Math.abs(fx-(px+.5)*TILE)>vw/1.1 || Math.abs(fy-(py+.5)*TILE)>vh/1.1)continue;
   if(j%3===0){let drift=Math.sin(t/1150+j)*9;drawBird(ctx,fx+drift,fy+Math.cos(t/600+j)*4,t)}
   else{ctx.save();ctx.translate(fx+Math.sin(t/640+j)*14,fy+Math.cos(t/750+j)*10);ctx.fillStyle=j%2?'#e7c47e':'#cbdba2';ellipse(ctx,-4,0,5,3,ctx.fillStyle,.35);ellipse(ctx,4,0,5,3,ctx.fillStyle,-.35);ctx.restore()}
  }
-  if(current===7){for(let j=0;j<22;j++){let rx=(noise(j,3,board.seed)*worldW+t*.12*(1+j%3))%worldW,ry=(noise(j,4,board.seed)*worldH+t*.18*(1+j%3))%worldH;if(rx<camX-20||rx>camX+vw+20||ry<camY-20||ry>camY+vh+20)continue;ctx.strokeStyle='rgba(196,232,245,.45)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(rx,ry);ctx.lineTo(rx-8,ry+19);ctx.stroke()}}
- drawExit(ctx,(board.exit.x+.5)*TILE,(board.exit.y+.5)*TILE,t);
- const actorBob=moveAnim?Math.sin(t/80)*3:Math.sin(t/610)*1.3;drawPerson(ctx,(px+.5)*TILE,(py+.5)*TILE+actorBob,(MODERN_STORY_IDS.includes(storyFor(current).id)?(state.avatars[storyFor(current).id]||'traveller'):(storyFor(current).id==='joseph'?(state.avatarJoseph||'joseph'):storyFor(current).id==='noah'?(state.avatarNoah||'noah'):(current===0?'adam':state.avatar||'adam'))),t,1.12);
+  if(!reduceMotion&&current===7){for(let j=0;j<22;j++){let rx=(noise(j,3,board.seed)*worldW+t*.12*(1+j%3))%worldW,ry=(noise(j,4,board.seed)*worldH+t*.18*(1+j%3))%worldH;if(rx<camX-20||rx>camX+vw+20||ry<camY-20||ry>camY+vh+20)continue;ctx.strokeStyle='rgba(196,232,245,.45)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(rx,ry);ctx.lineTo(rx-8,ry+19);ctx.stroke()}}
+ drawExit(ctx,(board.exit.x+.5)*TILE,(board.exit.y+.5)*TILE,artT);
+ const actorBob=reduceMotion?0:moveAnim?Math.sin(t/80)*3:Math.sin(t/610)*1.3;drawPerson(ctx,(px+.5)*TILE,(py+.5)*TILE+actorBob,(MODERN_STORY_IDS.includes(storyFor(current).id)?(state.avatars[storyFor(current).id]||'traveller'):(storyFor(current).id==='joseph'?(state.avatarJoseph||'joseph'):storyFor(current).id==='noah'?(state.avatarNoah||'noah'):(current===0?'adam':state.avatar||'adam'))),artT,1.12);
  // Fireflies, pollen and breathing particles above the scenery.
- for(let j=0;j<19;j++){let fx=(noise(j,1,board.seed)*worldW+Math.sin(t*.00038+j)*13),fy=(noise(j,2,board.seed)*worldH+Math.cos(t*.00045+j)*12);if(fx<camX-10||fx>camX+vw+10||fy<camY-10||fy>camY+vh+10)continue;let alpha=.20+Math.sin(t*.002+j)*.14;ellipse(ctx,fx,fy,1.6+noise(j,3)*1.5,1.6,`rgba(255,235,168,${Math.max(.03,alpha)})`)}
+ if(!reduceMotion)for(let j=0;j<19;j++){let fx=(noise(j,1,board.seed)*worldW+Math.sin(t*.00038+j)*13),fy=(noise(j,2,board.seed)*worldH+Math.cos(t*.00045+j)*12);if(fx<camX-10||fx>camX+vw+10||fy<camY-10||fy>camY+vh+10)continue;let alpha=.20+Math.sin(t*.002+j)*.14;ellipse(ctx,fx,fy,1.6+noise(j,3)*1.5,1.6,`rgba(255,235,168,${Math.max(.03,alpha)})`)}
  if(hintPath&&hintPath.length){for(let i=0;i<hintPath.length;i++){
  const st=hintPath[i],x=(st.x+.5)*TILE,y=(st.y+.5)*TILE;
  ellipse(ctx,x,y,Math.max(3,7-i*.3),Math.max(3,7-i*.3),'rgba(255,231,156,.69)');
  }}
- if(hintTarget){let x=(hintTarget.x+.5)*TILE,y=(hintTarget.y+.5)*TILE;ctx.strokeStyle='rgba(253,228,145,.85)';ctx.lineWidth=4;ctx.setLineDash([8,7]);ctx.beginPath();ctx.arc(x,y,29+Math.sin(t/250)*3,0,Math.PI*2);ctx.stroke();ctx.setLineDash([])}ctx.restore();
+ if(hintTarget){let x=(hintTarget.x+.5)*TILE,y=(hintTarget.y+.5)*TILE;ctx.strokeStyle='rgba(253,228,145,.85)';ctx.lineWidth=4;ctx.setLineDash([8,7]);ctx.beginPath();ctx.arc(x,y,29+Math.sin(artT/250)*3,0,Math.PI*2);ctx.stroke();ctx.setLineDash([])}ctx.restore();
  // Sunlit vignette and subtle lens painting.
  const vignette=ctx.createRadialGradient(vw*.5,vh*.4,Math.min(vw,vh)*.2,vw*.5,vh*.5,Math.max(vw,vh)*.75);vignette.addColorStop(0,'rgba(0,0,0,0)');vignette.addColorStop(1,'rgba(18,42,32,.25)');ctx.fillStyle=vignette;ctx.fillRect(0,0,vw,vh);lastFrame=t;
 }
 function chime(kind){if(!state.sound)return;try{const A=window.AudioContext||window.webkitAudioContext;if(!A)return;if(!audioCtx)audioCtx=new A();const osc=audioCtx.createOscillator(),gain=audioCtx.createGain(),now=audioCtx.currentTime;osc.type='sine';osc.frequency.setValueAtTime(kind==='book'?620:450,now);osc.frequency.exponentialRampToValueAtTime(kind==='book'?930:610,now+.17);gain.gain.setValueAtTime(.0001,now);gain.gain.exponentialRampToValueAtTime(.075,now+.02);gain.gain.exponentialRampToValueAtTime(.0001,now+.23);osc.connect(gain);gain.connect(audioCtx.destination);osc.start(now);osc.stop(now+.24)}catch(e){}}
 function toast(message){const el=$('toast');el.textContent=decode(message);el.hidden=false;clearTimeout(toastTimer);toastTimer=setTimeout(()=>el.hidden=true,2600)}
-function showModal(markup,wide=false){lastFocus=document.activeElement;const overlay=$('overlay');$('modalBody').innerHTML=markup;$('modal').classList.toggle('wide',!!wide);overlay.hidden=false;$('modal').scrollTop=0;overlay.scrollTop=0;autoSteps=[];const button=$('modalBody').querySelector('button');if(button)setTimeout(()=>{try{button.focus({preventScroll:true})}catch(e){button.focus()}},10)}
-function closeModal(){if(window.speechSynthesis)try{window.speechSynthesis.cancel()}catch(e){}$('overlay').hidden=true;$('modalBody').innerHTML='';chosenAnswer=null;if(lastFocus&&lastFocus.isConnected&&lastFocus.focus)try{lastFocus.focus({preventScroll:true})}catch(e){lastFocus.focus()}}
+let modalFocusTimer=null;
+function modalFocusable(){return [...$('modal').querySelectorAll('button:not([disabled]),a[href],input:not([disabled]),select:not([disabled]),textarea:not([disabled]),[tabindex]:not([tabindex="-1"])')].filter(n=>n.getClientRects().length>0)}
+function showModal(markup,wide=false){const overlay=$('overlay');if(overlay.hidden)lastFocus=document.activeElement;$('modalBody').innerHTML=markup;$('modal').classList.toggle('wide',!!wide);overlay.hidden=false;const app=$('app');app.inert=true;app.setAttribute('aria-hidden','true');$('modal').scrollTop=0;overlay.scrollTop=0;autoSteps=[];if(modalFocusTimer!==null)clearTimeout(modalFocusTimer);modalFocusTimer=setTimeout(()=>{if(overlay.hidden)return;const first=modalFocusable()[0];try{(first||$('modal')).focus({preventScroll:true})}catch(e){(first||$('modal')).focus()}},10)}
+function closeModal(){if(window.speechSynthesis)try{window.speechSynthesis.cancel()}catch(e){}if(modalFocusTimer!==null)clearTimeout(modalFocusTimer);$('overlay').hidden=true;$('modalBody').innerHTML='';$('app').inert=false;$('app').removeAttribute('aria-hidden');chosenAnswer=null;if(lastFocus&&lastFocus.isConnected&&lastFocus.focus)try{lastFocus.focus({preventScroll:true})}catch(e){lastFocus.focus()}}
+document.addEventListener('keydown',e=>{if(e.key!=='Tab'||$('overlay').hidden)return;const nodes=modalFocusable(),first=nodes[0],last=nodes[nodes.length-1];if(!first){e.preventDefault();$('modal').focus();return}if(e.shiftKey&&(document.activeElement===first||!$('modal').contains(document.activeElement))){e.preventDefault();last.focus()}else if(!e.shiftKey&&(document.activeElement===last||!$('modal').contains(document.activeElement))){e.preventDefault();first.focus()}},true);
 function closeTop(){if(!$('overlay').hidden)closeModal()}
 function modalHeader(tag){return `<div class="modal-header"><span class="modal-tag">${tag}</span><button class="mini-btn" data-act="close" aria-label="Fermer">Fermer &times;</button></div>`}
 function frenchVoices(){if(!('speechSynthesis'in window))return [];try{return window.speechSynthesis.getVoices().filter(v=>/^fr(?:-|$)/i.test(v.lang)).sort((a,b)=>{
@@ -1792,7 +1873,8 @@ function speakFrench(message){try{
  synth.cancel();const msg=new SpeechSynthesisUtterance(decode(message));msg.voice=voice;msg.lang=voice.lang;msg.rate=state.voiceRate||.9;msg.pitch=1;synth.speak(msg);return true
  }catch(e){toast('Impossible de lancer la lecture française sur cet appareil.');return false}}
 function voiceOptions(){const voices=frenchVoices(),current=activeFrenchVoice();return voices.map(v=>`<option value="${escapeHtml(v.voiceURI)}" ${current&&current.voiceURI===v.voiceURI?'selected':''}>${escapeHtml(v.name)} · ${escapeHtml(v.lang)}${v.localService?' · sur l’appareil':''}</option>`).join('')}
-if('speechSynthesis'in window&&window.speechSynthesis.addEventListener){window.speechSynthesis.addEventListener('voiceschanged',()=>{let v=$('voiceSelect');if(v)v.innerHTML=voiceOptions()||'<option>Aucune voix française disponible</option>'})}
+function refreshFrenchVoices(){const select=$('voiceSelect');if(!select)return;const voices=frenchVoices();select.innerHTML=voiceOptions()||'<option value="">Aucune voix française disponible</option>';select.disabled=voices.length===0;select.setAttribute('aria-disabled',String(!voices.length))}
+if('speechSynthesis'in window){if(window.speechSynthesis.addEventListener)window.speechSynthesis.addEventListener('voiceschanged',refreshFrenchVoices);else if('onvoiceschanged'in window.speechSynthesis)window.speechSynthesis.onvoiceschanged=refreshFrenchVoices} 
 function speakButton(message){return typeof window.speechSynthesis!=='undefined'?`<button class="mini-btn" data-act="speak" data-speech="${encodeURIComponent(message)}" aria-label="Faire lire le texte">&#9835; &Eacute;couter</button>`:''}
 function chapterBook(n){if(n<0)n=0;const l=LEVELS[n],st=storyFor(n),k=localChapter(n);return `${modalHeader('📖 Le grand livre · ${st.title}')}<div class="modal-art ${l.palette==='storm'?'dusk':l.palette==='rainbow'?'gold':''}"><span class="orn">${st.emoji}</span></div><div class="modal-tag">Chapitre ${k+1} sur 5 · ${l.ref}</div><h2>${escapeHtml(l.name)}</h2><p class="story-dropcap">${escapeHtml(l.intro)}</p><div class="truth-note"><b>Pour comprendre</b>${escapeHtml(l.reflection)}</div><p class="modal-footnote">Histoire reformulée pour les enfants à partir de ${l.ref}. Les décors et accessoires du jeu ne sont pas des reconstitutions historiques.</p><div class="modal-actions">${speakButton(l.intro)}<button class="btn primary" data-act="close">Continuer à explorer →</button></div>`}
 function openIntro(n){const l=LEVELS[n],st=storyFor(n);showModal(`${modalHeader(st.emoji+' '+st.title)}<div class="modal-art ${l.palette==='storm'?'dusk':l.palette==='rainbow'?'gold':''}"><span class="orn">${localChapter(n)+1}</span></div><div class="modal-tag">Chapitre ${localChapter(n)+1} / 5 · ${l.ref}</div><h2>${escapeHtml(l.name)}</h2><p class="story-dropcap">${escapeHtml(l.intro)}</p><div class="truth-note"><b>🎯 Ta mission</b>${escapeHtml(l.mission)} Tu peux relire les livres à tout moment.</div><div class="modal-actions">${speakButton(l.intro)}<button class="btn primary" data-act="close">C’est parti ! →</button></div><p class="modal-footnote">Nous distinguons toujours le récit biblique des éléments imaginés pour le jeu.</p>`)}
@@ -1835,7 +1917,7 @@ function renderSequence(){const seq=STORY_SEQUENCES[sequenceStory],scramble=scra
 function finishSequence(){const st=STORIES.find(s=>s.id===sequenceStory),correct=picked.length===5&&picked.every((v,i)=>v===i);
  if(correct){if(sequenceStory==='noah')state.noahSequenceDone=true;else if(sequenceStory==='joseph')state.josephSequenceDone=true;else if(MODERN_STORY_IDS.includes(sequenceStory))state.completedStories[sequenceStory]=true;else state.sequenceDone=true;save();award('retell-'+sequenceStory,70,'Histoire reconstituée')}
  const explain=st.endSummary|| (sequenceStory==='joseph'?'Relis Genèse 37 et 39–45 : Joseph rêve, souffre d’une injustice, arrive en Égypte, aide à préparer les réserves et retrouve ses frères. Le texte invite à réfléchir au pardon.':sequenceStory==='noah'?'Relis Genèse 6–9 pour retrouver le chantier, la famille, les animaux, la pluie, la colombe et l’alliance de Dieu. Le récit est sérieux, mais il finit par la promesse.':'Relis Genèse 2–3 pour comprendre le jardin, la consigne, la désobéissance et le départ.');
- showModal(`${modalHeader('Une histoire de plus !')}<div class="modal-art gold"><span class="orn">${st.emoji}</span></div><div class="modal-tag">${escapeHtml(st.title)} · aventure complète</div><h2>${escapeHtml(st.endMessage)}</h2><p>Tu as exploré les cinq chapitres. Essaie maintenant de raconter l’histoire avec tes propres mots à quelqu’un.</p><div class="truth-note"><b>Pour aller plus loin</b>${escapeHtml(explain)}</div><div class="modal-actions"><button class="btn primary" data-act="home">Explorer mes histoires →</button><button class="btn pale" data-act="album">Voir mon album 📖</button></div>`);
+ showModal(`${modalHeader('Une histoire de plus !')}<div class="modal-art gold"><span class="orn">${st.emoji}</span></div><div class="modal-tag">${escapeHtml(st.title)} · aventure complète</div><h2>${escapeHtml(st.endMessage)}</h2><p>${storyRange(sequenceStory).every(v=>dataFor(v.i).complete)?'Tu as exploré les cinq chapitres.':'Tu as terminé le dernier chapitre. Il reste des chapitres à explorer dans ce récit.'} Essaie maintenant de raconter l’histoire avec tes propres mots à quelqu’un.</p><div class="truth-note"><b>Pour aller plus loin</b>${escapeHtml(explain)}</div><div class="modal-actions"><button class="btn primary" data-act="home">Explorer mes histoires →</button><button class="btn pale" data-act="album">Voir mon album 📖</button></div>`);
 }
 function showDiary(){
  const earned=unlockedBadges().map(x=>x.id),found=LEVELS.reduce((n,l,i)=>n+dataFor(i).seen.length,0),quests=LEVELS.reduce((n,l,i)=>n+Object.keys(dataFor(i).challenges).length,0),natures=LEVELS.reduce((n,l,i)=>n+dataFor(i).nature.length,0),maxBooks=LEVELS.reduce((n,l)=>n+l.events.length,0);
@@ -1868,7 +1950,7 @@ function challengeAnswer(choice){if(current<0||selectedChallenge<0)return;const 
 }
 function challengeUnderstood(){if(current<0||selectedChallenge<0)return;const d=dataFor(current);d.challenges[selectedChallenge]=true;save();award('challenge-'+current+'-'+selectedChallenge,25,'Énigme découverte');updateHUD();closeModal();selectedChallenge=-1}
 function collectNature(k){if(current<0)return;const d=dataFor(current);if(d.nature.includes(k))return;d.nature.push(k);save();award('nature-'+current+'-'+k,8,'Souvenir naturel');updateHUD()}
-function rememberPosition(){if(current<0||!board)return;const d=dataFor(current),pos=key(player.x,player.y,board.w);d.position={x:player.x,y:player.y,mode:state.mode};if(!d.visited.includes(pos))d.visited.push(pos);d.steps=(d.steps||0)+1;save();if(d.visited.length>=30)award('walking-'+current+'-30',12,'Exploration attentive');if(d.visited.length>=80)award('walking-'+current+'-80',16,'Grand explorateur')}
+function rememberPosition(){if(current<0||!board)return;const d=dataFor(current),pos=key(player.x,player.y,board.w);d.position={x:player.x,y:player.y,mode:state.mode};if(!d.visited.includes(pos))d.visited.push(pos);d.steps=(d.steps||0)+1;saveSoon();if(d.visited.length>=30)award('walking-'+current+'-30',12,'Exploration attentive');if(d.visited.length>=80)award('walking-'+current+'-80',16,'Grand explorateur')}
 function showProfiles(n){pendingChapter=n;const st=storyFor(n);if(MODERN_STORY_IDS.includes(st.id)){showModernProfiles(n,st);return}const isNoah=st.id==='noah',isJoseph=st.id==='joseph',avatar=isJoseph?(state.avatarJoseph||'joseph'):isNoah?(state.avatarNoah||'noah'):(state.avatar||'adam');
  const choices=isJoseph?`<button class="profile ${avatar==='joseph'?'active':''}" data-avatar="joseph"><span class="avatar-dot">J</span>Joseph</button><button class="profile ${avatar==='witness'?'active':''}" data-avatar="witness"><span class="avatar-dot">E</span>Explorateur</button>`:isNoah?`<button class="profile ${avatar==='noah'?'active':''}" data-avatar="noah"><span class="avatar-dot">N</span>Noé</button><button class="profile ${avatar==='visitor'?'active':''}" data-avatar="visitor"><span class="avatar-dot">V</span>Petit explorateur</button>`:`<button class="profile ${avatar==='adam'?'active':''}" data-avatar="adam"><span class="avatar-dot">A</span>Adam</button><button class="profile ${avatar==='eve'&&n>0?'active':''}" data-avatar="eve" ${n===0?'disabled title="À partir du chapitre 2"':''}><span class="avatar-dot">E</span>Ève ${n===0?'· bientôt':''}</button>`;
  showModal(`${modalHeader('Choisis ton personnage')}<div class="modal-tag">${st.title} · personnages du récit</div><h2>Avec qui vas-tu explorer ?</h2><p>${isJoseph?'Joseph est un personnage biblique. Le petit explorateur est fictif : il visite les lieux sans modifier les événements du récit.':isNoah?'Noé apparaît dans ce récit. Le petit explorateur est fictif : il découvre les scènes sans changer ce qui se passe dans la Bible.':'Choisis Adam ou Ève pour parcourir les sentiers. Ève devient accessible à partir du chapitre 2.'}</p><div class="profile-row">${choices}</div><div class="modal-actions"><button class="btn primary" data-act="enter-chapter">Partir à l’aventure ! →</button></div><p class="modal-footnote">Le jeu illustre les histoires sans modifier les événements bibliques.</p>`);
@@ -1902,7 +1984,7 @@ function renderHome(){
  const pending=storyRange(st.id).find(x=>!dataFor(x.i).complete);
  $('startBtn').textContent=pending?'▶ Jouer : '+LEVELS[pending.i].short:'▶ Rejouer cette histoire';
 }
-function startChapter(n,showIntro=true){if(n<0||n>=LEVELS.length)return;if(board&&board.staticLayer){board.staticLayer.width=1;board.staticLayer.height=1;board.staticLayer=null}current=n;state.story=storyFor(n).id;save();$('gameScreen').dataset.story=state.story;board=makeBoard(n);const previous=dataFor(n).position;player=(!dataFor(n).complete&&previous&&previous.mode===state.mode&&board.cells[key(previous.x,previous.y,board.w)]===1)?{x:previous.x,y:previous.y}:{x:board.start.x,y:board.start.y};moveAnim=null;autoSteps=[];hintTarget=null;hintPath=[];activeEvent=-1;$('homeScreen').hidden=true;$('gameScreen').hidden=false;document.body.classList.add('game-active');updateHUD();window.scrollTo(0,0);screenSize();if(showIntro)openIntro(n);else closeModal()}
+function startChapter(n,showIntro=true){if(n<0||n>=LEVELS.length)return;if(board&&board.staticLayer){board.staticLayer.width=1;board.staticLayer.height=1;board.staticLayer=null}current=n;state.story=storyFor(n).id;save();$('gameScreen').dataset.story=state.story;board=makeBoard(n);const previous=dataFor(n).position;player=(!dataFor(n).complete&&isRecord(previous)&&previous.mode===state.mode&&Number.isInteger(previous.x)&&Number.isInteger(previous.y)&&previous.x>=0&&previous.x<board.w&&previous.y>=0&&previous.y<board.h&&board.cells[key(previous.x,previous.y,board.w)]===1)?{x:previous.x,y:previous.y}:{x:board.start.x,y:board.start.y};moveAnim=null;autoSteps=[];hintTarget=null;hintPath=[];activeEvent=-1;$('homeScreen').hidden=true;$('gameScreen').hidden=false;document.body.classList.add('game-active');updateHUD();describeMap();window.scrollTo(0,0);screenSize();if(showIntro)openIntro(n);else closeModal()}
 function goHome(){closeModal();if(current>=0){if(board&&board.staticLayer){board.staticLayer.width=1;board.staticLayer.height=1;board.staticLayer=null}current=-1;board=null;moveAnim=null;autoSteps=[];hintTarget=null;hintPath=[]}$('gameScreen').hidden=true;$('homeScreen').hidden=false;document.body.classList.remove('game-active');renderHome();window.scrollTo(0,0)}
 function requestChapter(n){if(n<0||n>=LEVELS.length)return;pendingChapter=n;
  if(MODERN_STORY_IDS.includes(storyFor(n).id)?!state.avatars[storyFor(n).id]:storyFor(n).id==='joseph'?!state.avatarJoseph:storyFor(n).id==='noah'?!state.avatarNoah:!state.avatar){showProfiles(n);return}
@@ -1919,7 +2001,8 @@ let bufferedDirection=null;
 function beginStep(next,t=performance.now()){if(!board||!traversable(next.x,next.y))return false;moveAnim={from:{x:player.x,y:player.y},to:next,start:t,duration:145};return true}
 function stepAuto(t){if(moveAnim||!autoSteps.length||!$('overlay').hidden)return;const next=autoSteps.shift();beginStep(next,t)}
 function directStep(dx,dy){if(current<0||!$('overlay').hidden||!board)return;autoSteps=[];hintTarget=null;if(moveAnim){bufferedDirection={dx,dy};return}const target={x:player.x+dx,y:player.y+dy};if(traversable(target.x,target.y)){beginStep(target)}else{toast('Un arbre ou un rocher bloque ce chemin. Essaie une autre direction.')}}
-function landed(){if(!board||current<0)return;rememberPosition();hintPath=[];
+function describeMap(){if(!board||current<0)return;const options=[['haut',0,-1],['droite',1,0],['bas',0,1],['gauche',-1,0]].filter(v=>traversable(player.x+v[1],player.y+v[2])).map(v=>v[0]);const goal=findNextObjective(),mission=LEVELS[current].mission;text('mapDescription',`Labyrinthe ${localChapter(current)+1} de ${storyFor(current).title}. Position : colonne ${player.x+1}, rangée ${player.y+1}. Chemins disponibles : ${options.join(', ')||'aucun'}. Mission : ${mission}. ${goal?'Prochain objectif : '+goal.event.title+'.':'Cherche la sortie lumineuse.'}`)}
+function landed(){if(!board||current<0)return;rememberPosition();describeMap();hintPath=[];
  const d=dataFor(current);
  for(let e of board.events){if(e.x===player.x&&e.y===player.y&&!d.seen.includes(e.id)){bufferedDirection=null;showEvent(e);return}}
  for(let c of board.challenges){if(c.x===player.x&&c.y===player.y&&!d.challenges[c.id]){bufferedDirection=null;showChallenge(c.id);return}}
@@ -2005,9 +2088,11 @@ let touchStart=null;canvas.addEventListener('touchstart',e=>{if(e.touches.length
 canvas.addEventListener('touchend',e=>{if(!touchStart||!e.changedTouches.length)return;let dx=e.changedTouches[0].clientX-touchStart.x,dy=e.changedTouches[0].clientY-touchStart.y;touchStart=null;if(Math.abs(dx)+Math.abs(dy)<55)return;e.preventDefault();directStep(Math.abs(dx)>Math.abs(dy)?Math.sign(dx):0,Math.abs(dy)>=Math.abs(dx)?Math.sign(dy):0)},{passive:false});
 window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('overlay').hidden){e.preventDefault();closeModal();return}if(current<0||!$('overlay').hidden||$('gameScreen').hidden)return;const d={ArrowUp:'up',ArrowDown:'down',ArrowLeft:'left',ArrowRight:'right',w:'up',a:'left',s:'down',d:'right',W:'up',A:'left',S:'down',D:'right'}[e.key];if(d){e.preventDefault();directStep(...dirMap[d])}else if(e.key===' '){e.preventDefault();observe()}});
 window.addEventListener('resize',screenSize);window.addEventListener('orientationchange',()=>setTimeout(screenSize,200));
-window.addEventListener('visibilitychange',()=>{if(document.hidden&&window.speechSynthesis)try{window.speechSynthesis.cancel()}catch(e){}});
+window.addEventListener('visibilitychange',()=>{if(document.hidden){if(saveTimer!==null)save();if(window.speechSynthesis)try{window.speechSynthesis.cancel()}catch(e){}}});
+window.addEventListener('pagehide',()=>{if(saveTimer!==null)save()});
+$('retrySave').addEventListener('click',save);
 // Local, read-only helpers for regression testing the five stories.
-window.__BIBLE_TEST__={get levels(){return LEVELS},get board(){return board},get current(){return current},get player(){return player},get state(){return JSON.parse(JSON.stringify(state))},validateBoards,findPath:(x,y)=>findPath(player,{x,y}),navigate:(x,y)=>walkTo({x,y},true),limitedNavigate:(x,y)=>walkTo({x,y},false),get plannedSteps(){return autoSteps.length},get hints(){return hintPath.length},get stories(){return STORIES},get badges(){return unlockedBadges().map(x=>x.id)},get readingSize(){return state.fontSize},jump:(x,y)=>{if(!board||!traversable(x,y))return false;player={x,y};landed();return true},showDiary,showSettings,startChapter,showChallenge,showQuestion,get overlay(){return !$('overlay').hidden}};
+window.__BIBLE_TEST__={get levels(){return LEVELS},get board(){return board},get current(){return current},get player(){return player},get state(){return JSON.parse(JSON.stringify(state))},validateBoards,findPath:(x,y)=>findPath(player,{x,y}),navigate:(x,y)=>walkTo({x,y},true),limitedNavigate:(x,y)=>walkTo({x,y},false),get plannedSteps(){return autoSteps.length},get hints(){return hintPath.length},get stories(){return STORIES},get badges(){return unlockedBadges().map(x=>x.id)},get readingSize(){return state.fontSize},jump:(x,y)=>{if(!board||!traversable(x,y))return false;player={x,y};landed();return true},showDiary,showSettings,startChapter,showChallenge,showQuestion,get overlay(){return !$('overlay').hidden},describeMap,saveNow:save,get storageWarning(){return !$('storageWarning').hidden}};
 renderHome();requestAnimationFrame(render);
 })();
 </script>
