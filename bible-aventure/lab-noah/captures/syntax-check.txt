@@ -1,0 +1,1 @@
+PASS: acorn ecmaVersion 5, script de production sans transpilation.

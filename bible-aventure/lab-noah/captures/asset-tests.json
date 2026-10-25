@@ -1,0 +1,15 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Atlas animation 4 x 4 cellules 48 x 64",
+    "16 sprites séparés",
+    "Marche down: poses distinctes, pieds alignés, transparence",
+    "Marche left: poses distinctes, pieds alignés, transparence",
+    "Marche right: poses distinctes, pieds alignés, transparence",
+    "Marche up: poses distinctes, pieds alignés, transparence",
+    "9 objets détourés sans fond magenta visible",
+    "4 matériaux réutilisables de 96 px",
+    "Budget images runtime inférieur à 400 Kio"
+  ],
+  "runtimeImageBytes": 267428
+}

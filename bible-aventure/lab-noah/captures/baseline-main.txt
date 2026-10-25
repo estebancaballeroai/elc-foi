@@ -1,0 +1,3 @@
+PASS: portail, catalogue et recherche
+PASS: dix récits, cinq chapitres et sauvegarde du mode après rechargement
+PASS: ouverture du chapitre, canvas, retour, affichage mobile et aucune erreur JavaScript

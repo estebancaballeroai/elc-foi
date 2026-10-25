@@ -1,0 +1,329 @@
+{
+  "runtimeImageBytes": 267428,
+  "files": [
+    {
+      "file": "assets/ark.png",
+      "size": [
+        253,
+        194
+      ],
+      "bytes": 81969,
+      "sha256": "2c14ba6bfc69bbc46d93fa3af45f3b78feacc2e98bb216d88adfa271e3d03902"
+    },
+    {
+      "file": "assets/book.png",
+      "size": [
+        32,
+        22
+      ],
+      "bytes": 1924,
+      "sha256": "4de9cb8db81a204b08af62bdf70ce9f2cf6586c0c0d7bf3141590294ac8aa2b1"
+    },
+    {
+      "file": "assets/boulder.png",
+      "size": [
+        56,
+        49
+      ],
+      "bytes": 6022,
+      "sha256": "49673b9c1b919b4cb01b12b63f866ab8e33b98cb7b879617df8edd9845f0c399"
+    },
+    {
+      "file": "assets/cedar.png",
+      "size": [
+        80,
+        92
+      ],
+      "bytes": 14982,
+      "sha256": "085e2b9efb27c9455b29887e8159ffd26d17583b4a375dfc33388a0130e436f8"
+    },
+    {
+      "file": "assets/chest.png",
+      "size": [
+        42,
+        52
+      ],
+      "bytes": 5151,
+      "sha256": "1e9311749e353dabad8be098e606c9cc3b33afdf929c87c46676a77739790818"
+    },
+    {
+      "file": "assets/concept-01.png",
+      "size": [
+        1433,
+        442
+      ],
+      "bytes": 1345006,
+      "sha256": "3e10b991cc616ec1d466999190d0883de8c0c74f7630b2806bd63a23f7e1c671"
+    },
+    {
+      "file": "assets/concept-02.png",
+      "size": [
+        1433,
+        486
+      ],
+      "bytes": 1364679,
+      "sha256": "e46f37ddb96dc0982576f07bf58d36481698b8fc6036762b74b2adf5efba6d1d"
+    },
+    {
+      "file": "assets/doves.png",
+      "size": [
+        52,
+        36
+      ],
+      "bytes": 3168,
+      "sha256": "03c4119d4fdf00ba4cf41db7ecb7923774d32a90b4254f5c5b596c6b4d9f2d16"
+    },
+    {
+      "file": "assets/explorer.png",
+      "size": [
+        192,
+        256
+      ],
+      "bytes": 60777,
+      "sha256": "bc021f849758b9eb89486d9c62487fcd980b6499510b5762817968c42430ef93"
+    },
+    {
+      "file": "assets/flowers.png",
+      "size": [
+        48,
+        44
+      ],
+      "bytes": 5202,
+      "sha256": "e6e03612ab0fb7f2b3e1e667a25d0e70a548f12bdfc1beae0dabb589c254186a"
+    },
+    {
+      "file": "assets/frames/explorer-down-0.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 3890,
+      "sha256": "8f62b7e24e4ceae232ad228e1fda712bf6af5476971ef9e235e62b29ada1c9a9"
+    },
+    {
+      "file": "assets/frames/explorer-down-1.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 4106,
+      "sha256": "fbbd00532741744c07311a044298bac1586d8c03728a5a94fd9fd5b2fbf2716a"
+    },
+    {
+      "file": "assets/frames/explorer-down-2.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 3877,
+      "sha256": "20d7bb3b222564eed7175450ebd323fc4f3a656aa0c37c6caaff2fcd2c33aab3"
+    },
+    {
+      "file": "assets/frames/explorer-down-3.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 4088,
+      "sha256": "1dc404922b0c2d4d055e12e2e88efe4e24a6e0a60399427772b8807395f8f590"
+    },
+    {
+      "file": "assets/frames/explorer-left-0.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 4186,
+      "sha256": "c6ec09d0cc9a8c87d3c6fb9a910f1d337c6f006a5973cb878bbb3a8002bc3c9a"
+    },
+    {
+      "file": "assets/frames/explorer-left-1.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 3869,
+      "sha256": "5c560000577efd9fc89da32d86b860ab693a31cadb36d1c44b6880317414ebc1"
+    },
+    {
+      "file": "assets/frames/explorer-left-2.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 4168,
+      "sha256": "a62e9fd9d831be118acbb9cbeb9fa9b56aa91c00d48e6ccb2b21b972fdc738de"
+    },
+    {
+      "file": "assets/frames/explorer-left-3.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 3896,
+      "sha256": "1d94c4723b4ae39b394e88d7022790d9c2eb23a53e1fd9bfcec42d00b6238017"
+    },
+    {
+      "file": "assets/frames/explorer-right-0.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 4219,
+      "sha256": "4019ee6f4af0451ce8e07aecf79ce1b57e0727af57e263baad5e8c964d636a51"
+    },
+    {
+      "file": "assets/frames/explorer-right-1.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 3946,
+      "sha256": "4a634972a09631c7828f685cd74b2242419d6659a3fde35ce947b193eea3c4bd"
+    },
+    {
+      "file": "assets/frames/explorer-right-2.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 4085,
+      "sha256": "d0ba6283d4e4942d8347df3218ceb5447c690b7df7fb514f48ff6e4da684748d"
+    },
+    {
+      "file": "assets/frames/explorer-right-3.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 3943,
+      "sha256": "1bc531f348e2f3cc8a9457ce7bb75ecc10f89ac1da03477cc57de8dc7cd5b44a"
+    },
+    {
+      "file": "assets/frames/explorer-up-0.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 3688,
+      "sha256": "316d85671bd481621329539eb2036c33ec587a44e254523d667c9d13c991b357"
+    },
+    {
+      "file": "assets/frames/explorer-up-1.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 4036,
+      "sha256": "234c1d1ebdbbe7ddcf74962706053e159c7fe67e1c5885f16a460e522116158e"
+    },
+    {
+      "file": "assets/frames/explorer-up-2.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 3671,
+      "sha256": "70c699047abefb045adf1c55aecf86f1ccf7e08ebea10b197e22660e5c5572af"
+    },
+    {
+      "file": "assets/frames/explorer-up-3.png",
+      "size": [
+        48,
+        64
+      ],
+      "bytes": 3971,
+      "sha256": "6bf017d09fa672a3b862070aa79d7e1f62c36775ca393389bde326967be8d3a3"
+    },
+    {
+      "file": "assets/grass.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 23197,
+      "sha256": "24b04fbb3938c42178fbb5bcff76feb1a26096b3654ebe606705b6af8a17a69f"
+    },
+    {
+      "file": "assets/noah.png",
+      "size": [
+        30,
+        48
+      ],
+      "bytes": 3585,
+      "sha256": "066c87ced7a2b7a35cac7fda50f7fb367d9699c1101d4a5238c3965432993ac8"
+    },
+    {
+      "file": "assets/planks.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 16869,
+      "sha256": "7a2bde27ecdb96c3e33412a3af337f49f8faf3c398604e0b9ac19d5e0d618c16"
+    },
+    {
+      "file": "assets/sand.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 19238,
+      "sha256": "870946968c17f5b3ef2a44f5edc836e952d0ed00c8df8418ac6f0e09c66785ba"
+    },
+    {
+      "file": "assets/sheep.png",
+      "size": [
+        64,
+        36
+      ],
+      "bytes": 5227,
+      "sha256": "45aadb5b195fad2592dcec54a0f9d3430ab39b66cbb43998c9249750120fbfa1"
+    },
+    {
+      "file": "assets/source/concepts.png",
+      "size": [
+        1672,
+        941
+      ],
+      "bytes": 3143015,
+      "sha256": "8f31a7fd351c30918c4403f7cd0acf94702f030f103e8e21a01213dd4e28604d"
+    },
+    {
+      "file": "assets/source/explorer-generated.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 1701203,
+      "sha256": "60a12f93d5b32d7c65fe59db56a3879cf2eb86c0f43039dbdff8019e1180af38"
+    },
+    {
+      "file": "assets/source/garden-generated.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 1972760,
+      "sha256": "d552b935cd8027d3ddadaf73d3c6e06bc1fdaf66bcc827c4f1d5fdd8aa37ceea"
+    },
+    {
+      "file": "assets/source/terrain-generated.png",
+      "size": [
+        1254,
+        1254
+      ],
+      "bytes": 1917147,
+      "sha256": "1943ce1263584482d86debfb61bc198b389e940bd9ffc55fbb64bfd6bdef68da"
+    },
+    {
+      "file": "assets/water.png",
+      "size": [
+        96,
+        96
+      ],
+      "bytes": 20117,
+      "sha256": "dc4135c5ad9cbf8551d8930d99113aa25c5bb7ab80bc4b21f510566035a8e085"
+    }
+  ]
+}

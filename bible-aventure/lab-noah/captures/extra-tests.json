@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "checks": [
+    "HTML autonome: une seule requête document, aucune ressource HTTP supplémentaire",
+    "Déplacement réel dans la version autonome",
+    "Images des dialogues embarquées dans la version autonome",
+    "Galerie de sprites animés exécutée et capturée",
+    "Bouton maintenu: plusieurs pas, arrêt effectif au relâchement",
+    "Les quatre directions activent les orientations correspondantes",
+    "Aucune erreur JavaScript sur les essais supplémentaires"
+  ]
+}

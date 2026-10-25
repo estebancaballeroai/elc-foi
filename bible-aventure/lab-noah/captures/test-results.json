@@ -1,0 +1,241 @@
+{
+  "browser": "Chromium via Playwright",
+  "viewports": [
+    {
+      "width": 320,
+      "height": 568,
+      "stepsThroughRealInput": 51,
+      "geometry": {
+        "overflow": false,
+        "controls": [
+          {
+            "x": 74,
+            "y": 345.1875,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 23,
+            "y": 396.1875,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 125,
+            "y": 396.1875,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 74,
+            "y": 447.1875,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 232,
+            "y": 421.1875,
+            "w": 62,
+            "h": 62
+          }
+        ]
+      }
+    },
+    {
+      "width": 390,
+      "height": 844,
+      "stepsThroughRealInput": 51,
+      "geometry": {
+        "overflow": false,
+        "controls": [
+          {
+            "x": 74,
+            "y": 551.59375,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 23,
+            "y": 602.59375,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 125,
+            "y": 602.59375,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 74,
+            "y": 653.59375,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 302,
+            "y": 627.59375,
+            "w": 62,
+            "h": 62
+          }
+        ]
+      }
+    },
+    {
+      "width": 768,
+      "height": 1024,
+      "stepsThroughRealInput": 51,
+      "geometry": {
+        "overflow": false,
+        "controls": [
+          {
+            "x": 93.03125,
+            "y": 629.78125,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 42.03125,
+            "y": 680.78125,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 144.03125,
+            "y": 680.78125,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 93.03125,
+            "y": 731.78125,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 419.96875,
+            "y": 699.78125,
+            "w": 68,
+            "h": 68
+          }
+        ]
+      }
+    },
+    {
+      "width": 1280,
+      "height": 900,
+      "stepsThroughRealInput": 51,
+      "geometry": {
+        "overflow": false,
+        "controls": [
+          {
+            "x": 121.1875,
+            "y": 616.78125,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 70.1875,
+            "y": 667.78125,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 172.1875,
+            "y": 667.78125,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 121.1875,
+            "y": 718.78125,
+            "w": 48,
+            "h": 48
+          },
+          {
+            "x": 845.8125,
+            "y": 686.78125,
+            "w": 68,
+            "h": 68
+          }
+        ]
+      }
+    }
+  ],
+  "checks": [
+    "Original: 10 récits et 50 chapitres",
+    "Original: 100 cartes accessibles, livres, énigmes, souvenirs et sortie",
+    "Original: les 50 chapitres démarrent",
+    "320px: aucune barre horizontale",
+    "320px: 5 commandes visibles et cibles >= 48px",
+    "320px: déplacement tactile",
+    "320px: collision de la rivière",
+    "320px: navigation par toucher du chemin",
+    "320px: livre 1 découvert avec vraies touches clavier",
+    "320px: livre 2 découvert avec vraies touches clavier",
+    "320px: livre 3 découvert avec vraies touches clavier",
+    "320px: reprise de position et livres",
+    "320px: Noé et explorateur dégagés des commandes devant l’arche",
+    "320px: mauvaise réponse puis fin et médaille",
+    "320px: carnet relisible",
+    "320px: dialogue fermé au clavier",
+    "320px: médaille conservée au rechargement",
+    "320px: sauvegarde production préservée",
+    "390px: aucune barre horizontale",
+    "390px: 5 commandes visibles et cibles >= 48px",
+    "390px: déplacement tactile",
+    "390px: collision de la rivière",
+    "390px: navigation par toucher du chemin",
+    "390px: livre 1 découvert avec vraies touches clavier",
+    "390px: livre 2 découvert avec vraies touches clavier",
+    "390px: livre 3 découvert avec vraies touches clavier",
+    "390px: reprise de position et livres",
+    "390px: Noé et explorateur dégagés des commandes devant l’arche",
+    "390px: mauvaise réponse puis fin et médaille",
+    "390px: carnet relisible",
+    "390px: dialogue fermé au clavier",
+    "390px: médaille conservée au rechargement",
+    "390px: sauvegarde production préservée",
+    "768px: aucune barre horizontale",
+    "768px: 5 commandes visibles et cibles >= 48px",
+    "768px: déplacement tactile",
+    "768px: collision de la rivière",
+    "768px: navigation par toucher du chemin",
+    "768px: livre 1 découvert avec vraies touches clavier",
+    "768px: livre 2 découvert avec vraies touches clavier",
+    "768px: livre 3 découvert avec vraies touches clavier",
+    "768px: reprise de position et livres",
+    "768px: Noé et explorateur dégagés des commandes devant l’arche",
+    "768px: mauvaise réponse puis fin et médaille",
+    "768px: carnet relisible",
+    "768px: dialogue fermé au clavier",
+    "768px: médaille conservée au rechargement",
+    "768px: sauvegarde production préservée",
+    "1280px: aucune barre horizontale",
+    "1280px: 5 commandes visibles et cibles >= 48px",
+    "1280px: déplacement tactile",
+    "1280px: collision de la rivière",
+    "1280px: navigation par toucher du chemin",
+    "1280px: livre 1 découvert avec vraies touches clavier",
+    "1280px: livre 2 découvert avec vraies touches clavier",
+    "1280px: livre 3 découvert avec vraies touches clavier",
+    "1280px: reprise de position et livres",
+    "1280px: Noé et explorateur dégagés des commandes devant l’arche",
+    "1280px: mauvaise réponse puis fin et médaille",
+    "1280px: carnet relisible",
+    "1280px: dialogue fermé au clavier",
+    "1280px: médaille conservée au rechargement",
+    "1280px: sauvegarde production préservée",
+    "Repli tactile sans PointerEvent",
+    "prefers-reduced-motion respecté",
+    "Quota localStorage: avertissement visible, jeu fonctionnel",
+    "Focus contenu dans le dialogue",
+    "JSON altéré: démarrage récupérable",
+    "Champs altérés normalisés sans fausse récompense",
+    "Ressource manquante signalée",
+    "Aucune erreur JavaScript dans les parcours"
+  ],
+  "errors": [],
+  "passed": 71,
+  "status": "PASS"
+}
