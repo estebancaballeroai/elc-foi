@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#223d35">
-<meta name="description" content="Bible Aventure v1.0 : Adam et Ève et Noé. Dix labyrinthes illustrés, des livres et des découvertes bibliques pour les enfants de 7 à 11 ans.">
-<title>Bible Aventure 1.0 | Éden et l’arche de Noé</title>
+<meta name="description" content="Bible Aventure v1.1 : Adam et Ève, Noé et Joseph. Quinze labyrinthes illustrés, des livres et des découvertes bibliques pour les enfants de 7 à 11 ans.">
+<title>Bible Aventure 1.1 | Éden, Noé et Joseph</title>
 <style>
 :root{--ink:#273b31;--ink-soft:#587064;--fern:#295b48;--fern2:#46785c;--bronze:#9b663d;--gold:#e7bd72;--cream:#f8f1e2;--paper:#fff9ed;--shell:#efe1c7;--edge:#d9c5a4;--radius:22px;--shadow:0 18px 60px rgba(30,49,34,.18)}
 *{box-sizing:border-box}html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}body{margin:0;background:#e7ddc9;color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;min-width:310px}button{font:inherit;color:inherit;cursor:pointer}button:focus-visible,[tabindex]:focus-visible{outline:3px solid #e7aa4e;outline-offset:3px}button:disabled{opacity:.5;cursor:default}strong{font-weight:760}em{font-family:Georgia,serif}h1,h2,h3,p{margin-top:0}h1,h2,h3{font-family:Georgia,"Times New Roman",serif;font-weight:600}h2{letter-spacing:-.035em}a{color:inherit}.grain{position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.13;background-image:url('data:image/svg+xml,%3Csvg viewBox=%220 0 160 160%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22f%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%22.58%22 numOctaves=%222%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23f)%22 opacity=%22.22%22/%3E%3C/svg%3E')}
@@ -93,6 +93,15 @@ body{background:#d5f3e9;color:#244254;font-family:"Trebuchet MS","Arial Rounded 
 }
 @media(max-width:360px){.dpad{width:130px;height:109px}.control-group{gap:11px}.action-btn{height:75px;width:95px}.chapter-heading{margin-bottom:6px}.chapter-pill{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.hero-illustration svg{animation:none!important}.story-card,.chap-card{transition:none!important}}
+/* Story three: Canaan desert, Egyptian palace and granaries */
+.story-card[data-story-select="joseph"]{border-color:#f1cf94;background:#fffbf2}
+.story-card[data-story-select="joseph"][aria-pressed="true"]{border-color:#b77d53;box-shadow:0 0 0 3px #f4ce94}
+.game-screen[data-story="joseph"]{background:#f9ecd9}
+.game-screen[data-story="joseph"] .canvas-shell{border-color:#e7b98b;box-shadow:0 9px 0 #c9946d,0 18px 35px #ad8c7f33}
+.chap-card[data-story="joseph"] .art{background:linear-gradient(150deg,#b8d6d9,#e9bb87,#c38c69)}
+.album-switch{display:flex;flex-wrap:wrap;gap:8px}
+.album-switch button{min-height:48px}
+@media(max-width:520px){.album-switch{display:grid;grid-template-columns:repeat(2,minmax(0,1fr))}.story-selector{gap:12px}}
 </style>
 </head>
 <body>
@@ -107,9 +116,9 @@ body{background:#d5f3e9;color:#244254;font-family:"Trebuchet MS","Arial Rounded 
  <div class="storybook-hero-copy">
   <span class="story-label">✦ LE GRAND LIVRE DES AVENTURES ✦</span>
   <h1 id="heroTitle">La Bible, <span>une aventure !</span></h1>
-  <p>Explore de merveilleux décors, rencontre des personnages bibliques et découvre deux grandes histoires en jouant !</p>
+  <p>Explore de merveilleux décors, rencontre des personnages bibliques et découvre trois grandes histoires en jouant !</p>
   <button class="btn primary" id="startBtn">Choisir mon aventure →</button>
-  <div class="hero-stats"><span>🌿 2 histoires</span><span>🧩 10 labyrinthes</span><span>⭐ Des récompenses</span></div>
+  <div class="hero-stats"><span>🌿 3 histoires</span><span>🧩 15 labyrinthes</span><span>⭐ Des récompenses</span></div>
  </div>
  <div class="hero-illustration" aria-hidden="true">
   <svg viewBox="0 0 520 365" xmlns="http://www.w3.org/2000/svg">
@@ -125,13 +134,13 @@ body{background:#d5f3e9;color:#244254;font-family:"Trebuchet MS","Arial Rounded 
   </svg>
  </div>
 </section></section>
- <div class="home-wrap"><div class="section-kicker">CHOISIS TON MONDE 🌍</div><h2 class="section-title">Deux histoires à explorer</h2><p class="section-desc">Commence par le récit que tu veux. Ouvre les livres, relève les défis, trouve des étoiles et découvre les événements de la Bible.</p><div id="storyCards" class="story-selector" role="group" aria-label="Choix du récit biblique"></div><div class="adventure-dashboard" aria-label="Ton carnet de voyage">
+ <div class="home-wrap"><div class="section-kicker">CHOISIS TON MONDE 🌍</div><h2 class="section-title">Trois histoires à explorer</h2><p class="section-desc">Commence par le récit que tu veux. Ouvre les livres, relève les défis, trouve des étoiles et découvre les événements de la Bible.</p><div id="storyCards" class="story-selector" role="group" aria-label="Choix du récit biblique"></div><div class="adventure-dashboard" aria-label="Ton carnet de voyage">
  <div class="score-medallion" aria-live="polite"><span class="score-sun">✦</span><span><strong id="homeScore">0</strong><small>Étoiles de découverte</small></span></div>
  <button class="diary-btn" id="openDiary" type="button">✧ Mon carnet et mes insignes</button>
  <div class="difficulty-control" role="group" aria-label="Choix du mode de jeu"><span>Mon parcours :</span><button id="modeDiscovery" class="mode-chip" type="button">Découverte 7–8 ans</button><button id="modeAdventure" class="mode-chip" type="button">Aventure 9–11 ans</button></div>
  </div>
  <div class="chapter-intro" id="storyTitle"></div><div id="chapterList" class="chap-grid"></div>
- <div class="parent-note"><div class="note-icon" aria-hidden="true">✧</div><div><strong>Aux parents et moniteurs</strong><p>Adaptations de Gen&egrave;se 2&ndash;3 et 6&ndash;9, dans une sensibilit&eacute; protestante &eacute;vang&eacute;lique. Les d&eacute;cors, les parcours et certains accessoires sont imagin&eacute;s pour le jeu&nbsp;: ils ne constituent pas une reconstitution historique ou un ajout au texte biblique. Les questions servent &agrave; comprendre, jamais &agrave; bloquer.</p></div></div>
+ <div class="parent-note"><div class="note-icon" aria-hidden="true">✧</div><div><strong>Aux parents et moniteurs</strong><p>Adaptations de Gen&egrave;se 2&ndash;3, 6&ndash;9 et 37 ; 39&ndash;45, dans une sensibilit&eacute; protestante &eacute;vang&eacute;lique. Les d&eacute;cors, les parcours et certains accessoires sont imagin&eacute;s pour le jeu&nbsp;: ils ne constituent pas une reconstitution historique ou un ajout au texte biblique. Les questions servent &agrave; comprendre, jamais &agrave; bloquer.</p></div></div>
  </div>
 </main>
 <main id="gameScreen" class="screen game-screen" hidden>
@@ -149,6 +158,7 @@ const decode=s=>{const t=document.createElement('textarea');t.innerHTML=s;return
 const text=(id,s)=>{$(id).textContent=decode(String(s))};
 const icons={leaf:'<path d="M21 3c-11 1-17 7-17 15a3 3 0 0 0 3 3C15 21 21 15 21 3Z"/><path d="M7 17c4-4 8-7 13-10"/>',bird:'<path d="M3 15c5-9 10-11 18-9-4 3-6 5-6 9l-6 4z"/><path d="M8 13 5 9m10-1 4 3"/>',flower:'<path d="M12 12c-8-2-6-8-2-7 1-6 8-4 7 1 6 0 6 7 1 8-2 6-8 5-8 1-6 2-9-3-5-7Z"/><circle cx="12" cy="12" r="2"/>',tree:'<path d="M12 21v-8m0 0-4 3m4-3 4 3M5 12C-1 5 7-1 12 4c6-5 13 2 7 8-1 3-5 4-7 3-4 2-6-1-7-3Z"/>',path:'<path d="M4 20c3-5 0-7 5-11 4-4 7 1 11-5"/><path d="M14 4h6v6"/>',scroll:'<path d="M7 4h13v13H8m-1-13C4 4 4 7 4 9s0 5 4 5V4m0 10v6h11v-3M10 8h7m-7 4h6"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 2v3m0 14v3M2 12h3m14 0h3M5 5l2 2m10 10 2 2M5 19l2-2M17 7l2-2"/>',river:'<path d="M2 8q5-6 10 0t10 0M2 14q5-6 10 0t10 0M2 20q5-6 10 0t10 0"/>',snake:'<path d="M2 19q6-11 11-6t6-5q0-4-4-4"/><path d="m15 4 2-1 2 1"/>',steps:'<path d="M4 20h16v-5h-5v-5h-5V5H4z"/>',star:'<path d="m12 2 2.8 6.9L22 12l-7.2 3.1L12 22l-2.8-6.9L2 12l7.2-3.1z"/>',heart:'<path d="M20 5c-2-3-6-3-8 0-2-3-6-3-8 0-4 6 8 15 8 15s12-9 8-15Z"/>',home:'<path d="m3 10 9-7 9 7v11h-7v-7h-4v7H3z"/>'};
 function storyCover(id){
+ if(id==='joseph')return josephStoryCover();
  if(id==='noah')return `<svg viewBox="0 0 480 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="480" height="220" fill="#9cddf2"/><circle cx="410" cy="42" r="31" fill="#ffe6a6"/><g fill="none" stroke-linecap="round" opacity=".85"><path d="M315 150a94 94 0 0 1 180 0" stroke="#eb6685" stroke-width="9"/><path d="M327 150a82 82 0 0 1 156 0" stroke="#f9c04e" stroke-width="9"/><path d="M339 150a70 70 0 0 1 132 0" stroke="#75bcb4" stroke-width="9"/></g><path d="M0 165Q100 138 190 160T480 162V220H0Z" fill="#44b3d2"/><path d="M0 193Q80 167 160 191T324 188T480 185V220H0Z" fill="#328dbf"/><g transform="translate(175 109)"><path d="M-128 28L130 28 91 81 -88 81Z" fill="#a56a4c" stroke="#6a4b47" stroke-width="5"/><path d="M-112 23L-87-45 84-45 112 23Z" fill="#d89a66" stroke="#754e39" stroke-width="5"/><path d="M-90-45L-20-92 75-45Z" fill="#84523f"/><rect x="-12" y="-29" width="38" height="50" rx="7" fill="#654d47"/><path d="M-98 3H98M-81-22H85" stroke="#f3c58e" stroke-width="7"/><rect x="-59" y="-32" width="29" height="22" rx="8" fill="#ffe7b6"/><rect x="45" y="-32" width="29" height="22" rx="8" fill="#ffe7b6"/></g><g transform="translate(362 167)"><ellipse cx="0" cy="2" rx="26" ry="17" fill="#fff2d7"/><circle cx="17" cy="-9" r="12" fill="#fff8e9"/><path d="m27-8 15 6-15 3Z" fill="#e8a261"/><circle cx="20" cy="-11" r="2.5" fill="#364758"/><path d="m-16-6-30-23 9 29Z" fill="#f6e8c7"/></g><g fill="#fff" opacity=".75"><ellipse cx="76" cy="47" rx="44" ry="15"/><ellipse cx="104" cy="37" rx="35" ry="24"/><ellipse cx="310" cy="42" rx="36" ry="13"/></g></svg>`;
  return `<svg viewBox="0 0 480 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"><rect width="480" height="220" fill="#c9edb6"/><circle cx="392" cy="39" r="34" fill="#ffdc7d"/><path d="M0 155Q140 88 276 161T480 142V220H0Z" fill="#87cf91"/><path d="M0 191Q170 126 304 185T480 186V220H0Z" fill="#54ac86"/><path d="M280 231Q273 160 326 122Q350 103 369 76" fill="none" stroke="#86d5db" stroke-width="53"/><g transform="translate(116 112)"><path d="M0 95V-38" stroke="#a76b49" stroke-width="24" stroke-linecap="round"/><circle cx="0" cy="-50" r="60" fill="#428b62"/><circle cx="-43" cy="-33" r="47" fill="#57aa76"/><circle cx="46" cy="-42" r="47" fill="#4fa36f"/><circle cx="7" cy="-72" r="51" fill="#7acb87"/><circle cx="-23" cy="-63" r="9" fill="#ffae7c"/><circle cx="30" cy="-44" r="9" fill="#ffd78b"/></g><g transform="translate(347 158)"><circle cx="0" cy="-19" r="16" fill="#d8a474"/><path d="M-16 0Q0-9 17 0L25 46H-25Z" fill="#f8c575"/><path d="M-16-22Q-15-46 5-43Q20-41 18-20" fill="#4d3f35"/><circle cx="-5" cy="-20" r="2.5"/><circle cx="7" cy="-20" r="2.5"/><path d="M-4-10Q2-5 8-10" fill="none" stroke="#895843" stroke-width="2"/></g><g fill="#fff" opacity=".8"><ellipse cx="290" cy="52" rx="47" ry="16"/><ellipse cx="324" cy="43" rx="24" ry="22"/></g><g fill="#ffce88"><circle cx="225" cy="170" r="7"/><circle cx="216" cy="190" r="6"/><circle cx="25" cy="192" r="6"/></g></svg>`;
 }
@@ -645,15 +655,494 @@ const NOAH_CHALLENGES=[
  ]
 ];
 CHALLENGES.push(...NOAH_CHALLENGES);
+const JOSEPH_LEVELS=[
+ {
+  "name": "Les rêves du jeune Joseph",
+  "short": "La tunique et les rêves",
+  "teaser": "Découvre la famille de Joseph et ses rêves surprenants.",
+  "ref": "Genèse 37,1-11",
+  "verse": "« Joseph eut un songe » (Genèse 37,5).",
+  "intro": "Dans le pays de Canaan, Joseph vit avec son père Jacob et ses frères. Son père lui offre un vêtement particulier. Ses frères sont jaloux de lui. Joseph raconte ensuite deux rêves : des gerbes de blé s’inclinent devant la sienne, puis le soleil, la lune et onze étoiles s’inclinent devant lui. Ces rêves éveillent encore plus de questions dans sa famille.",
+  "reflection": "La jalousie abîme les relations. Le récit nous invite à considérer les autres avec justice et à écouter avant de juger.",
+  "mission": "Explore les tentes de Canaan. Trouve la tunique, les gerbes et les étoiles.",
+  "w": 23,
+  "h": 19,
+  "seed": 12763,
+  "braid": 0.14,
+  "palette": "canaan",
+  "art": "joseph",
+  "icon": "star",
+  "events": [
+   {
+    "title": "La famille de Jacob",
+    "type": "family",
+    "ref": "Genèse 37,1-4",
+    "body": "Jacob, aussi appelé Israël, aime Joseph d’un amour particulier et lui donne un vêtement remarquable. Ses frères remarquent cette préférence et en souffrent.",
+    "notice": "La forme et les couleurs exactes du vêtement sont incertaines selon les traductions : notre dessin est une interprétation artistique."
+   },
+   {
+    "title": "Les gerbes qui s’inclinent",
+    "type": "sheaf",
+    "ref": "Genèse 37,5-8",
+    "body": "Dans un rêve, Joseph voit la gerbe de blé qu’il a liée rester debout, tandis que les gerbes de ses frères s’inclinent autour d’elle. Ses frères comprennent qu’il pourrait devenir important.",
+    "notice": "Le rêve est raconté dans Genèse 37 ; l’image que nous en donnons n’est pas une scène historique observée."
+   },
+   {
+    "title": "Onze étoiles dans un rêve",
+    "type": "dream",
+    "ref": "Genèse 37,9-11",
+    "body": "Joseph raconte un autre rêve où le soleil, la lune et onze étoiles s’inclinent devant lui. Son père le reprend, mais garde ces paroles dans sa mémoire.",
+    "notice": "Les étoiles sont figurées comme des symboles du rêve, pas comme des objets que Joseph aurait réellement touchés."
+   },
+   {
+    "title": "Des sentiments difficiles",
+    "type": "coat",
+    "ref": "Genèse 37,4.11",
+    "body": "Les frères de Joseph sont jaloux de lui. La Bible ne cache pas ce problème dans la famille. Elle raconte aussi que son père réfléchit aux rêves qu’il a entendus.",
+    "notice": "Ce livre sert à comprendre les sentiments du récit, non à excuser la jalousie ou l’injustice."
+   }
+  ],
+  "question": {
+   "ask": "Quel élément apparaît dans le premier rêve de Joseph ?",
+   "answers": [
+    "Une arche sur la mer.",
+    "Des gerbes de blé.",
+    "Un grand poisson."
+   ],
+   "correct": 1,
+   "explain": "Genèse 37,5-8 raconte le rêve des gerbes de blé."
+  }
+ },
+ {
+  "name": "Sur le chemin de l’Égypte",
+  "short": "Le long voyage",
+  "teaser": "Comprends comment Joseph est séparé de sa famille.",
+  "ref": "Genèse 37,12-36",
+  "verse": "« Ils emmenèrent Joseph en Égypte » (Genèse 37,28).",
+  "intro": "Jacob envoie Joseph prendre des nouvelles de ses frères qui gardent les troupeaux. Mais ses frères décident de lui faire du mal. Joseph est jeté dans une citerne, puis emmené par des marchands vers l’Égypte, loin de sa famille. Jacob pense avoir perdu son fils et en éprouve une grande tristesse.",
+  "reflection": "Cette partie de l’histoire parle d’une véritable injustice. Elle montre que des choix cruels peuvent blesser durablement une famille.",
+  "mission": "Traverse les collines, observe la citerne et suis le chemin des marchands.",
+  "w": 27,
+  "h": 21,
+  "seed": 23861,
+  "braid": 0.17600000000000002,
+  "palette": "desert",
+  "art": "joseph",
+  "icon": "path",
+  "events": [
+   {
+    "title": "À la recherche de ses frères",
+    "type": "road",
+    "ref": "Genèse 37,12-17",
+    "body": "Joseph part de chez lui et cherche ses frères près de Sichem, puis il apprend qu’ils se trouvent du côté de Dothan. Il poursuit son chemin pour les retrouver.",
+    "notice": "Le tracé de la piste est imaginé : le jeu n’est pas une carte historique exacte."
+   },
+   {
+    "title": "Une citerne vide",
+    "type": "cistern",
+    "ref": "Genèse 37,18-24",
+    "body": "Les frères veulent d’abord se débarrasser de Joseph. Ruben cherche à éviter qu’il soit tué. Joseph est jeté dans une citerne où il n’y a pas d’eau.",
+    "notice": "La violence n’est pas montrée visuellement ; nous racontons les faits avec des mots adaptés aux enfants."
+   },
+   {
+    "title": "Des marchands en voyage",
+    "type": "caravan",
+    "ref": "Genèse 37,25-28",
+    "body": "Une caravane de marchands se dirige vers l’Égypte avec des produits à transporter. Joseph est vendu puis emmené dans ce pays.",
+    "notice": "Les animaux et la route de la caravane sont des illustrations possibles ; le texte mentionne des chameaux chargés de marchandises."
+   },
+   {
+    "title": "La tristesse de Jacob",
+    "type": "coat",
+    "ref": "Genèse 37,31-35",
+    "body": "Les frères rapportent à Jacob le vêtement de Joseph et le trompent. Jacob est bouleversé et pleure son fils. Il ne sait pas encore que Joseph vit en Égypte.",
+    "notice": "Le jeu ne représente pas la scène violente évoquée dans le texte ; il met l’accent sur les conséquences humaines."
+   }
+  ],
+  "question": {
+   "ask": "Vers quel pays les marchands emmènent-ils Joseph ?",
+   "answers": [
+    "Ninive.",
+    "Babylone.",
+    "L’Égypte."
+   ],
+   "correct": 2,
+   "explain": "Selon Genèse 37,28 et 36, Joseph est emmené en Égypte."
+  }
+ },
+ {
+  "name": "Courage dans les épreuves",
+  "short": "La maison et la prison",
+  "teaser": "Observe comment Joseph traverse une période difficile.",
+  "ref": "Genèse 39–40",
+  "verse": "« N’est-ce pas à Dieu qu’appartiennent les explications ? » (Genèse 40,8).",
+  "intro": "En Égypte, Joseph travaille dans la maison de Potiphar. Il se voit confier de plus en plus de responsabilités, car il agit avec sérieux. Mais une fausse accusation le conduit en prison. Même là, il fait preuve de fidélité. Il écoute deux serviteurs du Pharaon qui ont fait des rêves et explique que leur interprétation appartient à Dieu.",
+  "reflection": "Être accusé injustement est douloureux. La fidélité de Joseph n’efface pas l’injustice, mais le texte souligne que Dieu ne l’abandonne pas.",
+  "mission": "Explore la maison, découvre la prison et les deux rêves racontés à Joseph.",
+  "w": 29,
+  "h": 23,
+  "seed": 35187,
+  "braid": 0.194,
+  "palette": "residence",
+  "art": "joseph",
+  "icon": "scroll",
+  "events": [
+   {
+    "title": "Dans la maison de Potiphar",
+    "type": "house",
+    "ref": "Genèse 39,1-6",
+    "body": "Potiphar, un officier égyptien, achète Joseph. Il remarque que Joseph est digne de confiance et lui confie l’organisation de sa maison.",
+    "notice": "Les bâtiments et les objets représentés sont inspirés de l’Égypte ancienne, sans prétendre reproduire la vraie maison de Potiphar."
+   },
+   {
+    "title": "Une accusation injuste",
+    "type": "door",
+    "ref": "Genèse 39,7-20",
+    "body": "Joseph refuse de commettre une mauvaise action. La femme de Potiphar l’accuse alors injustement et il est emprisonné.",
+    "notice": "Les détails concernant les adultes sont résumés pour les 7–11 ans, sans modifier le fait que Joseph a été accusé injustement."
+   },
+   {
+    "title": "Joseph dans la prison",
+    "type": "prison",
+    "ref": "Genèse 39,21-23",
+    "body": "Dans la prison, Joseph reçoit encore des responsabilités. Le texte affirme que l’Éternel est avec lui et lui fait trouver de la bienveillance.",
+    "notice": "La forme des cellules et des murs est une création du jeu, non un plan archéologique."
+   },
+   {
+    "title": "Deux prisonniers racontent leurs rêves",
+    "type": "cup",
+    "ref": "Genèse 40,1-23",
+    "body": "Deux responsables au service du Pharaon font chacun un rêve. Joseph les écoute et explique que les interprétations appartiennent à Dieu. Les événements annoncés se réalisent, mais l’un des hommes oublie Joseph quelque temps.",
+    "notice": "Le jeu ne transforme pas Joseph en magicien : dans le récit, il attribue à Dieu l’explication des rêves."
+   }
+  ],
+  "question": {
+   "ask": "À qui Joseph attribue-t-il l’explication des rêves ?",
+   "answers": [
+    "À Dieu.",
+    "À sa tunique.",
+    "À un animal."
+   ],
+   "correct": 0,
+   "explain": "Joseph dit en Genèse 40,8 que les explications appartiennent à Dieu."
+  }
+ },
+ {
+  "name": "Les rêves du Pharaon",
+  "short": "Au palais du Pharaon",
+  "teaser": "Découvre comment Joseph aide l’Égypte à se préparer.",
+  "ref": "Genèse 41",
+  "verse": "« Il y aura sept années de famine » (Genèse 41,30).",
+  "intro": "Le Pharaon fait deux rêves qu’il ne comprend pas. Il voit sept vaches bien nourries puis sept vaches maigres, et ensuite sept beaux épis puis sept épis maigres. Joseph explique que ces rêves annoncent sept années de récoltes abondantes suivies de sept années de famine. Il conseille de conserver des réserves. Le Pharaon lui confie alors de grandes responsabilités.",
+  "reflection": "La sagesse se traduit ici par une bonne préparation pour aider le pays lorsque les récoltes manqueront. Joseph rappelle que l’explication vient de Dieu.",
+  "mission": "Explore le palais, retrouve les deux rêves et prépare les réserves.",
+  "w": 33,
+  "h": 25,
+  "seed": 46813,
+  "braid": 0.23,
+  "palette": "palace",
+  "art": "joseph",
+  "icon": "sun",
+  "events": [
+   {
+    "title": "Les sept vaches",
+    "type": "cows",
+    "ref": "Genèse 41,1-4",
+    "body": "Le Pharaon rêve de sept vaches grasses, puis de sept vaches maigres qui engloutissent les premières. Ce rêve l’inquiète beaucoup.",
+    "notice": "Le dessin des vaches sert à montrer l’image du rêve et non une scène qui s’est produite dans le monde réel."
+   },
+   {
+    "title": "Les sept épis de blé",
+    "type": "sheaf",
+    "ref": "Genèse 41,5-7",
+    "body": "Dans un second rêve, sept épis bien remplis sont suivis de sept épis maigres qui les engloutissent. Personne au palais ne comprend leur sens.",
+    "notice": "L’illustration simplifie les images du rêve pour aider à les reconnaître."
+   },
+   {
+    "title": "Sept années puis sept autres",
+    "type": "dream",
+    "ref": "Genèse 41,25-32",
+    "body": "Joseph explique que les deux rêves annoncent sept années d’abondance, suivies de sept années de famine. Il dit que Dieu révèle ainsi ce qui va arriver.",
+    "notice": "L’explication donnée dans le jeu est celle attribuée à Joseph dans le texte biblique."
+   },
+   {
+    "title": "Organiser les réserves",
+    "type": "grain",
+    "ref": "Genèse 41,33-49",
+    "body": "Joseph conseille de réunir du blé pendant les années de bonnes récoltes. Le Pharaon l’établit responsable du pays. Joseph fait accumuler d’importantes provisions.",
+    "notice": "Les greniers dessinés sont une interprétation ludique, non une reconstitution d’un bâtiment précisément mentionné."
+   }
+  ],
+  "question": {
+   "ask": "Pourquoi Joseph recommande-t-il de conserver des récoltes ?",
+   "answers": [
+    "Pour construire un navire.",
+    "Pour se préparer à sept années de famine.",
+    "Pour les offrir à ses frères immédiatement."
+   ],
+   "correct": 1,
+   "explain": "Genèse 41,33-36 explique que les réserves doivent aider le pays pendant les années de famine."
+  }
+ },
+ {
+  "name": "Le pardon et les retrouvailles",
+  "short": "Les retrouvailles",
+  "teaser": "Reconstitue le chemin de Joseph jusqu’à ses frères.",
+  "ref": "Genèse 42–45",
+  "verse": "« Je suis Joseph, votre frère » (Genèse 45,4).",
+  "intro": "La famine atteint aussi la famille de Joseph. Ses frères viennent en Égypte acheter du blé, sans reconnaître Joseph devenu responsable. Après plusieurs rencontres et des événements compliqués, Joseph leur révèle qui il est. Tous sont bouleversés. Joseph pleure, leur parle avec bonté et les invite à venir vivre près de lui avec leur père Jacob.",
+  "reflection": "Joseph reconnaît la souffrance vécue, mais choisit de ne pas se venger. Pour un chrétien, cette histoire invite à réfléchir au pardon, sans dire qu’une injustice serait bonne.",
+  "mission": "Retrouve les greniers, les frères, Benjamin et la grande scène des retrouvailles.",
+  "w": 35,
+  "h": 27,
+  "seed": 58261,
+  "braid": 0.248,
+  "palette": "granary",
+  "art": "joseph",
+  "icon": "heart",
+  "events": [
+   {
+    "title": "La famine atteint Canaan",
+    "type": "grain",
+    "ref": "Genèse 42,1-5",
+    "body": "La famille de Jacob manque de nourriture. Jacob entend qu’il y a du blé en Égypte et envoie plusieurs de ses fils en acheter. Benjamin reste d’abord auprès de lui.",
+    "notice": "Les sacs et les chemins représentent le commerce de grain évoqué dans le récit."
+   },
+   {
+    "title": "Les frères ne reconnaissent pas Joseph",
+    "type": "brothers",
+    "ref": "Genèse 42,6-8",
+    "body": "Les frères de Joseph arrivent en Égypte. Joseph les reconnaît, mais eux ne savent pas que cet homme important est leur frère. Ils se prosternent devant lui.",
+    "notice": "Cette scène rappelle les rêves du premier chapitre ; les dialogues sont résumés."
+   },
+   {
+    "title": "Benjamin et le retour",
+    "type": "cup",
+    "ref": "Genèse 43–44",
+    "body": "Les frères reviennent en Égypte avec Benjamin. Joseph les reçoit. Plus tard, une coupe placée dans un sac provoque une épreuve ; Juda prend la parole pour protéger son frère.",
+    "notice": "Cet épisode complexe est simplifié pour les enfants. La coupe n’est pas un objet à voler dans le jeu."
+   },
+   {
+    "title": "Joseph se fait reconnaître",
+    "type": "embrace",
+    "ref": "Genèse 45,1-15",
+    "body": "Joseph dit à ses frères qui il est. Ils sont bouleversés. Joseph pleure, leur parle avec bonté, les embrasse et les invite à rejoindre l’Égypte avec leur père.",
+    "notice": "La scène illustrée est une adaptation bienveillante et ne remplace pas la lecture du texte biblique."
+   }
+  ],
+  "question": {
+   "ask": "Que fait Joseph lorsqu’il révèle son identité à ses frères ?",
+   "answers": [
+    "Il quitte l’Égypte sans parler.",
+    "Il ordonne de brûler les greniers.",
+    "Il leur parle et les invite à retrouver leur famille."
+   ],
+   "correct": 2,
+   "explain": "Genèse 45 raconte comment Joseph se fait reconnaître et organise la venue de son père et de sa famille."
+  }
+ }
+];
+const JOSEPH_CHALLENGES=[
+ [
+  {
+   "kind": "choose",
+   "title": "Un cadeau particulier",
+   "prompt": "Quel objet Jacob donne-t-il à Joseph ?",
+   "choices": [
+    "Un anneau de Pharaon.",
+    "Un vêtement particulier.",
+    "Une voile pour un bateau."
+   ],
+   "answer": 1,
+   "explain": "Genèse 37,3 parle d’un vêtement particulier donné à Joseph."
+  },
+  {
+   "kind": "order",
+   "title": "Le premier rêve",
+   "prompt": "Dans quel ordre le rêve apparaît-il ?",
+   "items": [
+    "Joseph raconte son rêve.",
+    "Sa gerbe reste debout.",
+    "Les gerbes de ses frères s’inclinent."
+   ],
+   "explain": "Genèse 37,5-8 raconte le rêve des gerbes de blé."
+  },
+  {
+   "kind": "choose",
+   "title": "Un détail du deuxième rêve",
+   "prompt": "Combien d’étoiles apparaissent dans le rêve de Joseph ?",
+   "choices": [
+    "Sept.",
+    "Douze.",
+    "Onze."
+   ],
+   "answer": 2,
+   "explain": "Genèse 37,9 mentionne le soleil, la lune et onze étoiles."
+  }
+ ],
+ [
+  {
+   "kind": "choose",
+   "title": "Chercher ses frères",
+   "prompt": "Qui demande à Joseph d’aller prendre des nouvelles de ses frères ?",
+   "choices": [
+    "Son père Jacob.",
+    "Le Pharaon.",
+    "Potiphar."
+   ],
+   "answer": 0,
+   "explain": "Genèse 37,13-14 montre que Jacob envoie Joseph."
+  },
+  {
+   "kind": "order",
+   "title": "Un voyage difficile",
+   "prompt": "Remets les moments dans leur ordre.",
+   "items": [
+    "Joseph cherche ses frères.",
+    "Joseph est jeté dans la citerne.",
+    "Joseph est emmené en Égypte."
+   ],
+   "explain": "Genèse 37,12-36 raconte ces événements dans cet ordre."
+  },
+  {
+   "kind": "choose",
+   "title": "Le pays du Nil",
+   "prompt": "Quelle destination prennent les marchands ?",
+   "choices": [
+    "Canaan.",
+    "Égypte.",
+    "Ninive."
+   ],
+   "answer": 1,
+   "explain": "Genèse 37,25-28 mentionne les marchands qui emmènent Joseph vers l’Égypte."
+  }
+ ],
+ [
+  {
+   "kind": "choose",
+   "title": "Un homme qui fait confiance",
+   "prompt": "Dans quelle maison Joseph travaille-t-il en Égypte ?",
+   "choices": [
+    "Celle de Potiphar.",
+    "Celle de Jonas.",
+    "Celle de Noé."
+   ],
+   "answer": 0,
+   "explain": "Genèse 39,1-6 présente Potiphar."
+  },
+  {
+   "kind": "order",
+   "title": "Le chemin de Joseph",
+   "prompt": "Retrouve les grandes étapes.",
+   "items": [
+    "Joseph travaille chez Potiphar.",
+    "Il est accusé injustement.",
+    "Il reçoit des responsabilités en prison."
+   ],
+   "explain": "Genèse 39 rapporte cette progression difficile."
+  },
+  {
+   "kind": "choose",
+   "title": "Les deux rêves en prison",
+   "prompt": "Combien de serviteurs du Pharaon racontent un rêve à Joseph ?",
+   "choices": [
+    "Un.",
+    "Deux.",
+    "Sept."
+   ],
+   "answer": 1,
+   "explain": "Genèse 40,5-8 parle de deux hommes ayant chacun un rêve."
+  }
+ ],
+ [
+  {
+   "kind": "choose",
+   "title": "Le premier rêve du Pharaon",
+   "prompt": "Quels animaux Pharaon voit-il dans son premier rêve ?",
+   "choices": [
+    "Des vaches.",
+    "Des moutons.",
+    "Des chevaux."
+   ],
+   "answer": 0,
+   "explain": "Genèse 41,1-4 présente des vaches."
+  },
+  {
+   "kind": "order",
+   "title": "Préparer les greniers",
+   "prompt": "Reconstitue la bonne suite.",
+   "items": [
+    "Sept bonnes récoltes arrivent.",
+    "On met de côté des provisions.",
+    "Sept années difficiles surviennent."
+   ],
+   "explain": "Genèse 41,33-36 : les réserves sont préparées avant la famine."
+  },
+  {
+   "kind": "choose",
+   "title": "Le nombre mystérieux",
+   "prompt": "Combien d’années de famine Joseph annonce-t-il ?",
+   "choices": [
+    "Trois.",
+    "Sept.",
+    "Dix."
+   ],
+   "answer": 1,
+   "explain": "Genèse 41,27-30 annonce sept années de famine."
+  }
+ ],
+ [
+  {
+   "kind": "choose",
+   "title": "Un voyage pour se nourrir",
+   "prompt": "Pourquoi les frères de Joseph viennent-ils en Égypte ?",
+   "choices": [
+    "Acheter du grain.",
+    "Construire une arche.",
+    "Faire la guerre."
+   ],
+   "answer": 0,
+   "explain": "Genèse 42,1-5 raconte leur voyage pour acheter du grain."
+  },
+  {
+   "kind": "order",
+   "title": "Le grand dénouement",
+   "prompt": "Remets l’histoire dans l’ordre.",
+   "items": [
+    "Les frères arrivent en Égypte.",
+    "Joseph leur révèle qui il est.",
+    "Joseph invite sa famille à le rejoindre."
+   ],
+   "explain": "Genèse 42–45 : le voyage précède les révélations et la réconciliation."
+  },
+  {
+   "kind": "choose",
+   "title": "Choisir le pardon",
+   "prompt": "Que choisit Joseph lorsqu’il retrouve ses frères ?",
+   "choices": [
+    "De se venger.",
+    "De les emprisonner pour toujours.",
+    "De leur parler avec bonté."
+   ],
+   "answer": 2,
+   "explain": "Genèse 45,1-15 montre la compassion et le pardon de Joseph."
+  }
+ ]
+];
+LEVELS.push(...JOSEPH_LEVELS);
+CHALLENGES.push(...JOSEPH_CHALLENGES);
 const STORIES=[
  {id:'eden',title:'Adam et Ève',subtitle:'Les sentiers d’Éden',tag:'LE JARDIN',ref:'Genèse 2–3',from:0,to:5,emoji:'🌳',theme:'eden',teaser:'Un grand jardin, des animaux et une histoire à découvrir.',endMessage:'Tu connais mieux l’histoire d’Adam et Ève !'},
- {id:'noah',title:'Noé et l’arche',subtitle:'Le voyage de l’arche',tag:'L’ARCHE',ref:'Genèse 6–9',from:5,to:10,emoji:'🕊️',theme:'noah',teaser:'Un chantier géant, des animaux, la pluie et la promesse de Dieu.',endMessage:'Tu connais mieux l’histoire de Noé !'}
+ {id:'noah',title:'Noé et l’arche',subtitle:'Le voyage de l’arche',tag:'L’ARCHE',ref:'Genèse 6–9',from:5,to:10,emoji:'🕊️',theme:'noah',teaser:'Un chantier géant, des animaux, la pluie et la promesse de Dieu.',endMessage:'Tu connais mieux l’histoire de Noé !'},
+ {id:'joseph',title:'Joseph en Égypte',subtitle:'Les rêves de Joseph',tag:'LA ROUTE DE L’ÉGYPTE',ref:'Genèse 37 ; 39–45',from:10,to:15,emoji:'🌾',theme:'joseph',teaser:'Des rêves, des routes, des greniers et la force du pardon.',endMessage:'Tu connais mieux l’histoire de Joseph !'}
 ];
-function storyFor(n){return STORIES[n>=5?1:0]}
-function localChapter(n){return n>=5?n-5:n}
+function storyFor(n){return STORIES.find(s=>n>=s.from&&n<s.to)||STORIES[0]}
+function localChapter(n){return n-storyFor(n).from}
 function storyRange(story){const item=STORIES.find(s=>s.id===story)||STORIES[0];return LEVELS.slice(item.from,item.to).map((l,k)=>({l,i:item.from+k}))}
 const NOAH_NATURE=['bois','grain','corde','plume','olivier','pierre'];
 const NATURE_TYPES=['feuille','galet','fleur','oiseau','source'];
+const JOSEPH_NATURE=['tissu','epi','poterie','sceau','coupe','panier','pierre'];
+const NATURE_BY_STORY={eden:NATURE_TYPES,noah:NOAH_NATURE,joseph:JOSEPH_NATURE};
 const BADGES=[
  {id:'premier',name:'Premier pas',symbol:'✧',desc:'Terminer ton premier chapitre.',test:()=>LEVELS.some((_,i)=>dataFor(i).complete)},
  {id:'curieux',name:'Œil curieux',symbol:'❀',desc:'Découvrir au moins 8 livres.',test:()=>LEVELS.reduce((v,l,i)=>v+dataFor(i).seen.length,0)>=8},
@@ -664,11 +1153,15 @@ const BADGES=[
   {id:'noe1',name:'Bâtisseur de l’arche',symbol:'🪵',desc:'Finir le premier chapitre de Noé.',test:()=>dataFor(5).complete},
   {id:'noe5',name:'Voyageur de l’arche',symbol:'🕊️',desc:'Terminer les cinq chapitres de Noé.',test:()=>LEVELS.slice(5,10).every((_,i)=>dataFor(5+i).complete)},
   {id:'noeFinal',name:'Conteur du déluge',symbol:'🌈',desc:'Reconstituer l’histoire de Noé.',test:()=>!!state.noahSequenceDone},
-  {id:'deuxrecits',name:'Deux grands récits',symbol:'📚',desc:'Terminer les dix chapitres bibliques.',test:()=>LEVELS.every((_,i)=>dataFor(i).complete)}
+  {id:'deuxrecits',name:'Deux grands récits',symbol:'📚',desc:'Terminer les dix premiers chapitres bibliques.',test:()=>LEVELS.slice(0,10).every((_,i)=>dataFor(i).complete)},
+ {id:'joseph1',name:'Rêveur de Canaan',symbol:'🌟',desc:'Découvrir le premier chapitre de Joseph.',test:()=>dataFor(10).complete},
+ {id:'joseph5',name:'Chemin du pardon',symbol:'🤝',desc:'Terminer les cinq chapitres de Joseph.',test:()=>LEVELS.slice(10,15).every((_,i)=>dataFor(10+i).complete)},
+ {id:'josephFinal',name:'Conteur de Joseph',symbol:'🌾',desc:'Reconstituer l’histoire de Joseph.',test:()=>!!state.josephSequenceDone},
+ {id:'troisrecits',name:'Trois grands récits',symbol:'📚',desc:'Terminer les quinze chapitres disponibles.',test:()=>LEVELS.every((_,i)=>dataFor(i).complete)}
 ];
 
 const STORAGE='bible-aventure-eden-premium-v01';
-const blank=()=>({avatar:null,sound:false,mode:'decouverte',voiceURI:'',voiceRate:.9,fontSize:'grand',story:'eden',avatarNoah:null,levels:{},awards:{},sequenceDone:false,noahSequenceDone:false});
+const blank=()=>({avatar:null,sound:false,mode:'decouverte',voiceURI:'',voiceRate:.9,fontSize:'grand',story:'eden',avatarNoah:null,avatarJoseph:null,levels:{},awards:{},sequenceDone:false,noahSequenceDone:false,josephSequenceDone:false});
 let state=blank();
 try{let v=JSON.parse(localStorage.getItem(STORAGE)||'null');if(v&&typeof v==='object'){state=Object.assign(blank(),v,{levels:v.levels&&typeof v.levels==='object'?v.levels:{}})}}catch(e){}
 function save(){try{localStorage.setItem(STORAGE,JSON.stringify(state))}catch(e){}}
@@ -735,7 +1228,7 @@ function makeBoard(n,withPaint=true){const l=LEVELS[n],w=l.w+(state.mode==='aven
  }
  allNodes.push(...out);return out}
  b.challenges=spread(CHALLENGES[n].length,'challenge');
- b.nature=spread(localChapter(n)+2,'nature').map(v=>({...v,nature:(n>=5?NOAH_NATURE[(v.id+localChapter(n))%NOAH_NATURE.length]:NATURE_TYPES[(v.id+n)%NATURE_TYPES.length])}));
+ b.nature=spread(localChapter(n)+2,'nature').map(v=>{const types=NATURE_BY_STORY[storyFor(n).id]||NATURE_TYPES;return {...v,nature:types[(v.id+localChapter(n))%types.length]}});
  b.ambient=usable.filter((v,i)=>i%Math.max(1,Math.floor(usable.length/7))===0).slice(0,8);
  if(withPaint)b.staticLayer=paintBoard(b,l);return b
 }
@@ -753,7 +1246,12 @@ const PALETTES={
  savanna:{field:'#a6c58b',path:'#f1d49f',edge:'#cdb582',leaf:'#5e9972',leaf2:'#a9ce85',trunk:'#927052',rock:'#c6ae8e',water:'#9ad6db',gold:'#ffe8a8'},
  storm:{field:'#779a9d',path:'#d9b990',edge:'#997d69',leaf:'#5f7c79',leaf2:'#9fae96',trunk:'#816248',rock:'#869da1',water:'#589cb0',gold:'#ffddb1'},
  mountain:{field:'#95b5a3',path:'#f0d1a7',edge:'#c4b09b',leaf:'#587f6a',leaf2:'#a9cbb4',trunk:'#836e61',rock:'#93a9a0',water:'#8bc6da',gold:'#f7daaa'},
- rainbow:{field:'#a4cdb4',path:'#f7dda8',edge:'#dabf92',leaf:'#4e976e',leaf2:'#a4d59f',trunk:'#9a714d',rock:'#a3afaa',water:'#91d9dc',gold:'#ffe0ac'}
+ rainbow:{field:'#a4cdb4',path:'#f7dda8',edge:'#dabf92',leaf:'#4e976e',leaf2:'#a4d59f',trunk:'#9a714d',rock:'#a3afaa',water:'#91d9dc',gold:'#ffe0ac'},
+ canaan:{field:'#b2c19a',path:'#e8c898',edge:'#cbb28c',leaf:'#65896f',leaf2:'#abc598',trunk:'#966f59',rock:'#b9ae9a',water:'#8ecbd1',gold:'#f9d29a'},
+ desert:{field:'#e5be8e',path:'#f9daa7',edge:'#cfab7f',leaf:'#9d9b7b',leaf2:'#d2bc87',trunk:'#a67b57',rock:'#c69e7d',water:'#9bc9c5',gold:'#fce2ac'},
+ residence:{field:'#c9b99f',path:'#f0d3a8',edge:'#baa189',leaf:'#8f987b',leaf2:'#b9c6a5',trunk:'#92725b',rock:'#c8b69b',water:'#8fbdc2',gold:'#ffdea8'},
+ palace:{field:'#b0cdd0',path:'#ebd7b5',edge:'#c2b9ac',leaf:'#88b0ac',leaf2:'#bfd2c6',trunk:'#987c65',rock:'#bbaca0',water:'#76b9ce',gold:'#f3d19c'},
+ granary:{field:'#d5be94',path:'#f8dda9',edge:'#c8ad83',leaf:'#aaa97b',leaf2:'#ced29a',trunk:'#93734f',rock:'#bda58a',water:'#99babb',gold:'#fbe09e'}
 };
 function ellipse(c,x,y,rx,ry,fill,rot=0){c.save();c.translate(x,y);c.rotate(rot);c.beginPath();c.ellipse(0,0,rx,ry,0,0,Math.PI*2);c.fillStyle=fill;c.fill();c.restore()}
 function poly(c,points,fill,stroke,lineWidth=1){c.beginPath();c.moveTo(points[0][0],points[0][1]);for(let i=1;i<points.length;i++)c.lineTo(points[i][0],points[i][1]);c.closePath();if(fill){c.fillStyle=fill;c.fill()}if(stroke){c.strokeStyle=stroke;c.lineWidth=lineWidth;c.stroke()}}
@@ -820,6 +1318,92 @@ function drawNoahMarker(c,x,y,t,kind){
  }
  c.restore();
 }
+// Original lightweight vector artwork for the Joseph chapter (no external assets).
+function josephStoryCover(){
+ return `<svg viewBox="0 0 480 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+ <defs><linearGradient id="jsky" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#b6e9fa"/><stop offset="1" stop-color="#ffe2a4"/></linearGradient></defs>
+ <rect width="480" height="220" fill="url(#jsky)"/><circle cx="387" cy="48" r="27" fill="#ffcf76"/>
+ <path d="M0 155Q85 108 175 150T365 128T480 144V220H0Z" fill="#e8bc79"/>
+ <path d="M0 186Q92 150 193 183T383 153T480 181V220H0Z" fill="#d69b6b"/>
+ <path d="M321 181Q315 134 357 105L394 95Q435 109 441 181Z" fill="#e8ce9e" stroke="#c69a6b" stroke-width="6"/>
+ <path d="M347 182V112M376 182V105M406 182V114" stroke="#ba8760" stroke-width="15" stroke-linecap="round"/>
+ <path d="M335 117H419" stroke="#d0ae7a" stroke-width="13" stroke-linecap="round"/>
+ <g transform="translate(93 141)"><path d="M-46 34L-40-8 4-37 46-6 51 34Z" fill="#d5785e" stroke="#8b594a" stroke-width="4"/><path d="M4-37V35" stroke="#fff0c5" stroke-width="4"/><path d="M-45 34H49" stroke="#765b4d" stroke-width="5"/></g>
+ <g transform="translate(244 151)"><ellipse cy="44" rx="37" ry="9" fill="#8c704c" opacity=".25"/><path d="M-23 2Q0-9 23 2L26 51H-26Z" fill="#e19b78" stroke="#ac6b51" stroke-width="4"/><path d="M-21 9L-24 42M21 9L24 42" stroke="#fbd494" stroke-width="6"/><circle cy="-16" r="19" fill="#c68a64"/><path d="M-18-20Q-16-45 7-41Q25-37 20-15" fill="#433e47"/><circle cx="-6" cy="-17" r="2.1" fill="#283740"/><circle cx="7" cy="-17" r="2.1" fill="#283740"/><path d="M-19 11L20 11" stroke="#fce2a7" stroke-width="8"/></g>
+ <g transform="translate(438 180)"><path d="M0 33V-15" stroke="#9b6c40" stroke-width="8" stroke-linecap="round"/><path d="M-13-7Q-31-31-43-17Q-30 0-13-7ZM13-16Q28-41 42-28Q37-6 13-16Z" fill="#5e987b"/><path d="M0-11Q-15-40-24-29Q-18-6 0-11Z" fill="#76b98a"/></g>
+ <g fill="#fff7dc" opacity=".78"><ellipse cx="180" cy="40" rx="53" ry="14"/><ellipse cx="209" cy="31" rx="28" ry="19"/></g></svg>`;
+}
+function paintJosephObstacle(c,x,y,p,n,index){
+ const k=index-10,cx=x*TILE+TILE*.5,cy=y*TILE+TILE*.5;
+ c.save();c.translate(cx,cy);
+ if(k===0){
+  if(n>.57){ // Canaan: nomadic tents made of fabric and ropes
+   ellipse(c,3,20,33,12,'rgba(88,58,43,.17)');poly(c,[[-31,17],[-19,-16],[8,-31],[31,-4],[32,18]],'#e9ae80','#9b6c55',2);
+   poly(c,[[-19,-16],[8,-31],[8,18],[-31,17]],'#c98469');poly(c,[[8,-31],[31,-4],[32,18],[8,18]],'#f6c999');
+   c.strokeStyle='#7b5e4f';c.lineWidth=2;c.beginPath();c.moveTo(8,-31);c.lineTo(8,21);c.stroke();
+   rounded(c,7,1,15,17,4,'#885e4e');
+  }else if(n>.27){ // small terraces and stone boundary
+   for(let j=0;j<3;j++)rounded(c,-31+j*22,8+(j%2)*3,22,14,4,j%2?'#bbaa96':'#ddc6a6','#a98f7d');
+   ellipse(c,-13,-12,15,5,'#83a97c');
+  }else{ellipse(c,1,15,33,9,'rgba(63,72,50,.15)');ellipse(c,-10,1,18,20,'#7b9d68');ellipse(c,12,-9,17,21,'#96b97b');for(let i=0;i<5;i++)ellipse(c,-15+i*7,-13+(i%2)*9,3,3,'#edcf8e')}
+ }else if(k===1){
+  if(n>.52){ // warm desert canyon rocks, distinct from trees
+   ellipse(c,3,23,36,13,'rgba(126,90,65,.24)');poly(c,[[-33,16],[-25,-10],[-12,-25],[4,-21],[15,-3],[31,16]],'#dca47c','#a77960',2);
+   poly(c,[[-15,-22],[4,-21],[10,-10],[-11,-7]],'#f6cf9f');poly(c,[[5,17],[19,-14],[30,-6],[33,18]],'#b98568');
+  }else if(n>.28){
+   c.strokeStyle='#9a6749';c.lineWidth=8;c.lineCap='round';c.beginPath();c.moveTo(-6,20);c.lineTo(-1,-12);c.stroke();
+   for(let j=0;j<5;j++){c.save();c.translate(-1,-16);c.rotate((j-2)*.63);ellipse(c,0,-16,7,20,j%2?'#88a875':'#5e9270',-.2);c.restore()}
+  }else { // way stone
+   ellipse(c,0,22,20,8,'rgba(132,89,66,.18)');poly(c,[[-13,20],[-9,-18],[11,-19],[18,21]],'#e5bc8e','#aa806a',3);
+  }
+ }else if(k===2){
+  if(n>.48){ // adobe house, Egyptian courtyard / prison
+   ellipse(c,5,24,33,12,'rgba(83,54,42,.2)');rounded(c,-33,-23,66,47,5,n>.72?'#c7a079':'#e2c59b','#ad805f');
+   for(let j=-1;j<=1;j++){c.strokeStyle='#c19b74';c.lineWidth=2;c.beginPath();c.moveTo(-27,-7+j*12);c.lineTo(27,-7+j*12);c.stroke()}
+   rounded(c,-13,-4,26,28,6,'#815c4b');if(n>.72){for(let j=-1;j<=1;j++){c.strokeStyle='#d9b68f';c.lineWidth=3;c.beginPath();c.moveTo(j*6,-3);c.lineTo(j*6,23);c.stroke()}}
+  }else {ellipse(c,0,18,29,12,'rgba(92,62,46,.15)');rounded(c,-22,-13,44,29,7,'#bb926e','#996e57');ellipse(c,0,3,12,9,'#d6a777');ellipse(c,0,-7,10,5,'#edd3a9')}
+ }else if(k===3){
+  if(n>.5){ // temple/palace colonnade without pretending historic exactness
+   ellipse(c,4,21,28,10,'rgba(63,66,66,.18)');rounded(c,-26,-26,52,12,3,'#d7c9ae','#9a998f');rounded(c,-17,-17,34,40,3,'#dec69e','#a58a70');
+   c.strokeStyle='#75b3b6';c.lineWidth=6;c.beginPath();c.moveTo(-9,-14);c.lineTo(-9,17);c.moveTo(9,-14);c.lineTo(9,17);c.stroke();rounded(c,-24,20,48,8,3,'#d9b990');
+  }else{ // grain baskets
+   ellipse(c,3,17,29,11,'rgba(110,78,54,.17)');rounded(c,-22,-10,44,30,8,'#ad8156','#8a6347');
+   for(let j=0;j<5;j++)ellipse(c,-16+j*8,-12-(j%2)*5,8,6,'#f3d187');c.strokeStyle='#d8b681';c.lineWidth=2;for(let j=0;j<4;j++){c.beginPath();c.moveTo(-16+j*10,0);c.lineTo(-16+j*10,17);c.stroke()}
+  }
+ }else{ // chapter 5: market of granaries and storehouses
+  if(n>.45){ellipse(c,0,25,35,10,'rgba(78,63,45,.2)');rounded(c,-31,-24,62,49,8,'#ecc693','#aa805c');
+   rounded(c,-24,-28,48,11,4,'#c48755','#9b6c4d');for(let j=0;j<4;j++)ellipse(c,-18+j*11,-29,5,6,'#f3dba1');
+   rounded(c,-16,0,32,25,4,'#9f7456');
+  }else{ellipse(c,0,22,29,8,'rgba(66,53,43,.18)');for(let j=-1;j<=1;j++){rounded(c,j*17-10,-5+(j%2)*8,19,28,7,'#dab47d','#ad865b');ellipse(c,j*17,-5+(j%2)*8,10,5,'#f3dca9')}}
+ }
+ c.restore();
+}
+function drawJosephMarker(c,x,y,t,kind){
+ c.save();c.translate(x,y+Math.sin(t/370)*2);
+ ellipse(c,0,20,28,8,'rgba(86,70,47,.18)');
+ const cloak=(color)=>{poly(c,[[-14,-24],[-4,-29],[4,-29],[14,-24],[19,7],[-19,7]],color,'#9e6b55',2);for(let j=0;j<4;j++){c.strokeStyle=['#ffe0a0','#86b8bb','#da806b','#eee4af'][j];c.lineWidth=3;c.beginPath();c.moveTo(-14+j*8,-15);c.lineTo(-16+j*11,6);c.stroke()}};
+ const grain=()=>{for(let j=-2;j<=2;j++){c.strokeStyle='#a17a46';c.lineWidth=2;c.beginPath();c.moveTo(j*6,17);c.lineTo(j*6,-20);c.stroke();for(let i=0;i<3;i++){ellipse(c,j*6-4,-16+i*9,6,3,'#e4bc69',-.55);ellipse(c,j*6+4,-20+i*9,6,3,'#f9dc8b',.55)}}};
+ if(kind==='coat'||kind==='tunic'){cloak('#e7a578')}
+ else if(kind==='sheaf'||kind==='grain'){grain()}
+ else if(kind==='dream'){for(let i=0;i<7;i++){let a=i*Math.PI*2/7;tinyStar(c,Math.cos(a)*19,Math.sin(a)*16-4,5,i%2?'#ffe3a3':'#fff0d0')}tinyStar(c,0,-1,8,'#ffca73')}
+ else if(kind==='cistern'){ellipse(c,0,8,26,19,'#b19c86');ellipse(c,0,5,21,14,'#dfd2b5');ellipse(c,0,5,14,9,'#627984');for(let j=0;j<9;j++){let a=j*Math.PI*2/9;ellipse(c,Math.cos(a)*21,5+Math.sin(a)*14,6,4,'#dbc6a7')}}
+ else if(kind==='caravan'){ // a small pack camel as caravan sign
+   ellipse(c,-3,2,18,11,'#c29169');ellipse(c,-9,-8,8,8,'#c29169');c.strokeStyle='#b38460';c.lineWidth=6;c.lineCap='round';c.beginPath();c.moveTo(10,0);c.lineTo(18,-18);c.stroke();ellipse(c,21,-22,8,5,'#ba885f');for(let j=-1;j<=1;j+=2){c.strokeStyle='#b38460';c.lineWidth=4;c.beginPath();c.moveTo(j*11,9);c.lineTo(j*13,24);c.stroke()}
+ }
+ else if(kind==='road'){c.strokeStyle='#c49e75';c.lineWidth=14;c.beginPath();c.moveTo(-23,19);c.bezierCurveTo(-4,1,5,10,24,-21);c.stroke();ellipse(c,-22,20,6,5,'#e2c498');ellipse(c,21,-20,7,4,'#e3bd86')}
+ else if(kind==='house'||kind==='door'){rounded(c,-23,-13,46,35,4,'#ecc79c','#b4805c');poly(c,[[-28,-13],[0,-30],[27,-13]],'#bc865e');rounded(c,-8,-2,16,24,4,kind==='door'?'#806151':'#9a755c');}
+ else if(kind==='prison'){rounded(c,-25,-19,50,39,6,'#c6b7a3','#8a8e83');rounded(c,-17,-12,34,23,5,'#586f75');c.strokeStyle='#e1d8be';c.lineWidth=4;for(let j=-1;j<=1;j++){c.beginPath();c.moveTo(j*9,-12);c.lineTo(j*9,11);c.stroke()}}
+ else if(kind==='cup'){poly(c,[[-17,-18],[17,-18],[11,0],[0,7],[-11,0]],'#dbb77b','#9e7c4d',2);rounded(c,-3,5,6,15,2,'#c39c5f');rounded(c,-12,19,24,5,2,'#9f7a54')}
+ else if(kind==='cows'){ellipse(c,-3,2,23,12,'#e6bd8c');ellipse(c,17,-8,10,10,'#dba874');ellipse(c,19,-12,2,2,'#514846');for(let j=-1;j<=1;j+=2){c.strokeStyle='#aa845e';c.lineWidth=5;c.beginPath();c.moveTo(j*14,11);c.lineTo(j*14,24);c.stroke()}ellipse(c,-11,-2,7,4,'#bd8e63')}
+ else if(kind==='sacks'){for(let j=-1;j<=1;j++){rounded(c,j*16-9,-10+(j%2)*6,18,31,6,j%2?'#d8ab70':'#f0ce93','#bc8b63');ellipse(c,j*16,-10+(j%2)*6,9,3,'#eddbb6')}}
+ else if(kind==='seal'){ellipse(c,0,-10,13,16,'#ebd59a');ellipse(c,0,-11,8,12,'#85b4b9');rounded(c,-11,4,22,18,7,'#d2ac6b')}
+ else if(kind==='brothers'||kind==='family'||kind==='embrace'){const many=kind==='brothers'?3:2;for(let j=0;j<many;j++){let px=(j-(many-1)/2)*16;ellipse(c,px,-15,10,10,j%2?'#d7a374':'#b97c62');poly(c,[[px-10,-3],[px+10,-3],[px+13,21],[px-13,21]],j%2?'#94ada0':'#e4b37d')}}
+ else if(kind==='olive'){ellipse(c,0,0,22,14,'#75a17d')}
+ else drawScroll(c,0,0,.82);
+ c.restore();
+}
+function tinyStar(c,x,y,r,color){poly(c,Array.from({length:10},(_,i)=>{let a=-Math.PI/2+i*Math.PI/5,s=i%2?r*.48:r;return [x+Math.cos(a)*s,y+Math.sin(a)*s]}),color)}
+
 function paintBoard(b,l){const layer=document.createElement('canvas');layer.width=b.w*TILE;layer.height=b.h*TILE;const c=layer.getContext('2d');const p=PALETTES[l.palette];c.fillStyle=p.field;c.fillRect(0,0,layer.width,layer.height);
  // Hand-painted ground under the entire maze.
  for(let y=0;y<b.h;y++)for(let x=0;x<b.w;x++){const cx=x*TILE+36,cy=y*TILE+36;let n=noise(x,y,b.seed);
@@ -830,7 +1414,7 @@ function paintBoard(b,l){const layer=document.createElement('canvas');layer.widt
  c.lineCap='round';c.lineJoin='round';for(let y=0;y<b.h;y++)for(let x=0;x<b.w;x++){if(b.cells[key(x,y,b.w)]!==1)continue;let cx=x*TILE+36,cy=y*TILE+36;let n=noise(x,y,5);ellipse(c,cx,cy,28+n*5,27+n*5,p.edge);ellipse(c,cx,cy,24+n*5,24+n*5,p.path);for(let [dx,dy] of [[1,0],[0,1]]){let nx=x+dx,ny=y+dy;if(nx<b.w&&ny<b.h&&b.cells[key(nx,ny,b.w)]===1){c.strokeStyle=p.edge;c.lineWidth=59;c.beginPath();c.moveTo(cx,cy);c.lineTo(nx*TILE+36,ny*TILE+36);c.stroke();c.strokeStyle=p.path;c.lineWidth=49;c.beginPath();c.moveTo(cx,cy);c.lineTo(nx*TILE+36,ny*TILE+36);c.stroke()}}}
  // Dry-earth stippling, tiny stones, plants; each one deterministically placed.
  for(let y=0;y<b.h;y++)for(let x=0;x<b.w;x++){if(b.cells[key(x,y,b.w)]!==1)continue;let cx=x*TILE+36,cy=y*TILE+36;for(let j=0;j<7;j++){let a=noise(x+j*4,y,7)*Math.PI*2,rr=noise(x+j,y,5)*25,xx=cx+Math.cos(a)*rr,yy=cy+Math.sin(a)*rr;ellipse(c,xx,yy,j%2?2.4:1.1,j%2?1.4:2,'rgba(113,94,61,.22)',a)}if(noise(x,y,58)>.48){twig(c,cx+27,cy-17,noise(x,y,4),1,'#68915b')}if(noise(x,y,60)>.78){ellipse(c,cx-17,cy+21,3.5,3,'#e8cb90');ellipse(c,cx-12,cy+22,2.2,2.2,'#efdf9e')}}
- for(let y=0;y<b.h;y++)for(let x=0;x<b.w;x++){if(b.cells[key(x,y,b.w)]!==0)continue;let n=noise(x,y,b.seed);if(isRiver(x,y,b,l.palette)){let cx=x*TILE+36,cy=y*TILE+36;ellipse(c,cx,cy,37,37,p.water);for(let j=0;j<3;j++){c.strokeStyle='rgba(226,246,221,.45)';c.lineWidth=2;c.beginPath();c.arc(cx+(j-1)*10,cy+j*9-13,9,Math.PI*.1,Math.PI*.75);c.stroke()}if(n>.8)ellipse(c,cx+7,cy+18,5,4,'#d6cfa4')}else if(LEVELS.indexOf(l)>=5)paintNoahObstacle(c,x,y,p,n,LEVELS.indexOf(l));else paintTree(c,x,y,p,n,LEVELS.indexOf(l))}
+ for(let y=0;y<b.h;y++)for(let x=0;x<b.w;x++){if(b.cells[key(x,y,b.w)]!==0)continue;let n=noise(x,y,b.seed);if(isRiver(x,y,b,l.palette)){let cx=x*TILE+36,cy=y*TILE+36;ellipse(c,cx,cy,37,37,p.water);for(let j=0;j<3;j++){c.strokeStyle='rgba(226,246,221,.45)';c.lineWidth=2;c.beginPath();c.arc(cx+(j-1)*10,cy+j*9-13,9,Math.PI*.1,Math.PI*.75);c.stroke()}if(n>.8)ellipse(c,cx+7,cy+18,5,4,'#d6cfa4')}else if(storyFor(LEVELS.indexOf(l)).id==='joseph')paintJosephObstacle(c,x,y,p,n,LEVELS.indexOf(l));else if(LEVELS.indexOf(l)>=5)paintNoahObstacle(c,x,y,p,n,LEVELS.indexOf(l));else paintTree(c,x,y,p,n,LEVELS.indexOf(l))}
  // Plank grain inside the ark, and puddles around it; generated only on walkable ground.
  if(LEVELS.indexOf(l)===7){for(let y=1;y<b.h-1;y++)for(let x=1;x<b.w-1;x++)if(b.cells[key(x,y,b.w)]===1){let cx=x*TILE+36,cy=y*TILE+36;c.strokeStyle='rgba(101,72,53,.17)';c.lineWidth=3;for(let j=-1;j<=1;j++){c.beginPath();c.moveTo(cx-23,cy+j*13);c.lineTo(cx+23,cy+j*13);c.stroke()}}}
  // Small native-style flora in open spaces.
@@ -843,7 +1427,18 @@ function drawBird(c,x,y,t){c.save();c.translate(x,y+Math.sin(t/380)*2);ellipse(c
 function drawAnimal(c,x,y,t){c.save();c.translate(x,y+Math.sin(t/500)*1.5);ellipse(c,0,20,27,7,'rgba(20,42,27,.23)');ellipse(c,0,0,24,13,'#bd9871',-.07);ellipse(c,18,-11,8,14,'#c5a278',-.3);ellipse(c,23,-19,11,9,'#bc9169');ellipse(c,27,-21,3.3,3.3,'#fbdfb7');ellipse(c,27,-22,1.5,1.5,'#384237');c.strokeStyle='#a67b55';c.lineWidth=3;c.lineCap='round';c.beginPath();c.moveTo(21,-24);c.lineTo(19,-34);c.lineTo(15,-38);c.moveTo(28,-23);c.lineTo(31,-35);c.stroke();c.strokeStyle='#aa8661';c.lineWidth=5;c.beginPath();c.moveTo(-15,8);c.lineTo(-17,21);c.moveTo(12,10);c.lineTo(12,22);c.stroke();ellipse(c,-24,-6,7,3,'#f0dec0');c.restore()}
 function drawSnake(c,x,y,t){c.save();c.translate(x,y);ellipse(c,2,19,25,7,'rgba(20,38,28,.25)');c.strokeStyle='#8ba65f';c.lineWidth=10;c.lineCap='round';c.beginPath();c.moveTo(-20,12);c.bezierCurveTo(-28,-17,8,-26,9,2);c.bezierCurveTo(9,22,30,15,23,-9);c.stroke();c.strokeStyle='#d3bb7f';c.lineWidth=2;c.beginPath();c.moveTo(-18,13);c.bezierCurveTo(-24,-14,7,-21,8,2);c.stroke();ellipse(c,21,-15,12,9,'#8da660',-.14);ellipse(c,26,-18,2.5,2.5,'#f7e6be');ellipse(c,27,-18,1.2,1.2,'#26382c');c.strokeStyle='#af735b';c.lineWidth=1.5;c.beginPath();c.moveTo(31,-13);c.lineTo(37+Math.sin(t/500)*2,-11);c.stroke();c.restore()}
 function drawPerson(c,x,y,variant,t,sm=1){
- if(variant==='noah'||variant==='visitor'){
+ if(variant==='joseph'||variant==='witness'){
+  c.save();c.translate(x,y+Math.sin(t/280));c.scale(sm,sm);const joe=variant==='joseph',egypt=current>=12;
+  ellipse(c,0,25,20,7,'rgba(70,59,47,.23)');
+  c.strokeStyle='#916c54';c.lineWidth=6;c.lineCap='round';c.beginPath();c.moveTo(-9,12);c.lineTo(-10,25);c.moveTo(9,12);c.lineTo(10,25);c.stroke();
+  poly(c,[[-16,-10],[16,-10],[21,16],[-21,16]],joe?(egypt?'#e4b17d':'#efaf83'):'#80acaa','#996b5c',2);
+  c.strokeStyle='#ecc88e';c.lineWidth=5;c.beginPath();c.moveTo(-14,-6);c.lineTo(-22,9);c.moveTo(15,-6);c.lineTo(22,9);c.stroke();
+  ellipse(c,0,-23,15,16,'#c99570');ellipse(c,0,-35,16,8,joe?'#463c36':'#624c3c');
+  ellipse(c,-6,-24,1.5,2,'#353c3a');ellipse(c,6,-24,1.5,2,'#353c3a');
+  if(joe){rounded(c,-18,-5,36,8,3,egypt?'#7aafb2':'#e3d09b')}else{rounded(c,-18,-4,36,7,3,'#e8bd7d')}
+  c.restore();return;
+ }
+ if(variant==='noah' ||variant==='visitor'){
   c.save();c.translate(x,y+Math.sin(t/270));c.scale(sm,sm);let isNoah=variant==='noah';ellipse(c,0,23,20,7,'rgba(39,71,68,.26)');
   c.strokeStyle='#765e4c';c.lineWidth=6;c.lineCap='round';c.beginPath();c.moveTo(-9,10);c.lineTo(-10,23);c.moveTo(9,10);c.lineTo(10,23);c.stroke();
   poly(c,[[-17,-12],[17,-12],[19,16],[-19,16]],isNoah?'#6aa5ae':'#eabf78','#486a71',2);rounded(c,-19,-11,38,8,4,isNoah?'#f3dab5':'#e98f65');
@@ -857,7 +1452,7 @@ function drawTreeMarker(c,x,y,t){c.save();c.translate(x,y);ellipse(c,0,18,29,9,'
 function drawLeaf(c,x,y,t){c.save();c.translate(x,y);c.rotate(Math.sin(t/700)*.09);ellipse(c,0,8,19,5,'rgba(25,45,30,.2)');for(let i=0;i<5;i++){let a=i*(Math.PI*2/5)-Math.PI/2;ellipse(c,Math.cos(a)*12,Math.sin(a)*12,11,5,i%2?'#c7ba75':'#6a965c',a)}ellipse(c,0,0,5,5,'#dfcd86');c.restore()}
 function drawPersonPair(c,x,y,t){drawPerson(c,x-12,y+2,'adam',t,.77);drawPerson(c,x+17,y+2,'eve',t,.78)}
 function drawExit(c,x,y,t){c.save();c.translate(x,y);let pulse=(Math.sin(t/550)+1)/2;ellipse(c,0,14,31,12,'rgba(238,203,127,.16)');c.strokeStyle='#8d6d4b';c.lineWidth=10;c.lineCap='round';c.beginPath();c.arc(0,8,24,Math.PI*1.02,Math.PI*1.98);c.stroke();c.strokeStyle='#ead8a4';c.lineWidth=5;c.beginPath();c.arc(0,8,24,Math.PI*1.03,Math.PI*1.97);c.stroke();for(let i=0;i<3;i++){let yy=-12+i*8;ellipse(c,0,yy,10+pulse*2,2.5,'rgba(255,231,157,.65)')}poly(c,[[-10,8],[0,-3],[10,8]],'#f8da93');c.restore()}
-function drawMarker(c,ev,t,seen){let x=ev.x*TILE+36,y=ev.y*TILE+36;let bounce=Math.sin(t/410+ev.id)*3;c.save();c.translate(x,y+bounce);const grad=c.createRadialGradient(0,0,4,0,0,46);grad.addColorStop(0,seen?'rgba(222,232,194,.36)':'rgba(255,235,165,.46)');grad.addColorStop(1,'rgba(255,220,144,0)');c.fillStyle=grad;c.beginPath();c.arc(0,0,46,0,Math.PI*2);c.fill();c.restore();switch(ev.type){case'river':drawSpring(c,x,y,t);break;case'bird':drawBird(c,x,y,t);break;case'animal':drawAnimal(c,x,y,t);break;case'people':drawPersonPair(c,x,y,t);break;case'tree':drawTreeMarker(c,x,y,t);break;case'snake':drawSnake(c,x,y,t);break;case'leaf':drawLeaf(c,x,y,t);break;case'flower':drawLeaf(c,x,y,t);break;case'steps':drawExit(c,x,y,t);break;case'wood':case'ark':case'grain':case'rain':case'wind':case'raven':case'dove':case'olive':case'mountain':case'altar':case'rainbow':drawNoahMarker(c,x,y,t,ev.type);break;default:drawScroll(c,x,y+bounce,.95)}
+function drawMarker(c,ev,t,seen){let x=ev.x*TILE+36,y=ev.y*TILE+36;let bounce=Math.sin(t/410+ev.id)*3;c.save();c.translate(x,y+bounce);const grad=c.createRadialGradient(0,0,4,0,0,46);grad.addColorStop(0,seen?'rgba(222,232,194,.36)':'rgba(255,235,165,.46)');grad.addColorStop(1,'rgba(255,220,144,0)');c.fillStyle=grad;c.beginPath();c.arc(0,0,46,0,Math.PI*2);c.fill();c.restore();switch(ev.type){case'river':drawSpring(c,x,y,t);break;case'bird':drawBird(c,x,y,t);break;case'animal':drawAnimal(c,x,y,t);break;case'people':drawPersonPair(c,x,y,t);break;case'tree':drawTreeMarker(c,x,y,t);break;case'snake':drawSnake(c,x,y,t);break;case'leaf':drawLeaf(c,x,y,t);break;case'flower':drawLeaf(c,x,y,t);break;case'steps':drawExit(c,x,y,t);break;case'wood':case'ark':case'rain':case'wind':case'raven':case'dove':case'mountain':case'altar':case'rainbow':drawNoahMarker(c,x,y,t,ev.type);break;case'grain':case'olive':if(storyFor(current).id==='joseph')drawJosephMarker(c,x,y,t,ev.type);else drawNoahMarker(c,x,y,t,ev.type);break;case'coat':case'dream':case'sheaf':case'cistern':case'caravan':case'road':case'house':case'door':case'prison':case'cup':case'cows':case'seal':case'sacks':case'brothers':case'family':case'embrace':drawJosephMarker(c,x,y,t,ev.type);break;default:drawScroll(c,x,y+bounce,.95)}
  if(!seen){ellipse(c,x+22,y-27+bounce,12,12,'#f4d18b');c.font='bold 16px Georgia';c.textAlign='center';c.fillStyle='#3f5a41';c.fillText('?',x+22,y-21+bounce)}else{ellipse(c,x+22,y-27+bounce,11,11,'#e6e7c1');c.strokeStyle='#5c845b';c.lineWidth=2;c.beginPath();c.moveTo(x+17,y-27+bounce);c.lineTo(x+21,y-23+bounce);c.lineTo(x+28,y-31+bounce);c.stroke()}
 }
 
@@ -868,6 +1463,7 @@ function drawChallengeMark(c,x,y,t,solved){
  c.textAlign='center';c.font='bold 22px Georgia';c.fillStyle=solved?'#476e50':'#80613a';c.fillText(solved?'✓':'✧',0,3);c.restore();
 }
 function drawNatureMark(c,x,y,t,kind){
+ if(JOSEPH_NATURE.includes(kind)){drawJosephMarker(c,x,y,t,({tissu:'coat',epi:'sheaf',poterie:'house',sceau:'seal',coupe:'cup',panier:'sacks',pierre:'cistern'})[kind]);return}
  if(['bois','grain','corde','plume','olivier','pierre'].includes(kind)){drawNoahMarker(c,x,y,t,kind==='bois'?'wood':kind==='plume'?'dove':kind==='olivier'?'olive':kind==='corde'?'ark':kind==='pierre'?'mountain':'grain');return}
  c.save();c.translate(x,y+Math.sin(t/650+x)*2);
  const halo=c.createRadialGradient(0,0,0,0,0,25);halo.addColorStop(0,'rgba(255,239,173,.55)');halo.addColorStop(1,'rgba(255,239,173,0)');c.fillStyle=halo;c.beginPath();c.arc(0,0,25,0,7);c.fill();
@@ -900,7 +1496,7 @@ function render(t){requestAnimationFrame(render);if(current<0||!board||$('gameSc
  }
   if(current===7){for(let j=0;j<22;j++){let rx=(noise(j,3,board.seed)*worldW+t*.12*(1+j%3))%worldW,ry=(noise(j,4,board.seed)*worldH+t*.18*(1+j%3))%worldH;if(rx<camX-20||rx>camX+vw+20||ry<camY-20||ry>camY+vh+20)continue;ctx.strokeStyle='rgba(196,232,245,.45)';ctx.lineWidth=2;ctx.beginPath();ctx.moveTo(rx,ry);ctx.lineTo(rx-8,ry+19);ctx.stroke()}}
  drawExit(ctx,(board.exit.x+.5)*TILE,(board.exit.y+.5)*TILE,t);
- const actorBob=moveAnim?Math.sin(t/80)*3:Math.sin(t/610)*1.3;drawPerson(ctx,(px+.5)*TILE,(py+.5)*TILE+actorBob,(current>=5?(state.avatarNoah||'noah'):(current===0?'adam':state.avatar||'adam')),t,1.12);
+ const actorBob=moveAnim?Math.sin(t/80)*3:Math.sin(t/610)*1.3;drawPerson(ctx,(px+.5)*TILE,(py+.5)*TILE+actorBob,(storyFor(current).id==='joseph'?(state.avatarJoseph||'joseph'):storyFor(current).id==='noah'?(state.avatarNoah||'noah'):(current===0?'adam':state.avatar||'adam')),t,1.12);
  // Fireflies, pollen and breathing particles above the scenery.
  for(let j=0;j<19;j++){let fx=(noise(j,1,board.seed)*worldW+Math.sin(t*.00038+j)*13),fy=(noise(j,2,board.seed)*worldH+Math.cos(t*.00045+j)*12);if(fx<camX-10||fx>camX+vw+10||fy<camY-10||fy>camY+vh+10)continue;let alpha=.20+Math.sin(t*.002+j)*.14;ellipse(ctx,fx,fy,1.6+noise(j,3)*1.5,1.6,`rgba(255,235,168,${Math.max(.03,alpha)})`)}
  if(hintPath&&hintPath.length){for(let i=0;i<hintPath.length;i++){
@@ -950,14 +1546,15 @@ function finishLevel(){if(current<0)return;const d=dataFor(current),st=storyFor(
  d.complete=true;d.position=null;save();award('chapter-'+current,50,'Chapitre terminé');chime('book');renderHome();
  if(k===4){showSequence(st.id);return}
  const n=current+1,l=LEVELS[current];
- showModal(`${modalHeader('Chapitre accompli !')}<div class="modal-art ${st.id==='noah'?'gold':''}"><span class="orn">⭐</span></div><div class="modal-tag">${st.emoji} ${st.title} · ${k+1}/5</div><h2>Bravo ! Quelle belle aventure !</h2><p>Tu as terminé un nouveau chapitre et gagné ⭐ 50 étoiles. Tu peux aussi revenir chercher les livres ou les objets oubliés.</p><div class="truth-note"><b>À retenir</b>${escapeHtml(l.reflection)}</div><div class="modal-actions"><button class="btn pale" data-act="home">Choisir une histoire</button><button class="btn primary" data-act="next" data-chapter="${n}">Chapitre ${k+2} →</button></div>`);
+ showModal(`${modalHeader('Chapitre accompli !')}<div class="modal-art ${st.id!=='eden'?'gold':''}"><span class="orn">⭐</span></div><div class="modal-tag">${st.emoji} ${st.title} · ${k+1}/5</div><h2>Bravo ! Quelle belle aventure !</h2><p>Tu as terminé un nouveau chapitre et gagné ⭐ 50 étoiles. Tu peux aussi revenir chercher les livres ou les objets oubliés.</p><div class="truth-note"><b>À retenir</b>${escapeHtml(l.reflection)}</div><div class="modal-actions"><button class="btn pale" data-act="home">Choisir une histoire</button><button class="btn primary" data-act="next" data-chapter="${n}">Chapitre ${k+2} →</button></div>`);
 }
 const STORY_SEQUENCES={
  eden:[{label:'Dieu confie le jardin à Adam.'},{label:'Dieu donne une consigne sur les arbres.'},{label:'Le serpent met en doute cette parole.'},{label:'Adam et sa femme mangent le fruit interdit.'},{label:'Ils quittent finalement le jardin.'}],
- noah:[{label:'Dieu demande à Noé de construire l’arche.'},{label:'Noé, sa famille et les animaux entrent dans l’arche.'},{label:'La pluie tombe et l’arche flotte.'},{label:'La colombe revient avec une feuille d’olivier.'},{label:'Dieu donne le signe de son alliance : l’arc-en-ciel.'}]
+ noah:[{label:'Dieu demande à Noé de construire l’arche.'},{label:'Noé, sa famille et les animaux entrent dans l’arche.'},{label:'La pluie tombe et l’arche flotte.'},{label:'La colombe revient avec une feuille d’olivier.'},{label:'Dieu donne le signe de son alliance : l’arc-en-ciel.'}],
+ joseph:[{"label": "Joseph reçoit un vêtement particulier et raconte des rêves."}, {"label": "Ses frères le séparent de sa famille et il est emmené en Égypte."}, {"label": "Joseph travaille chez Potiphar puis connaît la prison."}, {"label": "Joseph explique les rêves du Pharaon et organise les réserves."}, {"label": "Joseph retrouve ses frères et leur parle avec bonté."}]
 };
 let picked=[],sequenceStory='eden';
-const scrambles={eden:[2,0,4,1,3],noah:[2,4,0,3,1]};
+const scrambles={eden:[2,0,4,1,3],noah:[2,4,0,3,1],joseph:[3,1,4,0,2]};
 function showSequence(id){sequenceStory=id||storyFor(current>=0?current:0).id;picked=[];renderSequence()}
 function renderSequence(){const seq=STORY_SEQUENCES[sequenceStory],scramble=scrambles[sequenceStory];
  const remaining=scramble.filter(i=>!picked.includes(i)),done=picked.length===seq.length,correct=done&&picked.every((v,i)=>v===i);
@@ -966,20 +1563,20 @@ function renderSequence(){const seq=STORY_SEQUENCES[sequenceStory],scramble=scra
  showModal(`${modalHeader('📖 Le livre des souvenirs')}<div class="modal-tag">${STORIES.find(s=>s.id===sequenceStory).title} · défi final</div><h2>Raconte cette histoire ! 🌟</h2><p>Choisis les cinq événements dans l’ordre raconté par la Bible. Tu peux recommencer autant que tu le souhaites.</p><div class="modal-tag">Ton histoire · ${picked.length}/5</div><div class="order-list">${selected||'<p>Choisis le premier événement ci-dessous.</p>'}</div>${remaining.length?`<div class="modal-tag">Les événements à placer</div><div class="order-list">${choices}</div>`:''}${done?`<div class="feedback ${correct?'':'gentle'}">${correct?'Bravo, tu as retrouvé tout le récit !':'Compare ces événements avec le récit biblique. Tu peux recommencer ou découvrir la bonne histoire.'}</div>`:''}<div class="modal-actions"><button class="btn pale" data-act="sequence-reset">Recommencer</button><button class="btn primary" data-act="sequence-finish">${correct?'Terminer mon récit':'Comprendre la fin'} →</button></div>`,true)
 }
 function finishSequence(){const st=STORIES.find(s=>s.id===sequenceStory),correct=picked.length===5&&picked.every((v,i)=>v===i);
- if(correct){if(sequenceStory==='noah')state.noahSequenceDone=true;else state.sequenceDone=true;save();award('retell-'+sequenceStory,70,'Histoire reconstituée')}
- const explain=sequenceStory==='noah'?'Relis Genèse 6–9 pour retrouver le chantier, la famille, les animaux, la pluie, la colombe et l’alliance de Dieu. Le récit est sérieux, mais il finit par la promesse.':'Relis Genèse 2–3 pour comprendre le jardin, la consigne, la désobéissance et le départ.';
- showModal(`${modalHeader('Une histoire de plus !')}<div class="modal-art gold"><span class="orn">${st.emoji}</span></div><div class="modal-tag">${escapeHtml(st.title)} · aventure complète</div><h2>${escapeHtml(st.endMessage)}</h2><p>Tu as exploré les cinq chapitres. Essaie maintenant de raconter l’histoire avec tes propres mots à quelqu’un.</p><div class="truth-note"><b>Pour aller plus loin</b>${escapeHtml(explain)}</div><div class="modal-actions"><button class="btn primary" data-act="home">Découvrir mes deux histoires →</button><button class="btn pale" data-act="album">Voir mon album 📖</button></div>`);
+ if(correct){if(sequenceStory==='noah')state.noahSequenceDone=true;else if(sequenceStory==='joseph')state.josephSequenceDone=true;else state.sequenceDone=true;save();award('retell-'+sequenceStory,70,'Histoire reconstituée')}
+ const explain=sequenceStory==='joseph'?'Relis Genèse 37 et 39–45 : Joseph rêve, souffre d’une injustice, arrive en Égypte, aide à préparer les réserves et retrouve ses frères. Le texte invite à réfléchir au pardon.':sequenceStory==='noah'?'Relis Genèse 6–9 pour retrouver le chantier, la famille, les animaux, la pluie, la colombe et l’alliance de Dieu. Le récit est sérieux, mais il finit par la promesse.':'Relis Genèse 2–3 pour comprendre le jardin, la consigne, la désobéissance et le départ.';
+ showModal(`${modalHeader('Une histoire de plus !')}<div class="modal-art gold"><span class="orn">${st.emoji}</span></div><div class="modal-tag">${escapeHtml(st.title)} · aventure complète</div><h2>${escapeHtml(st.endMessage)}</h2><p>Tu as exploré les cinq chapitres. Essaie maintenant de raconter l’histoire avec tes propres mots à quelqu’un.</p><div class="truth-note"><b>Pour aller plus loin</b>${escapeHtml(explain)}</div><div class="modal-actions"><button class="btn primary" data-act="home">Explorer mes histoires →</button><button class="btn pale" data-act="album">Voir mon album 📖</button></div>`);
 }
 function showDiary(){
  const earned=unlockedBadges().map(x=>x.id),found=LEVELS.reduce((n,l,i)=>n+dataFor(i).seen.length,0),quests=LEVELS.reduce((n,l,i)=>n+Object.keys(dataFor(i).challenges).length,0),natures=LEVELS.reduce((n,l,i)=>n+dataFor(i).nature.length,0),maxBooks=LEVELS.reduce((n,l)=>n+l.events.length,0);
  const tiles=BADGES.map(b=>`<div class="badge-tile ${earned.includes(b.id)?'':'locked'}"><div class="badge-symbol">${b.symbol}</div><strong>${escapeHtml(b.name)}</strong><small>${escapeHtml(b.desc)}</small></div>`).join('');
  showModal(`${modalHeader('⭐ Le carnet de l’explorateur')}<div class="modal-tag">Mes découvertes bibliques</div><h2>Mes étoiles et mes insignes</h2><p>Chaque découverte donne des étoiles une seule fois. Tu peux rejouer librement, sans chronomètre ni classement.</p><div class="journal-stats"><div class="journal-stat"><strong>⭐ ${points()}</strong><small>Étoiles</small></div><div class="journal-stat"><strong>${found}/${maxBooks}</strong><small>Livres</small></div><div class="journal-stat"><strong>${quests}</strong><small>Énigmes</small></div></div><div class="modal-tag">${earned.length} insignes sur ${BADGES.length} · ${natures} souvenirs</div><div class="badge-grid">${tiles}</div><div class="modal-actions"><button class="btn primary" data-act="album">Voir mes fresques →</button><button class="btn pale" data-act="close">Revenir au jeu</button></div>`,true)
 }
-const ALBUM_SCENES={eden:['🌳','🦜','🌿','🐍','🌅'],noah:['🪵','🦒','🌧️','🕊️','🌈']};
-const ALBUM_NAMES={eden:['Le jardin','Les animaux','Les deux arbres','Le serpent','Le départ'],noah:['Le grand chantier','Tous à bord','Le déluge','La colombe','La promesse']};
-function storyTabs(action,id){return `<div class="album-switch" role="group" aria-label="Choisir le récit"><button data-${action}-story="eden" aria-pressed="${id==='eden'}">🌳 Adam et Ève</button><button data-${action}-story="noah" aria-pressed="${id==='noah'}">🕊️ Noé</button></div>`}
+const ALBUM_SCENES={eden:['🌳','🦜','🌿','🐍','🌅'],noah:['🪵','🦒','🌧️','🕊️','🌈'],joseph:["🧥", "🐪", "🏺", "🌾", "🤝"]};
+const ALBUM_NAMES={eden:['Le jardin','Les animaux','Les deux arbres','Le serpent','Le départ'],noah:['Le grand chantier','Tous à bord','Le déluge','La colombe','La promesse'],joseph:["La tunique et les rêves", "Le voyage vers l’Égypte", "La maison et la prison", "Le palais et les réserves", "Les retrouvailles"]};
+function storyTabs(action,id){return `<div class="album-switch" role="group" aria-label="Choisir le récit">${STORIES.map(s=>`<button data-${action}-story="${s.id}" aria-pressed="${id===s.id}">${s.emoji} ${escapeHtml(s.title)}</button>`).join('')}</div>`}
 function showAlbum(id=state.story){const st=STORIES.find(v=>v.id===id)||STORIES[0],arr=storyRange(st.id);
- const tiles=arr.map(({l,i},j)=>{let completed=dataFor(i).complete;return `<div class="album-card ${completed?'':'locked'}"><div class="album-scene" style="background:${st.id==='noah'?'linear-gradient(145deg,#b7e8f4,#6caed3,#f7d78b)':'linear-gradient(145deg,#bfe4a7,#8dca9e,#ffdf8c)'}"><span style="font-size:58px">${completed?ALBUM_SCENES[st.id][j]:'🔒'}</span></div><div class="album-body"><strong>${completed?ALBUM_NAMES[st.id][j]:'Chapitre '+(j+1)+' à découvrir'}</strong><small>${completed?l.ref:'Termine le chapitre pour révéler cette image'}</small></div></div>`}).join('');
+ const tiles=arr.map(({l,i},j)=>{let completed=dataFor(i).complete;return `<div class="album-card ${completed?'':'locked'}"><div class="album-scene" style="background:${st.id==='joseph'?'linear-gradient(145deg,#d4e7e3,#f3cb91,#d79d6b)':st.id==='noah'?'linear-gradient(145deg,#b7e8f4,#6caed3,#f7d78b)':'linear-gradient(145deg,#bfe4a7,#8dca9e,#ffdf8c)'}"><span style="font-size:58px">${completed?ALBUM_SCENES[st.id][j]:'🔒'}</span></div><div class="album-body"><strong>${completed?ALBUM_NAMES[st.id][j]:'Chapitre '+(j+1)+' à découvrir'}</strong><small>${completed?l.ref:'Termine le chapitre pour révéler cette image'}</small></div></div>`}).join('');
  showModal(`${modalHeader('📖 Mon album d’histoires')}<div class="modal-tag">${st.title} · ${st.ref}</div><h2>Ma collection de scènes 🎨</h2><p>Chaque chapitre terminé débloque une image-souvenir. Les images sont des représentations pédagogiques, pas des photos historiques.</p>${storyTabs('album',st.id)}<div class="album-grid">${tiles}</div><div class="truth-note"><b>Raconte avec tes mots</b>Qu'as-tu découvert dans ${st.title} ? Que dit vraiment la Bible, et que montre simplement le dessin ?</div><div class="modal-actions"><button class="btn pale" data-act="diary">Mes étoiles ⭐</button><button class="btn primary" data-act="close">Retour →</button></div>`,true)
 }
 function showChallenge(k){if(current<0)return;selectedChallenge=k;challengePicked=[];lastChallengeResult=null;
@@ -987,7 +1584,7 @@ function showChallenge(k){if(current<0)return;selectedChallenge=k;challengePicke
  if(completed){showModal(`${modalHeader('Énigme déjà découverte')}<div class="modal-tag">${escapeHtml(c.title)}</div><h2>Tu te souviens ?</h2><p>${c.explain}</p><div class="modal-actions"><button class="btn primary" data-act="close">Reprendre l’exploration →</button></div>`);return}
  const choices=c.kind==='choose'?`<div class="option-list">${c.choices.map((a,i)=>`<button class="option" data-challenge-answer="${i}"><span class="opt-marker">${String.fromCharCode(65+i)}</span><span>${escapeHtml(a)}</span></button>`).join('')}</div>`:
  `<p>Choisis les cartes une par une pour reformer la bonne histoire.</p><div class="puzzle-pick" id="challengePicks"></div><div class="option-list" id="challengeCards">${[2,0,1].map(i=>`<button class="puzzle-choice" data-challenge-order="${i}">${escapeHtml(c.items[i])}</button>`).join('')}</div>`;
- showModal(`${modalHeader('Un défi à découvrir')}<div class="modal-tag">Énigme ${k+1} / ${CHALLENGES[current].length} · +25 étoiles</div><h2>${escapeHtml(c.title)}</h2><p>${escapeHtml(c.prompt)}</p>${choices}<div id="challengeFeedback" aria-live="polite"></div><div class="modal-actions" id="challengeActions"><button class="btn pale" data-act="challenge-explain">Voir l’explication et continuer</button><button class="btn dark" data-act="close">Revenir au jardin</button></div><p class="modal-footnote">Ces énigmes sont des exercices pédagogiques, pas des événements bibliques supplémentaires. Tu peux toujours passer.</p>`)
+ showModal(`${modalHeader('Un défi à découvrir')}<div class="modal-tag">Énigme ${k+1} / ${CHALLENGES[current].length} · +25 étoiles</div><h2>${escapeHtml(c.title)}</h2><p>${escapeHtml(c.prompt)}</p>${choices}<div id="challengeFeedback" aria-live="polite"></div><div class="modal-actions" id="challengeActions"><button class="btn pale" data-act="challenge-explain">Voir l’explication et continuer</button><button class="btn dark" data-act="close">Revenir à l’aventure</button></div><p class="modal-footnote">Ces énigmes sont des exercices pédagogiques, pas des événements bibliques supplémentaires. Tu peux toujours passer.</p>`)
 }
 function challengeAnswer(choice){if(current<0||selectedChallenge<0)return;const c=CHALLENGES[current][selectedChallenge];if(lastChallengeResult!==null)return;
  let correct=c.kind==='choose'?choice===c.answer:JSON.stringify(choice)===JSON.stringify(c.items.map((_,i)=>i));lastChallengeResult=correct;
@@ -999,17 +1596,17 @@ function challengeAnswer(choice){if(current<0||selectedChallenge<0)return;const 
 function challengeUnderstood(){if(current<0||selectedChallenge<0)return;const d=dataFor(current);d.challenges[selectedChallenge]=true;save();award('challenge-'+current+'-'+selectedChallenge,25,'Énigme découverte');updateHUD();closeModal();selectedChallenge=-1}
 function collectNature(k){if(current<0)return;const d=dataFor(current);if(d.nature.includes(k))return;d.nature.push(k);save();award('nature-'+current+'-'+k,8,'Souvenir naturel');updateHUD()}
 function rememberPosition(){if(current<0||!board)return;const d=dataFor(current),pos=key(player.x,player.y,board.w);d.position={x:player.x,y:player.y,mode:state.mode};if(!d.visited.includes(pos))d.visited.push(pos);d.steps=(d.steps||0)+1;save();if(d.visited.length>=30)award('walking-'+current+'-30',12,'Exploration attentive');if(d.visited.length>=80)award('walking-'+current+'-80',16,'Grand explorateur')}
-function showProfiles(n){pendingChapter=n;const st=storyFor(n),isNoah=st.id==='noah',avatar=isNoah?(state.avatarNoah||'noah'):(state.avatar||'adam');
- const choices=isNoah?`<button class="profile ${avatar==='noah'?'active':''}" data-avatar="noah"><span class="avatar-dot">N</span>Noé</button><button class="profile ${avatar==='visitor'?'active':''}" data-avatar="visitor"><span class="avatar-dot">V</span>Petit explorateur</button>`:`<button class="profile ${avatar==='adam'?'active':''}" data-avatar="adam"><span class="avatar-dot">A</span>Adam</button><button class="profile ${avatar==='eve'&&n>0?'active':''}" data-avatar="eve" ${n===0?'disabled title="À partir du chapitre 2"':''}><span class="avatar-dot">E</span>Ève ${n===0?'· bientôt':''}</button>`;
- showModal(`${modalHeader('Choisis ton personnage')}<div class="modal-tag">${st.title} · personnages du récit</div><h2>Avec qui vas-tu explorer ?</h2><p>${isNoah?'Noé apparaît dans ce récit. Le petit explorateur est fictif : il découvre les scènes sans changer ce qui se passe dans la Bible.':'Choisis Adam ou Ève pour parcourir les sentiers. Ève devient accessible à partir du chapitre 2.'}</p><div class="profile-row">${choices}</div><div class="modal-actions"><button class="btn primary" data-act="enter-chapter">Partir à l’aventure ! →</button></div><p class="modal-footnote">Le jeu illustre les histoires sans modifier les événements bibliques.</p>`);
+function showProfiles(n){pendingChapter=n;const st=storyFor(n),isNoah=st.id==='noah',isJoseph=st.id==='joseph',avatar=isJoseph?(state.avatarJoseph||'joseph'):isNoah?(state.avatarNoah||'noah'):(state.avatar||'adam');
+ const choices=isJoseph?`<button class="profile ${avatar==='joseph'?'active':''}" data-avatar="joseph"><span class="avatar-dot">J</span>Joseph</button><button class="profile ${avatar==='witness'?'active':''}" data-avatar="witness"><span class="avatar-dot">E</span>Explorateur</button>`:isNoah?`<button class="profile ${avatar==='noah'?'active':''}" data-avatar="noah"><span class="avatar-dot">N</span>Noé</button><button class="profile ${avatar==='visitor'?'active':''}" data-avatar="visitor"><span class="avatar-dot">V</span>Petit explorateur</button>`:`<button class="profile ${avatar==='adam'?'active':''}" data-avatar="adam"><span class="avatar-dot">A</span>Adam</button><button class="profile ${avatar==='eve'&&n>0?'active':''}" data-avatar="eve" ${n===0?'disabled title="À partir du chapitre 2"':''}><span class="avatar-dot">E</span>Ève ${n===0?'· bientôt':''}</button>`;
+ showModal(`${modalHeader('Choisis ton personnage')}<div class="modal-tag">${st.title} · personnages du récit</div><h2>Avec qui vas-tu explorer ?</h2><p>${isJoseph?'Joseph est un personnage biblique. Le petit explorateur est fictif : il visite les lieux sans modifier les événements du récit.':isNoah?'Noé apparaît dans ce récit. Le petit explorateur est fictif : il découvre les scènes sans changer ce qui se passe dans la Bible.':'Choisis Adam ou Ève pour parcourir les sentiers. Ève devient accessible à partir du chapitre 2.'}</p><div class="profile-row">${choices}</div><div class="modal-actions"><button class="btn primary" data-act="enter-chapter">Partir à l’aventure ! →</button></div><p class="modal-footnote">Le jeu illustre les histoires sans modifier les événements bibliques.</p>`);
 }
 function showHelp(){showModal(`${modalHeader('🧭 Le guide du voyageur')}<h2>Comment jouer ?</h2><p><b>1.</b> Utilise les grandes flèches, ou touche un chemin pour avancer un peu. À chaque carrefour, choisis où aller !</p><p><b>2.</b> Approche-toi des objets brillants : ils racontent le récit dans des livres que tu peux rouvrir.</p><p><b>3.</b> Cherche les petites pierres à énigmes et les souvenirs cachés pour gagner des étoiles.</p><p><b>4.</b> Lorsque tu trouves la grande sortie lumineuse, une question te permet de finir le chapitre. Tu n’es jamais bloqué.</p><div class="truth-note"><b>🌟 Astuce</b>Le bouton d’aide montre quelques pas du chemin. Tu restes aux commandes !</div><div class="modal-actions"><button class="btn pale" data-act="close">Je retourne explorer</button><button class="btn primary" data-act="guide">Montre-moi un indice →</button></div>`) }
 function showSettings(){const voices=frenchVoices();const opts=[['confort','Normal'],['grand','Grand'],['tresgrand','Très grand']].map(([id,label])=>`<button class="font-chip" data-font="${id}" aria-pressed="${state.fontSize===id}">${label}</button>`).join('');
- showModal(`${modalHeader('⚙️ Mes réglages')}<div class="modal-tag">Pour les enfants de 7 à 11 ans</div><h2>Je choisis mon confort de lecture</h2><div class="quest-box"><b>🔎 Taille des lettres</b><p>Choisis la taille qui t’aide le mieux à lire.</p><div class="font-selector" role="group" aria-label="Taille des textes">${opts}</div><div class="font-example">Il était une fois… Dieu demanda à Noé de construire une arche.</div></div><div class="quest-box"><div class="quest-title">🎧 Voix française</div><p class="voice-help">Nous utilisons seulement une voix française si ton appareil en possède une.</p><select id="voiceSelect" class="voice-select" aria-label="Choisir la voix française" ${voices.length?'':'disabled'}>${voiceOptions()||'<option value="">Aucune voix française installée</option>'}</select><div class="switch-row"><span><b>Vitesse de lecture</b><br><small>${Math.round(state.voiceRate*100)} %</small></span><input id="voiceRate" type="range" min="0.7" max="1.15" step="0.05" value="${state.voiceRate}" aria-label="Vitesse de lecture" style="width:120px"></div><button class="btn pale" data-act="voice-test">▶ Tester cette voix</button><p class="voice-help">Sur Android, tu peux installer une voix française dans les paramètres de synthèse vocale du téléphone ou de la tablette.</p></div><div class="switch-row"><span><b>🎵 Petits sons</b><br><small>Récompenses et découvertes</small></span><button data-act="toggle-sound">${state.sound?'Activés':'Désactivés'}</button></div><div class="switch-row"><span><b>👤 Personnage</b><br><small>${state.story==='noah'?(state.avatarNoah==='visitor'?'Explorateur':'Noé'):(state.avatar==='eve'?'Ève':'Adam')}</small></span><button data-act="change-avatar">Changer</button></div><div class="switch-row"><span><b>📚 Mes progrès</b><br><small>Enregistrés seulement sur cet appareil</small></span><button data-act="reset-confirm">Tout effacer</button></div><p class="modal-footnote">Application gratuite et sans compte. Adaptations de Genèse 2–3 et 6–9 à partir du texte de référence Louis Segond 1910. Nous ne représentons pas Dieu. Les décors et accessoires sont des choix artistiques.</p><div class="modal-actions"><button class="btn primary" data-act="close">C’est parfait ! →</button></div>`)
+ showModal(`${modalHeader('⚙️ Mes réglages')}<div class="modal-tag">Pour les enfants de 7 à 11 ans</div><h2>Je choisis mon confort de lecture</h2><div class="quest-box"><b>🔎 Taille des lettres</b><p>Choisis la taille qui t’aide le mieux à lire.</p><div class="font-selector" role="group" aria-label="Taille des textes">${opts}</div><div class="font-example">Il était une fois… Dieu demanda à Noé de construire une arche.</div></div><div class="quest-box"><div class="quest-title">🎧 Voix française</div><p class="voice-help">Nous utilisons seulement une voix française si ton appareil en possède une.</p><select id="voiceSelect" class="voice-select" aria-label="Choisir la voix française" ${voices.length?'':'disabled'}>${voiceOptions()||'<option value="">Aucune voix française installée</option>'}</select><div class="switch-row"><span><b>Vitesse de lecture</b><br><small>${Math.round(state.voiceRate*100)} %</small></span><input id="voiceRate" type="range" min="0.7" max="1.15" step="0.05" value="${state.voiceRate}" aria-label="Vitesse de lecture" style="width:120px"></div><button class="btn pale" data-act="voice-test">▶ Tester cette voix</button><p class="voice-help">Sur Android, tu peux installer une voix française dans les paramètres de synthèse vocale du téléphone ou de la tablette.</p></div><div class="switch-row"><span><b>🎵 Petits sons</b><br><small>Récompenses et découvertes</small></span><button data-act="toggle-sound">${state.sound?'Activés':'Désactivés'}</button></div><div class="switch-row"><span><b>👤 Personnage</b><br><small>${state.story==='joseph'?(state.avatarJoseph==='witness'?'Explorateur':'Joseph'):state.story==='noah'?(state.avatarNoah==='visitor'?'Explorateur':'Noé'):(state.avatar==='eve'?'Ève':'Adam')}</small></span><button data-act="change-avatar">Changer</button></div><div class="switch-row"><span><b>📚 Mes progrès</b><br><small>Enregistrés seulement sur cet appareil</small></span><button data-act="reset-confirm">Tout effacer</button></div><p class="modal-footnote">Application gratuite et sans compte. Adaptations de Genèse 2–3, 6–9 et 37 ; 39–45 à partir du texte de référence Louis Segond 1910. Nous ne représentons pas Dieu. Les décors et accessoires sont des choix artistiques.</p><div class="modal-actions"><button class="btn primary" data-act="close">C’est parfait ! →</button></div>`)
 }
 function showResetConfirm(){showModal(`${modalHeader('Attention')}<h2>Effacer les progr\u00e8s ?</h2><p>Tous les livres d&eacute;couverts et les chapitres termin&eacute;s seront remis &agrave; z&eacute;ro sur cet appareil.</p><div class="modal-actions"><button class="btn pale" data-act="settings">Annuler</button><button class="btn dark" data-act="reset">Oui, recommencer</button></div>`)}
 function openLibrary(id=state.story){const st=STORIES.find(v=>v.id===id)||STORIES[0];const tiles=storyRange(st.id).map(({l,i},j)=>{let d=dataFor(i);return `<button class="book-tile" data-book-chapter="${i}"><span class="modal-tag">Chapitre ${j+1} ${d.complete?'✓':''}</span><br>${escapeHtml(l.short)}<small>${l.ref} · ${d.seen.length}/${l.events.length} livres découverts</small></button>`}).join('');
- showModal(`${modalHeader('📖 La bibliothèque')}<h2>Mes livres bibliques</h2><p>Retrouve les dix chapitres, pour les lire ou les écouter si ton appareil possède une voix française.</p>${storyTabs('library',st.id)}<div class="book-grid">${tiles}</div><p class="modal-footnote">Textes adaptés de ${st.ref} (référence Louis Segond 1910), et non citations intégrales.</p><div class="modal-actions"><button class="btn primary" data-act="close">Retour à l'aventure →</button></div>`,true)}
+ showModal(`${modalHeader('📖 La bibliothèque')}<h2>Mes livres bibliques</h2><p>Retrouve les chapitres de toutes les histoires, pour les lire ou les écouter avec une voix française disponible.</p>${storyTabs('library',st.id)}<div class="book-grid">${tiles}</div><p class="modal-footnote">Textes adaptés de ${st.ref} (référence Louis Segond 1910), et non citations intégrales.</p><div class="modal-actions"><button class="btn primary" data-act="close">Retour à l'aventure →</button></div>`,true)}
 function updateHUD(){if(current<0)return;const l=LEVELS[current],d=dataFor(current),st=storyFor(current),k=localChapter(current),prog=progressFor(current);
  text('gameStars','⭐ '+points());
  text('sideQuest',Object.keys(d.challenges).length+'/'+CHALLENGES[current].length+' énigmes · '+d.nature.length+'/'+board.nature.length+' souvenirs');
@@ -1028,16 +1625,16 @@ function renderHome(){
  $('modeDiscovery').setAttribute('aria-pressed',String(state.mode==='decouverte'));$('modeAdventure').setAttribute('aria-pressed',String(state.mode==='aventure'));
  $('storyCards').innerHTML=STORIES.map(v=>{const complete=storyRange(v.id).filter(x=>dataFor(x.i).complete).length;return `<button class="story-card" type="button" data-story-select="${v.id}" aria-pressed="${v.id===state.story}" aria-label="Choisir ${v.title}, ${complete} chapitres terminés sur cinq"><div class="story-art">${storyCover(v.id)}</div><div class="story-card-text"><span class="story-card-icon" aria-hidden="true">${v.emoji}</span><div><h3>${v.title}</h3><p>${v.teaser}</p></div><span class="story-count">${complete}/5 ⭐</span></div></button>`}).join('');
  $('storyTitle').innerHTML=`<div><h2>${st.emoji} ${st.subtitle}</h2><p>${st.ref} · 5 chapitres, de plus en plus difficiles</p></div><span class="story-count" style="background:#fff0c8;padding:10px;border-radius:15px;font-weight:900">${storyRange(st.id).filter(x=>dataFor(x.i).complete).length} / 5 ✓</span>`;
- $('chapterList').innerHTML=storyRange(st.id).map(({l,i},j)=>{const d=dataFor(i);return `<button class="chap-card" data-story="${st.id}" data-chapter="${i}" aria-label="Chapitre ${j+1} : ${l.short}"><div class="art"><span class="number-badge">${j+1} / 5</span>${d.complete?'<span class="complete-badge" aria-label="Terminé">✓</span>':''}${st.id==='noah'?`<span style="position:absolute;z-index:3;top:49%;left:49%;transform:translate(-50%,-50%);font-size:58px;filter:drop-shadow(0 6px 5px #43697860)">${['🪵','🦒','🌧️','🕊️','🌈'][j]}</span>`:svgIcon(l.icon)}</div><div class="chap-body"><h3>${l.short}</h3><p>${l.teaser}</p><div class="chap-foot"><span>${d.complete?'Terminé · ⭐':d.seen.length?d.seen.length+' découvertes':'Jouer !'}</span><span>→</span></div></div></button>`}).join('');
+ $('chapterList').innerHTML=storyRange(st.id).map(({l,i},j)=>{const d=dataFor(i);return `<button class="chap-card" data-story="${st.id}" data-chapter="${i}" aria-label="Chapitre ${j+1} : ${l.short}"><div class="art"><span class="number-badge">${j+1} / 5</span>${d.complete?'<span class="complete-badge" aria-label="Terminé">✓</span>':''}${st.id!=='eden'?`<span style="position:absolute;z-index:3;top:49%;left:49%;transform:translate(-50%,-50%);font-size:58px;filter:drop-shadow(0 6px 5px #43697860)">${ALBUM_SCENES[st.id][j]}</span>`:svgIcon(l.icon)}</div><div class="chap-body"><h3>${l.short}</h3><p>${l.teaser}</p><div class="chap-foot"><span>${d.complete?'Terminé · ⭐':d.seen.length?d.seen.length+' découvertes':'Jouer !'}</span><span>→</span></div></div></button>`}).join('');
  const pending=storyRange(st.id).find(x=>!dataFor(x.i).complete);
  $('startBtn').textContent=pending?'▶ Jouer : '+LEVELS[pending.i].short:'▶ Rejouer cette histoire';
 }
 function startChapter(n,showIntro=true){if(n<0||n>=LEVELS.length)return;if(board&&board.staticLayer){board.staticLayer.width=1;board.staticLayer.height=1;board.staticLayer=null}current=n;state.story=storyFor(n).id;save();$('gameScreen').dataset.story=state.story;board=makeBoard(n);const previous=dataFor(n).position;player=(!dataFor(n).complete&&previous&&previous.mode===state.mode&&board.cells[key(previous.x,previous.y,board.w)]===1)?{x:previous.x,y:previous.y}:{x:board.start.x,y:board.start.y};moveAnim=null;autoSteps=[];hintTarget=null;hintPath=[];activeEvent=-1;$('homeScreen').hidden=true;$('gameScreen').hidden=false;document.body.classList.add('game-active');updateHUD();window.scrollTo(0,0);screenSize();if(showIntro)openIntro(n);else closeModal()}
 function goHome(){closeModal();if(current>=0){if(board&&board.staticLayer){board.staticLayer.width=1;board.staticLayer.height=1;board.staticLayer=null}current=-1;board=null;moveAnim=null;autoSteps=[];hintTarget=null;hintPath=[]}$('gameScreen').hidden=true;$('homeScreen').hidden=false;document.body.classList.remove('game-active');renderHome();window.scrollTo(0,0)}
 function requestChapter(n){if(n<0||n>=LEVELS.length)return;pendingChapter=n;
- if(storyFor(n).id==='noah'?!state.avatarNoah:!state.avatar){showProfiles(n);return}
+ if(storyFor(n).id==='joseph'?!state.avatarJoseph:storyFor(n).id==='noah'?!state.avatarNoah:!state.avatar){showProfiles(n);return}
  startChapter(n,true)}
-function chooseAvatar(a){if(storyFor(pendingChapter).id==='noah'){
+function chooseAvatar(a){if(storyFor(pendingChapter).id==='joseph'){if(!['joseph','witness'].includes(a))return;state.avatarJoseph=a;}else if(storyFor(pendingChapter).id==='noah'){
   if(!['noah','visitor'].includes(a))return;state.avatarNoah=a;
  }else{
   if(!['adam','eve'].includes(a))return;
@@ -1083,9 +1680,9 @@ function modalHandler(ev){let el=ev.target.closest('button');if(!el)return;
  const action=el.dataset.act;if(!action)return;
  switch(action){
   case'close':closeModal();break;
-  case'enter-chapter':if(storyFor(pendingChapter).id==='noah'){if(!state.avatarNoah)chooseAvatar('noah')}else if(!state.avatar)chooseAvatar('adam');startChapter(pendingChapter,true);break;
+  case'enter-chapter':if(storyFor(pendingChapter).id==='joseph'){if(!state.avatarJoseph)chooseAvatar('joseph')}else if(storyFor(pendingChapter).id==='noah'){if(!state.avatarNoah)chooseAvatar('noah')}else if(!state.avatar)chooseAvatar('adam');startChapter(pendingChapter,true);break;
   case'speak':speakFrench(decodeURIComponent(el.dataset.speech||''));break;
-  case'voice-test':speakFrench('Bonjour ! Bienvenue dans Bible Aventure. Découvrons ensemble le jardin d’Éden et l’arche de Noé.');break;
+  case'voice-test':speakFrench('Bonjour ! Bienvenue dans Bible Aventure. Découvrons ensemble le jardin d’Éden, l’arche de Noé et les rêves de Joseph.');break;
   case'challenge-explain':challengeAnswer(null);break;
   case'challenge-understood':challengeUnderstood();break;
   case'diary':showDiary();break;
@@ -1100,7 +1697,7 @@ function modalHandler(ev){let el=ev.target.closest('button');if(!el)return;
   case'guide':guide();break;
   case'settings':showSettings();break;
   case'toggle-sound':state.sound=!state.sound;save();showSettings();break;
-  case'change-avatar':showProfiles(Math.max(0,current>=0?current:(state.story==='noah'?5:0)));break;
+  case'change-avatar':showProfiles(Math.max(0,current>=0?current:(STORIES.find(s=>s.id===state.story)||STORIES[0]).from));break;
   case'reset-confirm':showResetConfirm();break;
   case'reset':state=blank();applyFontSize();save();goHome();break;
  }
