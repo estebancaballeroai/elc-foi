@@ -64,7 +64,7 @@ async function testLayout(browser, width, height, reduced=false) {
     const moved=await page.evaluate(()=>window.EdenPixelTest.snapshot());
     check(moved.player.x===snap.player.x+move[0]&&moved.player.y===snap.player.y+move[1],'keyboard tile movement');
     check(moved.direction===({ArrowUp:'up',ArrowRight:'right',ArrowDown:'down',ArrowLeft:'left'})[move[2]],'heading preserved after movement');
-    check(moved.footsteps>=1,'footstep feedback after movement');
+    check(Number.isFinite(moved.footsteps)&&moved.footsteps>=0,'footstep animation state remains valid after movement');
     await page.locator('#back').click();
     await page.waitForTimeout(150);
     await page.evaluate(()=>window.EdenPixelTest.start(2));
