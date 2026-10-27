@@ -192,7 +192,7 @@ async function completeMosesChapter(browser,address,storyId='moses'){
  await navigate(state.exit);
  check(await page.locator('#overlay').isVisible(),'Moses exit presents the biblical comprehension question');
  check((await page.locator('#choices button').count())===3,'Moses comprehension offers three understandable answers');
- await page.locator('#choices button').nth(0).click();
+ await page.locator('#choices button').nth(storyId==='david'?1:0).click();
  await page.waitForFunction(()=>window.PixelEngineTest.snapshot().complete,{timeout:5000});
  check((await page.locator('#dialogTitle').innerText()).includes('Souvenir'),'Moses correct answer unlocks a chapter memory');
  const saved=await page.evaluate(()=>{const s=window.PixelEngineTest.snapshot();return JSON.parse(localStorage.getItem(s.storage));});
