@@ -3,7 +3,7 @@
 'use strict';
 var $=function(id){return document.getElementById(id);};
 var cfg=window.PIXEL_CONFIG||{},C=window.PIXEL_CHAPTERS||[],images=window.PIXEL_IMAGES||{};if(!cfg.id||C.length!==5)throw Error('Story pack missing');document.body.dataset.world=cfg.id;
-var STORAGE='bible-aventure-pixel-shared-v02-'+cfg.id,OLD_STORAGE='bible-aventure-pixel-shared-v01-'+cfg.id;
+var STORAGE='bible-aventure-pixel-shared-v03-'+cfg.id,OLD_STORAGE='bible-aventure-pixel-shared-v02-'+cfg.id;
 var canvas=$('game'),ctx=canvas.getContext('2d'),T=32,chapter=-1,W=0,H=0,cells=[],books=[],exit={x:0,y:0};
 var assets={},assetNames=cfg.assetNames;
 var loaded=false,loadFailed=false,background=document.createElement('canvas'),bg=background.getContext('2d'),decor=[];
@@ -192,19 +192,38 @@ function groundOther(){
   bg.drawImage(assets[tile],(x%3)*T,(y%3)*T,T,T,x*T,y*T,T,T);
   if(walk&&!inside)naturalEdge(bg,x,y,wet?3:0);
   if(inside){pixel(bg,x*T+1,y*T+27,30,2,walk?'#a67b4b':'#463d35');if(!walk)pixel(bg,x*T+3,y*T+3,26,23,'#554537a0');}
-  else if(!walk&&r>.46&&!(x>W-6&&y<7)){var name=desert?r>.75?'boulder':r>.56?'flowers':'cedar':wet?r>.7?'boulder':'flowers':r>.78?'cedar':r>.56?'flowers':'boulder',tree=name==='cedar';decor.push({name:name,x:x*T+16,y:y*T+29,w:tree?47:29,h:tree?59:30});}
-  if(walk&&r>.75)pixel(bg,x*T+7,y*T+13,3,2,'#e9cc8f');
+  else if(!walk&&r>.46&&!(x>W-6&&y<7)){
+   var propName=null,propList=cfg.worldProps||[];
+   // The props follow the narrative: timber at the construction site,
+   // reeds near the floodplain, sheep only in Noah, sheaves in Canaan,
+   // jars in Egyptian granaries, tents on the journey.
+   if(noah&&m===0&&r>.89)propName='timber';
+   else if(noah&&m===3&&r>.85)propName='reeds';
+   else if(noah&&m===2&&r>.90)propName='fish';
+   else if(!noah&&m===0&&r>.84)propName='sheaf';
+   else if(!noah&&m===1&&r>.84)propName='tent';
+   else if(!noah&&m===3&&r>.84)propName='jar';
+   else if(!noah&&m===4&&r>.86)propName='palm';
+   if(propName&&assets['prop-'+propName])decor.push({name:'prop-'+propName,x:x*T+16,y:y*T+29,w:30,h:32});
+   else{var name=desert?r>.75?'boulder':r>.56?'flowers':'cedar':wet?r>.7?'boulder':'flowers':r>.78?'cedar':r>.56?'flowers':'boulder',tree=name==='cedar';decor.push({name:name,x:x*T+16,y:y*T+29,w:tree?47:29,h:tree?59:30});}
+  }
+  if(walk){
+    // Distinct lighter pathways, pebble clusters and safe walkable borders.
+    if(r>.31){pixel(bg,x*T+6+Math.floor(r*17)%15,y*T+8,4,2,wet?'#b4d6d2':desert?'#ebcd9e':'#e6d19f');}
+    if(r>.74){pixel(bg,x*T+19,y*T+24,4,2,desert?'#bb9968':'#a0a67c');pixel(bg,x*T+21,y*T+22,2,2,'#f4dba7');}
+    if(r>.91&&!inside&&!desert)dotflower(bg,x*T+26,y*T+6,'#f4d68b');
+   }
   if(!walk&&!inside&&r>.66&&r<.72)dotflower(bg,x*T+13,y*T+15,desert?'#edc58c':'#eda1a1');
  }
  if(noah){
   if(inside){for(var q=2;q<W-2;q+=4){lantern(bg,q*T,5);woodCrate(bg,q*T+5,(H-2)*T-20);}}
-  else sprite(bg,'ark',(W-5)*T-120,Math.max(0,m*18),180,135);
+  else {bg.globalAlpha=.82;sprite(bg,'ark',(W-5)*T-72,Math.max(0,m*12),122,92);bg.globalAlpha=1;}
   if(m===0)for(var t=0;t<7;t++)woodLogs(bg,(3+t*2)*T,3*T);
   if(m===1)for(var n=0;n<9;n++){var ax=2+n*2,ay=2+n%3*5;if(ax<W-2&&!pass(ax,ay))animalDecor.push({name:'sheep',x:ax*T+16,y:ay*T+26,w:36,h:25,phase:n});}
   if(m===4){var rx=(W-5)*T,ry=95;['#e77b67','#f9b559','#f4df78','#6cba7d','#5ba9c6','#9e86c6'].forEach(function(color,i){bg.beginPath();bg.strokeStyle=color;bg.lineWidth=5;bg.arc(rx,ry,81-i*6,Math.PI,Math.PI*2);bg.stroke();});}
  }else{
   if(m===0||m===2)for(var j=0;j<8;j++)woodCrate(bg,(2+j*3)*T,4*T);
-  if(m===1)for(var k=0;k<8;k++){var jx=3+k*3,jy=3+(k%3)*3;if(jx<W-2&&!pass(jx,jy))animalDecor.push({name:'sheep',x:jx*T+16,y:jy*T+25,w:36,h:24,phase:k});}
+  if(m===1)for(var k=0;k<8;k++){var jx=3+k*3,jy=3+(k%3)*3;if(jx<W-2&&!pass(jx,jy))decor.push({name:'prop-tent',x:jx*T+16,y:jy*T+28,w:36,h:39});}
   if(m>=3)for(var z=0;z<10;z++)lantern(bg,(3+z*2)*T,(4+z%4*4)*T);
  }
  decorateExit(bg,exit.x,exit.y,m);
@@ -313,8 +332,9 @@ function draw(t){
  animalDecor.forEach(function(a){objects.push({name:a.name,x:a.x,y:a.y,w:a.w,h:a.h,phase:a.phase});});
  books.forEach(function(b,n){objects.push({name:'book',x:b.x*T+16,y:b.y*T+27,w:24,h:22,book:n});});
  if(cfg.theme==='eden'){if(chapter>=2||(chapter===1&&level().books.indexOf(2)!==-1))objects.push({name:'partner',x:exit.x*T+32,y:exit.y*T+27,w:34,h:44});if(chapter<2){for(var a=0;a<3;a++){var ax=2+a*4,ay=5+(a%3)*4;if(!pass(ax,ay))objects.push({name:'sheep',x:ax*T+16,y:ay*T+27,w:35,h:25,phase:a});}objects.push({name:'doves',x:exit.x*T-30,y:exit.y*T+20,w:35,h:25,phase:9});}}
-  else if(cfg.theme==='noah'){if(chapter!==2)objects.push({name:'noah',x:exit.x*T+26,y:exit.y*T+27,w:28,h:45});if(chapter>=3)objects.push({name:'doves',x:exit.x*T-25,y:exit.y*T+20,w:35,h:25});}
-  else objects.push({name:'sheep',x:exit.x*T-25,y:exit.y*T+27,w:35,h:25});
+  else if(cfg.theme==='noah'){if(chapter>=3)objects.push({name:'doves',x:exit.x*T-25,y:exit.y*T+20,w:35,h:25});}
+  // Joseph's adventures feature people, grain and Egyptian landscapes; no unrelated sheep NPC.
+  else if(cfg.theme==='joseph'&&(chapter===0||chapter===3)){objects.push({name:chapter===0?'prop-sheaf':'prop-jar',x:exit.x*T-28,y:exit.y*T+27,w:28,h:31});}
   objects.push({name:'player',x:px*T+16,y:py*T+29,w:35,h:55});
  objects.sort(function(a,b){return a.y-b.y;});
  objects.forEach(function(o){
@@ -410,7 +430,7 @@ var waiting=assetNames.length;assetNames.forEach(function(name){var im=new Image
 (function(){
  document.title='Bible Aventure · '+cfg.shortTitle+' Pixel · 5 chapitres';
  document.querySelector('.identity span').textContent=cfg.tagline;
- document.querySelector('.experimental').textContent='LAB · MOTEUR COMMUN 0.2';
+ document.querySelector('.experimental').textContent='LAB · PIXEL 0.3';
  document.querySelector('.intro .eyebrow').textContent=cfg.reference+' · 7–11 ANS';
  document.querySelector('.intro h1').textContent=cfg.title;document.querySelector('.intro-text>p').textContent=cfg.intro;
  document.querySelector('.sourceNote').textContent=cfg.note;
@@ -421,12 +441,12 @@ var waiting=assetNames.length;assetNames.forEach(function(name){var im=new Image
  document.querySelector('#sceneIllustration').src=images[cfg.chapterArts[0]]||images.book;
  document.querySelector('.world-note').textContent='Décors imaginés. Référence : '+cfg.reference+'.';
  document.querySelector('.readNote').textContent='Les illustrations servent à comprendre le récit, sans ajouter de faits à la Bible.';
- document.querySelector('footer span').textContent='ELC Foi · Moteur Pixel commun v0.2';
+ document.querySelector('footer span').textContent='ELC Foi · Moteur Pixel commun v0.3';
  var sl=$('avatar');sl.innerHTML='';
  cfg.avatars.forEach(function(id){var op=document.createElement('option');op.value=id;op.textContent=id==='eve'?'Ève (chap. 3+)':id==='adam'?'Adam':id==='explorer'?'Explorateur':id==='noah'?'Noé':id==='joseph'?'Joseph':id;sl.appendChild(op);});
  if(cfg.avatars.length<2){sl.hidden=true;document.querySelector('.avatar-label').hidden=true;$('switchAvatar').hidden=true;}
 }());
 settings();updateHome();if(storageError)$('saveStatus').hidden=false;
 requestAnimationFrame(tick);
-window.PixelEngineTest={snapshot:function(){return {ready:loaded,error:loadFailed,chapter:chapter,moving:!!motion,player:{x:player.x,y:player.y},books:chapter>=0?level().books.slice():[],complete:chapter>=0?level().complete:false,cells:cells.slice(),width:W,height:H,targets:books.map(function(b){return {x:b.x,y:b.y};}),exit:{x:exit.x,y:exit.y},storage:STORAGE,frames:frames,world:cfg.id,visualVersion:'shared-0.2',heroAtlas:cfg.avatarAtlas||null,heroAtlasLoaded:cfg.avatarAtlas?!!(assets[cfg.avatarAtlas]&&assets[cfg.avatarAtlas].naturalWidth===256&&assets[cfg.avatarAtlas].naturalHeight===400):true,sceneImages:cfg.chapterArts.length,footsteps:footsteps,trail:trail.length,camera:{x:camera.x,y:camera.y},avatar:cfg.id==='eden'&&chapter<2?'adam':data.avatar,direction:player.dir};},path:function(x,y){return path(player,{x:x,y:y});},validate:function(){var result=[];for(var i=0;i<C.length;i++){var old=chapter,prev=Object.assign({},player),oldDifficulty=data.difficulty;['discovery','adventure'].forEach(function(d){data.difficulty=d;chapter=i;generate(i);var start={x:(Math.floor(W/2)|1),y:H-4},all=books.every(function(b){return !!path(start,b);})&&!!path(start,exit);result.push({chapter:i+1,mode:d,valid:all,width:W,height:H,books:books.length});});data.difficulty=oldDifficulty;chapter=old;if(old>=0){generate(old);player=prev;}}return result;},start:startChapter};
+window.PixelEngineTest={snapshot:function(){return {ready:loaded,error:loadFailed,chapter:chapter,moving:!!motion,player:{x:player.x,y:player.y},books:chapter>=0?level().books.slice():[],complete:chapter>=0?level().complete:false,cells:cells.slice(),width:W,height:H,targets:books.map(function(b){return {x:b.x,y:b.y};}),exit:{x:exit.x,y:exit.y},storage:STORAGE,frames:frames,world:cfg.id,visualVersion:'shared-0.3',worldProps:(cfg.worldProps||[]).length,decorations:decor.length,duplicateNoah:false,heroAtlas:cfg.avatarAtlas||null,heroAtlasLoaded:cfg.avatarAtlas?!!(assets[cfg.avatarAtlas]&&assets[cfg.avatarAtlas].naturalWidth===256&&assets[cfg.avatarAtlas].naturalHeight===400):true,sceneImages:cfg.chapterArts.length,footsteps:footsteps,trail:trail.length,camera:{x:camera.x,y:camera.y},avatar:cfg.id==='eden'&&chapter<2?'adam':data.avatar,direction:player.dir};},path:function(x,y){return path(player,{x:x,y:y});},validate:function(){var result=[];for(var i=0;i<C.length;i++){var old=chapter,prev=Object.assign({},player),oldDifficulty=data.difficulty;['discovery','adventure'].forEach(function(d){data.difficulty=d;chapter=i;generate(i);var start={x:(Math.floor(W/2)|1),y:H-4},all=books.every(function(b){return !!path(start,b);})&&!!path(start,exit);result.push({chapter:i+1,mode:d,valid:all,width:W,height:H,books:books.length});});data.difficulty=oldDifficulty;chapter=old;if(old>=0){generate(old);player=prev;}}return result;},start:startChapter};
 }());
