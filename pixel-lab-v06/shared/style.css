@@ -182,3 +182,24 @@ body[data-world="moses"] .game-controls button:focus-visible{outline:4px solid #
 body[data-world="moses"] .reward{background:linear-gradient(110deg,#ffefbb,#dcefe6);}
 @media(max-width:600px){body[data-world="moses"] .intro .cover-frame{min-height:180px}body[data-world="moses"] .chapter-card .card-scene{min-height:145px}body[data-world="moses"] .game-controls .dpad button{min-height:54px;min-width:54px}}
 @media(prefers-reduced-motion:reduce){body[data-world="moses"] .chapter-card{transition:none}}
+
+/* DAVID v0.6 · visual kinship with Eden: leafy olive hills, gentle sand, clear mobile cards. */
+body[data-world="david"]{--forest:#315b49;--sea:#78ac9e;--ink:#354536;background:radial-gradient(circle at 92% 0%,#e9e0af,transparent 43%),linear-gradient(145deg,#e8f1d8,#f3e6c4 62%,#d8e5d2);}
+body[data-world="david"] .intro{background:linear-gradient(140deg,#fff9dd,#d4e5c9 62%,#a7bfa5);border:2px solid #b4c4a5;border-radius:23px;overflow:hidden;}
+body[data-world="david"] .intro h1{color:#2c5d4b;}
+body[data-world="david"] .intro-cover-art{object-fit:cover;width:100%;height:100%;image-rendering:auto;}
+body[data-world="david"] .cover-frame{box-shadow:0 6px 0 #8f977c,0 17px 28px #394b3040;}
+body[data-world="david"] .chapter-card{background:linear-gradient(145deg,#fffbed,#edf3df);border:2px solid #bdc8a8;border-radius:20px;overflow:hidden;box-shadow:0 5px 0 #aeb99e,0 12px 26px #304b312b;}
+body[data-world="david"] .chapter-card .card-scene{background:#a3ba91;min-height:132px;overflow:hidden;position:relative;}
+body[data-world="david"] .chapter-card .card-scene img{object-fit:cover;filter:saturate(1.07) contrast(1.04);image-rendering:auto;}
+body[data-world="david"] .chapter-card strong{color:#325f48;}
+body[data-world="david"] .chapter-card:focus-visible{outline:4px solid #f4cd6b;outline-offset:3px;}
+body[data-world="david"] .stage{background:#779b81;border:3px solid #baa977;box-shadow:0 0 0 4px #e0d6b1,0 16px 33px #304b342f;}
+body[data-world="david"][data-scene="brook"] .stage{background:#71abb0;}
+body[data-world="david"][data-scene="ela"] .stage{background:#c2b18b;}
+body[data-world="david"] .sidebar{border-radius:20px;background:linear-gradient(150deg,#fffaf0,#e7f1de);}
+body[data-world="david"] .primary{background:linear-gradient(180deg,#4a9075,#2d6b55);border-color:#2b5b48;}
+body[data-world="david"] .game-controls .dpad button{min-height:53px;min-width:53px;border-radius:15px;touch-action:none;background:linear-gradient(150deg,#fff6de,#e7dfc1);border-color:#b9a675;}
+body[data-world="david"] .game-controls button:focus-visible{outline:4px solid #f0ce73;outline-offset:3px;}
+@media(max-width:600px){body[data-world="david"] .chapter-card .card-scene{min-height:145px}body[data-world="david"] .game-controls .dpad button{min-height:54px;min-width:54px}}
+@media(prefers-reduced-motion:reduce){body[data-world="david"] .chapter-card{transition:none!important}}
