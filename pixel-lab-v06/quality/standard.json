@@ -1,9 +1,9 @@
 {
   "name": "ELC Bible Aventure Pixel",
-  "version": "0.5",
+  "version": "0.6",
   "reference_story": "eden",
   "reference_build": "bible-aventure-eden-pixel-v25",
-  "notes": "Four-world engine prototype. Technical passing tests are not equivalent to the artistic score. Human raters must inspect and test the actual games.",
+  "notes": "Five-world Pixel engine pilot, David as new story. Automatic smoke tests do not certify artistic score.",
   "passing_score": 85,
   "hard_gates": [
     {
@@ -175,14 +175,15 @@
     "source_artwork_required": true,
     "source_attribution_required": true,
     "max_stories_target": 10,
-    "current_worlds": 4,
-    "current_chapter_variants": 40
+    "current_worlds": 5,
+    "current_chapter_variants": 50
   },
   "status": {
     "eden": "visual baseline preserved v0.4 in engine v0.5",
     "noe": "unchanged art quality from v0.4; technically regression-tested",
     "joseph": "unchanged art quality from v0.4; technically regression-tested",
-    "moses": "first playable five-chapter Exodus prototype; 15 discoveries; 2 character atlases; pending human artwork/child/mobile QA before 85/100 gate"
+    "moses": "first playable five-chapter Exodus prototype; 15 discoveries; 2 character atlases; pending human artwork/child/mobile QA before 85/100 gate",
+    "david": "playable 5 chapters, 15 discoveries, one dedicated 20-frame avatar and five original scenes; awaiting human artistic and pedagogical validation"
   },
   "story_pack_template": {
     "id": "string",
