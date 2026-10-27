@@ -72,9 +72,9 @@ gates.forEach(function(g,i){g.checked=!!(data.gates&&data.gates[i]);});update(fa
 function update(persist){var touched=sliders.every(function(s){return s.input.dataset.touched==='yes';});
 var values=sliders.map(function(s){return s.input.dataset.touched==='yes'?Number(s.input.value):null;});
 var total=values.reduce(function(a,b){return a+(b||0);},0);
-var gateOK=gates.every(function(x){return x.checked;});
+var gateOK=gates.every(function(x){return x.checked;});var floorsOK=values.every(function(v,i){return v!==null&&v>=Math.ceil(dimensions[i][1]*.6);});
 var msg=!touched?'Évaluation incomplète · '+values.filter(function(v){return v!==null;}).length+'/6 critères notés':
-total+' /100 · '+(total>=85&&gateOK?'Seuil atteint sous réserve d’absence de défaut bloquant':total<85?'Améliorations nécessaires':'Validations humaines à compléter');
+total+' /100 · '+(total>=85&&gateOK&&floorsOK?'Seuil atteint sous réserve d’absence de défaut bloquant':total<85||!floorsOK?'Améliorations nécessaires ou critère sous 60 %':'Validations humaines à compléter');
 document.getElementById('ratingResult').textContent=msg;
 if(persist!==false){try{localStorage.setItem(key(),JSON.stringify({values:values,gates:gates.map(function(g){return g.checked;})}));}catch(e){}}
 }
