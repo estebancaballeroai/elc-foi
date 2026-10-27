@@ -1,0 +1,201 @@
+{
+  "name": "ELC Bible Aventure Pixel",
+  "version": "0.5",
+  "reference_story": "eden",
+  "reference_build": "bible-aventure-eden-pixel-v25",
+  "notes": "Four-world engine prototype. Technical passing tests are not equivalent to the artistic score. Human raters must inspect and test the actual games.",
+  "passing_score": 85,
+  "hard_gates": [
+    {
+      "key": "script_errors",
+      "rule": "No JavaScript errors in mobile/browser smoke tests"
+    },
+    {
+      "key": "chapter_content",
+      "rule": "5 biblical chapters, verified scripture references and paraphrases"
+    },
+    {
+      "key": "levels",
+      "rule": "2 accessible maze difficulties per chapter, every discovery and exit reachable"
+    },
+    {
+      "key": "touch",
+      "rule": "Real simulated Android touch inputs activate movement and no regression"
+    },
+    {
+      "key": "storage",
+      "rule": "Local save and upgrade migration; no login or data transmission"
+    },
+    {
+      "key": "source_integrity",
+      "rule": "Biblical claims distinguished from artist-created settings and uncertain details"
+    },
+    {
+      "key": "mobile_review",
+      "rule": "Tested by a human on physical smartphone before production"
+    },
+    {
+      "key": "child_review",
+      "rule": "Tested with target-age child with observations documented before production"
+    },
+    {
+      "key": "rollback",
+      "rule": "Previous version retained and restore path documented"
+    }
+  ],
+  "rubric": [
+    {
+      "key": "art_direction",
+      "name": "Direction artistique",
+      "max": 25,
+      "details": [
+        {
+          "name": "Identité de chaque récit",
+          "max": 10
+        },
+        {
+          "name": "Qualité artistique",
+          "max": 10
+        },
+        {
+          "name": "Scènes mémorables",
+          "max": 5
+        }
+      ]
+    },
+    {
+      "key": "illustrations",
+      "name": "Illustrations",
+      "max": 20,
+      "details": [
+        {
+          "name": "Cinq chapitres différenciés",
+          "max": 10
+        },
+        {
+          "name": "Richesse des détails",
+          "max": 5
+        },
+        {
+          "name": "Profondeur et atmosphère",
+          "max": 5
+        }
+      ]
+    },
+    {
+      "key": "character",
+      "name": "Personnages",
+      "max": 15,
+      "details": [
+        {
+          "name": "Silhouette lisible sur mobile",
+          "max": 5
+        },
+        {
+          "name": "Animation à quatre directions",
+          "max": 5
+        },
+        {
+          "name": "Cohérence stylistique",
+          "max": 5
+        }
+      ]
+    },
+    {
+      "key": "bible",
+      "name": "Pédagogie et fidélité biblique",
+      "max": 15,
+      "details": [
+        {
+          "name": "Clarté",
+          "max": 5
+        },
+        {
+          "name": "Références et fidélité",
+          "max": 5
+        },
+        {
+          "name": "Texte vs art",
+          "max": 5
+        }
+      ]
+    },
+    {
+      "key": "mobile",
+      "name": "Expérience mobile",
+      "max": 15,
+      "details": [
+        {
+          "name": "Tactile",
+          "max": 5
+        },
+        {
+          "name": "Lisibilité",
+          "max": 5
+        },
+        {
+          "name": "Fluidité",
+          "max": 5
+        }
+      ]
+    },
+    {
+      "key": "collection",
+      "name": "Moteur partagé",
+      "max": 10,
+      "details": [
+        {
+          "name": "Compatibilité",
+          "max": 5
+        },
+        {
+          "name": "Cohérence collection",
+          "max": 5
+        }
+      ]
+    }
+  ],
+  "media_contract": {
+    "chapter_count": 5,
+    "scene_size_px": [
+      800,
+      600
+    ],
+    "sprite_sheet_px": [
+      256,
+      400
+    ],
+    "sprite_cell_px": [
+      64,
+      80
+    ],
+    "sprite_pose_count": 20,
+    "directions": 4,
+    "levels_per_chapter": 2,
+    "source_artwork_required": true,
+    "source_attribution_required": true,
+    "max_stories_target": 10,
+    "current_worlds": 4,
+    "current_chapter_variants": 40
+  },
+  "status": {
+    "eden": "visual baseline preserved v0.4 in engine v0.5",
+    "noe": "unchanged art quality from v0.4; technically regression-tested",
+    "joseph": "unchanged art quality from v0.4; technically regression-tested",
+    "moses": "first playable five-chapter Exodus prototype; 15 discoveries; 2 character atlases; pending human artwork/child/mobile QA before 85/100 gate"
+  },
+  "story_pack_template": {
+    "id": "string",
+    "title": "string",
+    "shortTitle": "string",
+    "reference": "verified biblical passages",
+    "chapters": 5,
+    "discoveries_per_chapter": 3,
+    "question_per_chapter": 1,
+    "scene_per_chapter": 1,
+    "sprite_sheets": "20 directional poses (or 2 × 20 when chapter protagonist differs)",
+    "prop_assets": "story-specific, local",
+    "notice_per_discovery": "differentiate biblical text and illustrative artistic additions",
+    "save_namespace": "story-id based"
+  }
+}
