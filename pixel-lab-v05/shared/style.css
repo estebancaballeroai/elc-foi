@@ -151,3 +151,34 @@ body[data-world="noe"] .game-controls button:focus-visible,body[data-world="jose
  body[data-world="noe"] .sidebar,body[data-world="joseph"] .sidebar{padding:16px;}
 }
 @media(prefers-reduced-motion:reduce){body[data-world] .chapter-card{transition:none!important;transform:none!important;}}
+
+/* Moïse v0.5 · same mobile-first component system as Eden, Noah and Joseph.
+   Sunset Nile, Horeb ochre, Egyptian stone, night departure, parted sea. */
+body[data-world="moses"]{--page:#e4f0e6;--ink:#213e40;--accent:#216879;--paper:#fff9e9;background:radial-gradient(circle at 92% 2%,#b7dfdb 0,transparent 45%),linear-gradient(160deg,#f2f1db,#dbe8d9 63%,#dfebe8);}
+body[data-world="moses"] .intro{background:radial-gradient(circle at 20% 15%,#fffae1,#d8efe2 63%,#b5d3c8);border:2px solid #a0bbac;border-radius:23px;overflow:hidden;}
+body[data-world="moses"] .intro h1{color:#1e5d62;}
+body[data-world="moses"] .cover-frame{box-shadow:0 7px 0 #7d8270,0 19px 37px #264a4d46;}
+body[data-world="moses"] .intro-cover-art{object-fit:cover;object-position:center 45%;width:100%;height:100%;image-rendering:auto;}
+body[data-world="moses"] .intro .cover-frame:after{background:linear-gradient(0deg,#173b4a88,transparent 40%),linear-gradient(130deg,#fff4c647,transparent 38%);}
+body[data-world="moses"] .chapter-card{background:linear-gradient(160deg,#fffdf5,#ecf1e7);border-color:#afbea9;border-radius:20px;overflow:hidden;isolation:isolate;box-shadow:0 5px 0 #b3c6b6,0 13px 25px #29484f2c;transition:transform .17s ease,box-shadow .17s ease;}
+body[data-world="moses"] .chapter-card .card-scene{background:#a5cbd1;min-height:135px;position:relative;overflow:hidden;}
+body[data-world="moses"] .chapter-card .card-scene img{object-fit:cover;object-position:center;image-rendering:auto;filter:saturate(1.08) contrast(1.05);}
+body[data-world="moses"] .chapter-card .card-scene:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#183b5070,transparent 40%);}
+body[data-world="moses"] .chapter-card strong{color:#285963;line-height:1.25;}
+body[data-world="moses"] .chapter-card:focus-visible{outline:4px solid #d5ad61;outline-offset:3px;}
+body[data-world="moses"] .play-top{background:linear-gradient(105deg,#fff7dd,#d9ede6);border-color:#b7c5ac;}
+body[data-world="moses"] .stage{border:3px solid #a8c8bf;box-shadow:0 0 0 4px #d1e6dc,0 15px 34px #24464b40;background:#468e9e;}
+body[data-world="moses"][data-scene="mountain"] .stage{background:#bda27b;}
+body[data-world="moses"][data-scene="palace"] .stage{background:#c3aa80;}
+body[data-world="moses"][data-scene="night"] .stage{background:#52677c;}
+body[data-world="moses"][data-scene="sea"] .stage{background:#41879e;}
+body[data-world="moses"] .stage:after{pointer-events:none;background:linear-gradient(180deg,#fff5cc18,transparent 20%,transparent 80%,#164b5527);}
+body[data-world="moses"] .game-top .place-pill{background:#1e6172ed;color:#fff;}
+body[data-world="moses"] .sidebar{background:linear-gradient(140deg,#fffbeb,#eaf3e9);box-shadow:0 10px 25px #294c4820;}
+body[data-world="moses"] .primary{background:linear-gradient(180deg,#36869a,#1d6176);border-color:#1a5165;box-shadow:0 4px 0 #164452;}
+body[data-world="moses"] .game-controls .dpad button{background:linear-gradient(145deg,#fff5de,#eadcbd);border-color:#bca36d;border-radius:15px;min-width:53px;min-height:53px;box-shadow:0 4px 0 #7c6749,0 8px 15px #193c4930;}
+body[data-world="moses"] .game-controls .dpad button.pressed{background:#e9cf88;box-shadow:0 2px 0 #7c6749;}
+body[data-world="moses"] .game-controls button:focus-visible{outline:4px solid #f4d27c;outline-offset:2px;}
+body[data-world="moses"] .reward{background:linear-gradient(110deg,#ffefbb,#dcefe6);}
+@media(max-width:600px){body[data-world="moses"] .intro .cover-frame{min-height:180px}body[data-world="moses"] .chapter-card .card-scene{min-height:145px}body[data-world="moses"] .game-controls .dpad button{min-height:54px;min-width:54px}}
+@media(prefers-reduced-motion:reduce){body[data-world="moses"] .chapter-card{transition:none}}
