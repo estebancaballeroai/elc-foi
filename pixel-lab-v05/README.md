@@ -1,62 +1,45 @@
-# Bible Aventure — Pixel Lab v0.4 · Standard artistique de la collection
+# Bible Aventure · Pixel Lab v0.5 — quatrième monde : Moïse
 
-## But de cette version
-Faire d'Éden la **référence artistique** de toute la collection. La v0.4 perfectionne les mondes Noé et Joseph sans modifier les cinq chapitres bibliques, la progression, les collisions ou la difficulté des labyrinthes.
+Version expérimentale autonome basée sur le standard v0.4 d'Éden. **Aucun des anciens dossiers** `bible-aventure/`, `pixel-lab/`, `pixel-lab-v02/`, `pixel-lab-v03/` ou `pixel-lab-v04/` n'est modifié.
 
-**À ne pas confondre :** un test automatisé qui passe valide le chargement et le fonctionnement, mais n'attribue pas une note artistique. Les anciennes estimations de 92/100, 78/100 et 75/100 n'étaient pas des scores calculés et vérifiés. Le présent document fixe un barème reproductible et une revue manuelle.
+## Nouveauté majeure
 
-## Feuille de route et état de réalisation
+Le quatrième récit jouable est **Moïse et l'Exode**. Cinq chapitres issus du contenu préexistant dans `bible-aventure/index.html` (réécriture originale des notices de fiction, références vérifiées avec le récit de l'Exode), répartis en **15 découvertes et 5 questions**.
 
-| Lot | Livrable | Validation |
-| --- | --- | --- |
-| 1 — Architecture | Nouveau dossier isolé `pixel-lab-v04/`, moteur Canvas conservé, sauvegardes autonomes v0.4 avec migration v0.3 | Automatique |
-| 2 — Illustration | Cinq scènes par récit ; reliefs, végétation, lumières et objets narratifs approfondis dans `shared/art-factory.js` | Technique + comparaison visuelle |
-| 3 — Personnages | Noé et Joseph avec atlas de 20 poses / héros (256 × 400 px), détails de silhouettes et vêtements | Technique + inspection humaine |
-| 4 — Terrains | Objets propres à chaque histoire, absence de Noé dupliqué et de moutons dans Joseph | Inspection + régression |
-| 5 — Interface | Pages de récit, grille des chapitres, contraste, commandes mobiles, grille de comparaison `quality/` | Chromum + revue humaine |
-| 6 — Pédagogie | Distinction claire entre récit biblique et mise en scène imaginée | Relecture humaine |
-| 7 — Publication | Tests Chromium/Playwright, screenshots, publication GitHub Pages indépendante | Automatique + essai Android réel |
+| Chapitre | Référence | Figure jouée | Monde illustré |
+| --- | --- | --- | --- |
+| 1. Un panier sur le Nil | Exode 2,1–10 | Sœur de Moïse | Nil, roseaux, corbeille |
+| 2. La voix dans le buisson | Exode 3,1–4,17 | Moïse | Horeb, moutons, buisson lumineux |
+| 3. Face au Pharaon | Exode 5–11 | Moïse | Cours et architecture égyptienne imaginaire |
+| 4. La nuit du départ | Exode 12,1–13,22 | Moïse | Pâque, départ et colonne de feu |
+| 5. Un passage au milieu de la mer | Exode 14 | Moïse | Mer ouverte, route sèche, peuple en marche |
 
-## Standard qualité à réutiliser pour les sept autres récits
+## Art et animation
 
-Échelle sur 100 points :
+`shared/moses-art.js` contient les fonctions **éditables, reproductibles et sans téléchargement distant** qui créent deux atlas de personnages de 256 × 400 pixels, **20 poses pour chacun** : Moïse adulte et la sœur de Moïse (figure du chapitre 1). Les cinq grands tableaux de 800 × 600 pixels sont des SVG originaux en couches, chacun avec une composition différente. Les accessoires sont des ressources SVG de 64 × 64 pixels (panier, roseaux, buisson, bâton, piliers, pain, eau, lumière, nuée).
 
-| Critère | Maximum | Mesures à examiner |
-| --- | ---: | --- |
-| Direction artistique | 25 | Identité (10), beauté perçue (10), mémorisation (5) |
-| Illustrations | 20 | Différenciation des cinq chapitres (10), détails (5), profondeur (5) |
-| Personnages | 15 | Silhouette mobile (5), poses (5), cohérence de style (5) |
-| Pédagogie biblique | 15 | Clarté (5), fidélité (5), distinction récit/interprétation (5) |
-| Ergonomie mobile | 15 | Commandes (5), lisibilité (5), fluidité (5) |
-| Moteur et collection | 10 | Compatibilité (5), unité visuelle (5) |
+Le moteur unique `shared/engine.js` (Canvas, 32 px/case) reprend le pilotage tactile, la caméra, la recherche de chemin, les livres, les questions, les sauvegardes et les dix variantes de labyrinthes pour chaque récit. Le terrain de Moïse utilise des thèmes narratifs propres à chaque chapitre ; **une décoration ne modifie jamais les collisions**.
 
-Conditions impératives d'ouverture de la production d'un nouveau récit :
-1. **85/100 minimum** après revue documentée, sans critère obligatoire sous 60 %.
-2. Aucun défaut bloquant de déplacement, sauvegarde, chapitre, accès aux livres ou sortie.
-3. Tous les événements bibliques vérifiés dans les passages et aucune affirmation visuelle présentée comme fait lorsque le texte est silencieux.
-4. Validation sur au moins un smartphone physique et un petit test d'utilisation par un enfant du public visé.
-5. Conservation de la précédente version et plan de retour arrière.
+## Point de vigilance biblique
 
-L'atelier comparateur est disponible à `pixel-lab-v04/quality/`. Les huit critères de perception se cochent sur le téléphone de l'évaluateur ; ils ne constituent pas automatiquement une note sur 100.
+Le chapitre du panier fait jouer **la sœur qui observe le bébé**, sans prétendre que le texte d'Exode 2 donne ici son nom. Le buisson ardent est représenté **sans image de Dieu**. Les plaies, la Pâque et la mer sont expliquées avec sérieux et sans transformer les souffrances en spectacle. Le joueur **ne commande pas** le passage de la mer. Les silhouettes, la couleur des vêtements, l'architecture, l'implantation des roseaux et les itinéraires restent des éléments artistiques signalés.
 
-## État vérifiable
+Les textes sont des paraphrases pédagogiques originales, non des reproductions de traductions modernes protégées. La forme historique précise des décors n'est pas connue.
 
-- Les trois récits emploient le même moteur Canvas et leurs cinq chapitres existants.
-- Éden conserve ses planches et images d'origine, qui servent de référence.
-- Noé et Joseph utilisent un atelier SVG local avec des fonds à couches et des motifs propres à chaque chapitre.
-- 20 poses sont disponibles sur chacune des nouvelles planches de 256 × 400 pixels ; les images de chapitre mesurent 800 × 600 pixels.
-- Aucun service tiers n'est nécessaire au fonctionnement.
-- Les images sont des **interprétations artistiques** ; elles ne reconstituent pas avec certitude l'Égypte ancienne, l'arche ou les vêtements historiques.
+## Quatre mondes sur un moteur
 
-**La certification des notes n'est pas faite avant la revue visuelle et le test physique.** Ce document ne revendique donc pas que Noé ou Joseph ont atteint 85/100.
+Éden, Noé, Joseph et Moïse partagent les mêmes contrôles, composants et mécanismes. Les trois mondes historiques gardent leurs graphismes et contenus précédents. Moïse dispose d'un pack propre et n'exige aucune intégration d'IA ni connexion à un service externe.
 
-## Tester
+## Tests et seuil qualité
 
-- Ouvrir `pixel-lab-v04/` pour choisir un récit.
-- Ouvrir `pixel-lab-v04/quality/` pour comparer les cinq chapitres d'Éden, Noé et Joseph.
-- La CI `.github/workflows/pixel-v04-qa.yml` exécute `tests/pixel-v04-smoke.cjs`, contrôle 3 tailles d'écran, les commandes et les dix variantes de labyrinthes, ainsi que les illustrations comparées.
-- Inspecter les captures d'écran de la CI : elles n'impliquent pas à elles seules une homologation artistique.
+Le workflow `.github/workflows/pixel-v05-qa.yml` vérifie quatre mondes, trois formats d'écran et les 10 variantes de labyrinthes par récit (**40 parcours possibles**, 5 chapitres × 2 difficultés × 4 mondes), le rendu des illustrations, les atlas, les commandes tactiles réelles simulées dans Chromium, les sauvegardes et le comparateur de qualité.
 
-## À industrialiser ensuite
+Le seuil d'extension est **85/100 avec aucun critère en dessous de 60 %**, référence Éden, validé par un évaluateur sur un vrai smartphone et lors d'un essai adapté avec des enfants. **Les tests automatisés ne certifient pas la qualité esthétique**.
 
-Le prochain pack narratif (Moïse) ne sera ouvert qu'après accord sur les résultats de qualité. Chaque pack devra fournir : cinq chapitres vérifiés, cinq scènes, un atlas principal de 20 poses, objets thématiques documentés, charte locale de couleurs et suite de tests de régression. Cette règle s'appliquera ensuite à David, Jonas et aux autres récits.
+- Jouer au portail `pixel-lab-v05/`.
+- Comparer les quatre récits : `pixel-lab-v05/quality/`.
+- Outil qualité réutilisable : `quality/standard.json`.
+
+## Suite des récits
+
+Après revue des scores, prochain récit : **David et Goliath**, puis Jonas et Ninive. Chaque nouveau monde sera isolé, alimenté par les données bibliques du jeu existant, accompagné d'illustrations originales et d'un contrôle de régression complet, avant diffusion à des enfants.
