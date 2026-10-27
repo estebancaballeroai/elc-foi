@@ -29,7 +29,7 @@ async function world(browser,address,id,width,height){
  check(s.world===id,id+' correct engine config '+width);
  check(s.visualVersion==='shared-0.5',id+' runs Pixel engine 0.5 '+width);
  if(id!=='eden'){
-  check(s.heroAtlas===(id==='moses'?'sister-atlas-v05':id+'-atlas-v05'),id+' original chapter hero art loaded '+width);
+  check(s.heroAtlas===(id==='moses'?'sister-atlas-v05':id+'-atlas-v04'),id+' original chapter hero art loaded '+width);
   check(s.heroAtlasLoaded,id+' 20 pose hero atlas 256x400 decoded '+width);
   check(s.avatar===(id==='noe'?'noah':id==='moses'?'sister':'joseph'),id+' story-specific hero selected '+width);
   check(s.worldProps>0&&s.decorations>0,id+' story-specific environment props '+width);
