@@ -7,7 +7,7 @@ const check=(ok,message)=>{assert.ok(ok,message);checks.push(message);};
 const mime={'.html':'text/html; charset=utf-8','.js':'text/javascript; charset=utf-8','.css':'text/css; charset=utf-8'};
 const server=http.createServer((req,res)=>{
  let p=decodeURIComponent(new URL(req.url,'http://localhost').pathname);
- let filepath=path.resolve(root,'.'+p);
+ let filepath=path.resolve(root,'.'+p);if(fs.existsSync(filepath)&&fs.statSync(filepath).isDirectory())filepath=path.join(filepath,'index.html');
  if(!filepath.startsWith(root+path.sep)||!fs.existsSync(filepath)||!fs.statSync(filepath).isFile()){res.writeHead(404);res.end('Not found');return;}
  res.writeHead(200,{'Content-Type':mime[path.extname(filepath)]||'text/plain; charset=utf-8','Cache-Control':'no-cache'});
  fs.createReadStream(filepath).pipe(res);
