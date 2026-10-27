@@ -3,7 +3,7 @@
 'use strict';
 var $=function(id){return document.getElementById(id);};
 var cfg=window.PIXEL_CONFIG||{},C=window.PIXEL_CHAPTERS||[],images=window.PIXEL_IMAGES||{};if(!cfg.id||C.length!==5)throw Error('Story pack missing');document.body.dataset.world=cfg.id;
-var STORAGE='bible-aventure-pixel-shared-v04-'+cfg.id,OLD_STORAGE='bible-aventure-pixel-shared-v03-'+cfg.id;
+var STORAGE='bible-aventure-pixel-shared-v05-'+cfg.id,OLD_STORAGE='bible-aventure-pixel-shared-v04-'+cfg.id;
 var canvas=$('game'),ctx=canvas.getContext('2d'),T=32,chapter=-1,W=0,H=0,cells=[],books=[],exit={x:0,y:0};
 var assets={},assetNames=cfg.assetNames;
 var loaded=false,loadFailed=false,background=document.createElement('canvas'),bg=background.getContext('2d'),decor=[];
@@ -98,7 +98,7 @@ function album(){var done=totalDone();dialog('Le carnet des cinq chapitres','MES
 $('albumHome').onclick=album;$('albumPlay').onclick=album;
 $('help').onclick=function(){dialog('Comment jouer ?','LE GUIDE DE L’EXPLORATEUR','<p>Marche avec les flèches ou ZQSD. Sur téléphone, utilise les grandes touches. Tu peux toucher un chemin pour marcher vers ce point.</p><p>Approche-toi d’un livre brillant ou du repère de sortie, puis touche « Observer ». Les livres apparaissent aussi automatiquement lorsque tu marches dessus.</p><p>Un indice affiche un chemin lumineux. Les questions ne bloquent jamais la progression.</p>','book');};
 $('hint').onclick=function(){var targets=books.filter(function(b,n){return !discovered(n);});if(!targets.length)targets=[exit];var routes=targets.map(function(t){return {target:t,path:path(player,t)};}).filter(function(o){return !!o.path;}).sort(function(a,b){return a.path.length-b.path.length;});if(routes.length){hintRoute=routes[0].path;toast('Les lumières indiquent : '+(routes[0].target.title||'la sortie')+'.');}};
-function startChapter(i){if(!integer(i,0,C.length-1))return;chapter=i;data.selected=i;document.body.setAttribute('data-scene',cfg.scenes[i]);generate(i);var c=C[i];$('chapterNo').textContent='CHAPITRE '+(i+1)+' / 5';$('chapterTitle').textContent=c.title;$('sideTitle').textContent=c.title;$('sideRef').textContent=c.ref;$('introText').textContent=c.intro;$('area').textContent=(cfg.areas||[])[i]||cfg.area;$('sceneIllustration').src=images[cfg.chapterArts[i]]||images.book;$('avatar').disabled=cfg.avatars.length<2||i<2;$('home').hidden=true;$('play').hidden=false;$('missionPanel').open=false;updateHUD();if(loaded)ground();resize();save();window.scrollTo(0,0);toast('Chapitre '+(i+1)+' : découvre '+books.length+' livres !');}
+function startChapter(i){if(!integer(i,0,C.length-1))return;chapter=i;data.selected=i;document.body.setAttribute('data-scene',cfg.scenes[i]);generate(i);var c=C[i];$('chapterNo').textContent='CHAPITRE '+(i+1)+' / 5';$('chapterTitle').textContent=c.title;$('sideTitle').textContent=c.title;$('sideRef').textContent=c.ref;$('introText').textContent=c.intro+(cfg.theme==='moses'&&i===0?' Tu guides ici la sœur du bébé Moïse, qui veille sur lui.':'');$('area').textContent=(cfg.areas||[])[i]||cfg.area;$('sceneIllustration').src=images[cfg.chapterArts[i]]||images.book;$('avatar').disabled=cfg.avatars.length<2||i<2;$('home').hidden=true;$('play').hidden=false;$('missionPanel').open=false;updateHUD();if(loaded)ground();resize();save();window.scrollTo(0,0);toast('Chapitre '+(i+1)+' : découvre '+books.length+' livres !');}
 var vectors={up:[0,-1],left:[-1,0],right:[1,0],down:[0,1]};
 function step(dir,fromRoute){if(!loaded||chapter<0||motion||!$('overlay').hidden)return false;var d=vectors[dir];if(!d)return false;player.dir=dir;var nx=player.x+d[0],ny=player.y+d[1];if(!pass(nx,ny)){if(!fromRoute)route=[];return false;}motion={fromX:player.x,fromY:player.y,toX:nx,toY:ny,start:performance.now(),duration:reduced||data.light?92:166};return true;}
 function arrive(){if(!motion)return;player.x=motion.toX;player.y=motion.toY;motion=null;
@@ -184,7 +184,58 @@ function decorateExit(c,x,y,mode){
  if(mode!==4){dotflower(c,xx-12,yy+8,'#f2cd77');dotflower(c,xx+11,yy+8,'#f2cd77');}
 }
 
-function groundOther(){
+/* Moïse: five visually different places, same logical maze and collision grid.
+   No act of the player causes the biblical miracle. */
+function groundMoses(){
+ var m=chapter,river=m===0,holy=m===1,palace=m===2,departure=m===3,sea=m===4;
+ background.width=W*T;background.height=H*T;bg.imageSmoothingEnabled=false;decor=[];animalDecor=[];
+ var decorTypes=['reeds','bush','pillar','lamp','wave'],feature=decorTypes[m],shade=river?'#75c9c2':holy?'#ba9d70':palace?'#c9ae7e':departure?'#a78370':'#5ca6bc';
+ for(var y=0;y<H;y++)for(var x=0;x<W;x++){
+  var walk=pass(x,y),r=rand(x+m*13,y+m*7);
+  var tile=walk?'sand':sea?'water':river&&x<4?'water':palace?'planks':holy?'sand':departure?'sand':'grass';
+  bg.drawImage(assets[tile],(x%3)*T,(y%3)*T,T,T,x*T,y*T,T,T);
+  if(walk)naturalEdge(bg,x,y,sea?2:0);
+  if(!walk){
+   if((sea||river)&&tile==='water'){
+    if(r>.22){pixel(bg,x*T+3,y*T+8,21,3,shade);pixel(bg,x*T+9,y*T+19,15,2,'#d2edec');}
+    if(sea&&r>.55&&assets['prop-wave'])decor.push({name:'prop-wave',x:x*T+16,y:y*T+30,w:31,h:29});
+    else if(river&&r>.76&&assets['prop-reeds'])decor.push({name:'prop-reeds',x:x*T+16,y:y*T+29,w:31,h:30});
+   }else if(r>.39&&!(x>W-5&&y<6)){
+    var name=holy?(r>.85?'prop-bush':'boulder'):palace?(r>.74?'prop-pillar':'boulder'):departure?(r>.78?'prop-lamp':'boulder'):river?(r>.77?'prop-reeds':'cedar'):'prop-wave';
+    if(assets[name])decor.push({name:name,x:x*T+16,y:y*T+29,w:name==='cedar'?50:32,h:name==='cedar'?59:37});
+   }
+  }else{
+   if(r>.56){pixel(bg,x*T+7,y*T+12,4,2,sea?'#fff2c8':palace?'#d6b47a':'#e2c18b');pixel(bg,x*T+23,y*T+26,3,2,'#bb9566');}
+   if(r>.87){pixel(bg,x*T+9,y*T+25,6,2,'#c49c6d');pixel(bg,x*T+26,y*T+9,3,2,'#f8e0a7');}
+   if(departure&&r>.87)pixel(bg,x*T+16,y*T+5,2,3,'#f8dcaa');
+  }
+ }
+ // Landmarks outside walkable tiles, with no influence on pathfinding.
+ if(river){
+  for(var a=0;a<7;a++){var xx=(4+a*4)*T,yy=(2+a%3*4)*T;if(xx<W*T-40&&!pass(Math.floor(xx/T),Math.floor(yy/T)))decor.push({name:'prop-reeds',x:xx+16,y:yy+27,w:36,h:38});}
+  if(assets['prop-basket'])decor.push({name:'prop-basket',x:(W-4)*T,y:4*T,w:40,h:35});
+ }
+ if(holy){
+  if(assets['prop-bush'])decor.push({name:'prop-bush',x:(W-4)*T,y:3*T,w:65,h:72});
+  for(var sh=0;sh<6;sh++){var ax=2+sh*4,ay=3+(sh%3)*4;if(ax<W-2&&ay<H-2&&!pass(ax,ay))animalDecor.push({name:'sheep',x:ax*T+16,y:ay*T+27,w:36,h:25,phase:sh});}
+ }
+ if(palace){
+  for(var c=2;c<W-3;c+=6){if(assets['prop-pillar'])decor.push({name:'prop-pillar',x:c*T+16,y:2*T+29,w:35,h:57});}
+  for(var d=2;d<W-3;d+=5)woodCrate(bg,d*T+5,(H-2)*T-21);
+ }
+ if(departure){
+  for(var l=2;l<W-2;l+=5)if(assets['prop-lamp'])decor.push({name:'prop-lamp',x:l*T+16,y:2*T+27,w:30,h:34});
+  if(assets['prop-bread'])decor.push({name:'prop-bread',x:(W-4)*T,y:4*T,w:33,h:31});
+  if(assets['prop-cloud'])decor.push({name:'prop-cloud',x:3*T+17,y:3*T+27,w:51,h:46});
+  bg.fillStyle='#1e2d4120';bg.fillRect(0,0,W*T,H*T);
+ }
+ if(sea){
+  for(var wa=1;wa<W-1;wa+=3){if(assets['prop-wave'])decor.push({name:'prop-wave',x:wa*T+16,y:2*T+29,w:36,h:32});}
+ }
+ decorateExit(bg,exit.x,exit.y,m);
+}
+
+function groundOther(){if(cfg.theme==='moses'){groundMoses();return;}
  var m=chapter,noah=cfg.theme==='noah',inside=noah&&m===2,wet=noah&&m===3,desert=!noah&&m>=2;
  background.width=W*T;background.height=H*T;bg.imageSmoothingEnabled=false;decor=[];animalDecor=[];
  for(var y=0;y<H;y++)for(var x=0;x<W;x++){
@@ -335,6 +386,7 @@ function draw(t){
   else if(cfg.theme==='noah'){if(chapter>=3)objects.push({name:'doves',x:exit.x*T-25,y:exit.y*T+20,w:35,h:25});}
   // Joseph's adventures feature people, grain and Egyptian landscapes; no unrelated sheep NPC.
   else if(cfg.theme==='joseph'&&(chapter===0||chapter===3)){objects.push({name:chapter===0?'prop-sheaf':'prop-jar',x:exit.x*T-28,y:exit.y*T+27,w:28,h:31});}
+  else if(cfg.theme==='moses'&&chapter===1){objects.push({name:'prop-staff',x:exit.x*T-28,y:exit.y*T+27,w:25,h:34});}
   objects.push({name:'player',x:px*T+16,y:py*T+29,w:35,h:55});
  objects.sort(function(a,b){return a.y-b.y;});
  objects.forEach(function(o){
@@ -352,7 +404,7 @@ function draw(t){
    ctx.globalAlpha=.27;ctx.fillStyle='#1a3427';
    ctx.fillRect(Math.round(o.x-11),Math.round(o.y-3),22,5);
    ctx.fillRect(Math.round(o.x-7),Math.round(o.y+2),14,2);ctx.globalAlpha=1;
-   var other=!cfg.avatarAtlas&&cfg.theme!=='eden',activeAvatar=cfg.id==='eden'&&chapter<2?'adam':data.avatar,atlas=assets[cfg.avatarAtlas||(other?'explorer':activeAvatar+'-atlas')];
+   var other=!cfg.avatarAtlas&&cfg.theme!=='eden',activeAvatar=(cfg.heroByChapter&&cfg.heroByChapter[chapter])||(cfg.id==='eden'&&chapter<2?'adam':data.avatar),atlasKey=(cfg.chapterAtlases&&cfg.chapterAtlases[chapter])||cfg.avatarAtlas||(other?'explorer':activeAvatar+'-atlas'),atlas=assets[atlasKey];
    var row=other?{down:0,left:1,right:2,up:3}[player.dir]:walking?{down:1,left:2,right:3,up:4}[player.dir]:(player.dir==='down'?0:{down:1,left:2,right:3,up:4}[player.dir]);
    var col=walking?(reduced||data.light?1:Math.floor(t/115)%4):other?1:(player.dir==='down'&&!reduced&&!data.light?Math.floor(t/1050)%4:0);
    var bob=walking&&!reduced&&!data.light?Math.round(Math.abs(Math.sin(t/135))*2):0;
@@ -410,6 +462,21 @@ function draw(t){
   for(var grain=0;grain<22;grain++){var gx=(grain*79+19)%(W*T),gy=(grain*109+(reduced?0:t*.014))%(H*T);if(gx>camera.x&&gx<camera.x+canvas.width&&gy>camera.y&&gy<camera.y+canvas.height)ctx.fillRect(Math.round(gx),Math.round(gy),3,5);}
   ctx.globalAlpha=1;
  }
+ if(cfg.theme==='moses'&&!data.light){
+  if(chapter===0||chapter===4){
+   ctx.fillStyle=chapter===0?'#a3f0e9':'#d5f8ef';ctx.globalAlpha=.37;
+   for(var splash=0;splash<(reduced?9:24);splash++){
+    var wx=(splash*167+29)%(W*T),wy=(splash*89+(reduced?0:t*.021))%(H*T);
+    if(wx>camera.x&&wx<camera.x+canvas.width&&wy>camera.y&&wy<camera.y+canvas.height)ctx.fillRect(Math.round(wx),Math.round(wy),11,2);
+   }ctx.globalAlpha=1;
+  }else if(chapter===1||chapter===3){
+   ctx.fillStyle=chapter===1?'#f9d17d':'#f7db9d';ctx.globalAlpha=.33;
+   for(var gl=0;gl<(reduced?12:30);gl++){
+    var gx=(gl*131+61)%(W*T),gy=(gl*67+(reduced?0:t*.016))%(H*T);
+    if(gx>camera.x&&gx<camera.x+canvas.width&&gy>camera.y&&gy<camera.y+canvas.height)ctx.fillRect(Math.round(gx),Math.round(gy),2,3);
+   }ctx.globalAlpha=1;
+  }
+ }
  var ex=exit.x*T+16,ey=exit.y*T+27,ready=level().books.length===books.length;
  var pulseExit=reduced||data.light?0:Math.round(Math.sin(t/260)*2);
  ctx.fillStyle=ready?'#fff4bc':'#356956';ctx.fillRect(ex-10,ey+1,20,3);
@@ -428,25 +495,25 @@ function draw(t){
 function tick(t){requestAnimationFrame(tick);if(!loaded||chapter<0||document.hidden||!$('overlay').hidden)return;if(t-lastFrame<(data.light?54:34))return;lastFrame=t;if(!motion){if(held&&t-heldAt>95){step(held,false);heldAt=t;}else if(route.length){var next=route.shift(),dx=next.x-player.x,dy=next.y-player.y;if(Math.abs(dx)+Math.abs(dy)===1)step(dx>0?'right':dx<0?'left':dy>0?'down':'up',true);else route=[];}}draw(t);}
 var waiting=assetNames.length;assetNames.forEach(function(name){var im=new Image();assets[name]=im;im.onload=function(){waiting--;if(waiting===0&&!loadFailed){loaded=true;if(chapter>=0){ground();resize();draw(performance.now());}}};im.onerror=function(){loadFailed=true;storageError=true;$('saveStatus').hidden=false;$('saveStatus').firstChild.textContent='⚠️ Une image est absente. Recharge la page pour réessayer.';};im.src=images[name];});
 (function(){
- document.title='Bible Aventure · '+cfg.shortTitle+' Pixel v0.3 · 5 chapitres';
+ document.title='Bible Aventure · '+cfg.shortTitle+' Pixel v0.5 · 5 chapitres';
  document.querySelector('.identity span').textContent=cfg.tagline;
- document.querySelector('.experimental').textContent='LAB · PIXEL 0.4';
+ document.querySelector('.experimental').textContent='LAB · PIXEL 0.5';
  document.querySelector('.intro .eyebrow').textContent=cfg.reference+' · 7–11 ANS';
  document.querySelector('.intro h1').textContent=cfg.title;document.querySelector('.intro-text>p').textContent=cfg.intro;
  document.querySelector('.sourceNote').textContent=cfg.note;
  document.querySelector('.intro-cover-art').src=images[cfg.cover]||images.book;
  document.querySelector('.intro-cover-art').alt='Illustration artistique du récit de '+cfg.shortTitle;
- document.querySelector('.side-intro img').src=images[cfg.theme==='eden'?'eden-tree':cfg.theme==='noah'?'ark':'book']||images.book;
+ document.querySelector('.side-intro img').src=images[cfg.theme==='eden'?'eden-tree':cfg.theme==='noah'?'ark':cfg.theme==='moses'?'prop-basket':'book']||images.book;
  document.querySelector('#dialogArt').src=images.book;
  document.querySelector('#sceneIllustration').src=images[cfg.chapterArts[0]]||images.book;
  document.querySelector('.world-note').textContent='Décors imaginés. Référence : '+cfg.reference+'.';
  document.querySelector('.readNote').textContent='Les illustrations servent à comprendre le récit, sans ajouter de faits à la Bible.';
- document.querySelector('footer span').textContent='ELC Foi · Moteur Pixel commun v0.4';
+ document.querySelector('footer span').textContent='ELC Foi · Moteur Pixel commun v0.5';
  var sl=$('avatar');sl.innerHTML='';
- cfg.avatars.forEach(function(id){var op=document.createElement('option');op.value=id;op.textContent=id==='eve'?'Ève (chap. 3+)':id==='adam'?'Adam':id==='explorer'?'Explorateur':id==='noah'?'Noé':id==='joseph'?'Joseph':id;sl.appendChild(op);});
+ cfg.avatars.forEach(function(id){var op=document.createElement('option');op.value=id;op.textContent=id==='eve'?'Ève (chap. 3+)':id==='adam'?'Adam':id==='explorer'?'Explorateur':id==='noah'?'Noé':id==='joseph'?'Joseph':id==='moses'?'Moïse':id;sl.appendChild(op);});
  if(cfg.avatars.length<2){sl.hidden=true;document.querySelector('.avatar-label').hidden=true;$('switchAvatar').hidden=true;}
 }());
 settings();updateHome();if(storageError)$('saveStatus').hidden=false;
 requestAnimationFrame(tick);
-window.PixelEngineTest={snapshot:function(){return {ready:loaded,error:loadFailed,chapter:chapter,moving:!!motion,player:{x:player.x,y:player.y},books:chapter>=0?level().books.slice():[],complete:chapter>=0?level().complete:false,cells:cells.slice(),width:W,height:H,targets:books.map(function(b){return {x:b.x,y:b.y};}),exit:{x:exit.x,y:exit.y},storage:STORAGE,frames:frames,world:cfg.id,visualVersion:'shared-0.4',worldProps:(cfg.worldProps||[]).length,decorations:decor.length,heroAtlas:cfg.avatarAtlas||null,heroAtlasLoaded:cfg.avatarAtlas?!!(assets[cfg.avatarAtlas]&&assets[cfg.avatarAtlas].naturalWidth===256&&assets[cfg.avatarAtlas].naturalHeight===400):true,sceneImages:cfg.chapterArts.length,footsteps:footsteps,trail:trail.length,camera:{x:camera.x,y:camera.y},avatar:cfg.id==='eden'&&chapter<2?'adam':data.avatar,direction:player.dir};},path:function(x,y){return path(player,{x:x,y:y});},validate:function(){var result=[];for(var i=0;i<C.length;i++){var old=chapter,prev=Object.assign({},player),oldDifficulty=data.difficulty;['discovery','adventure'].forEach(function(d){data.difficulty=d;chapter=i;generate(i);var start={x:(Math.floor(W/2)|1),y:H-4},all=books.every(function(b){return !!path(start,b);})&&!!path(start,exit);result.push({chapter:i+1,mode:d,valid:all,width:W,height:H,books:books.length});});data.difficulty=oldDifficulty;chapter=old;if(old>=0){generate(old);player=prev;}}return result;},start:startChapter};
+window.PixelEngineTest={snapshot:function(){return {ready:loaded,error:loadFailed,chapter:chapter,moving:!!motion,player:{x:player.x,y:player.y},books:chapter>=0?level().books.slice():[],complete:chapter>=0?level().complete:false,cells:cells.slice(),width:W,height:H,targets:books.map(function(b){return {x:b.x,y:b.y};}),exit:{x:exit.x,y:exit.y},storage:STORAGE,frames:frames,world:cfg.id,visualVersion:'shared-0.5',worldProps:(cfg.worldProps||[]).length,decorations:decor.length,heroAtlas:(cfg.chapterAtlases&&cfg.chapterAtlases[chapter])||cfg.avatarAtlas||null,heroAtlasLoaded:cfg.avatarAtlas?!!(assets[(cfg.chapterAtlases&&cfg.chapterAtlases[chapter])||cfg.avatarAtlas]&&assets[(cfg.chapterAtlases&&cfg.chapterAtlases[chapter])||cfg.avatarAtlas].naturalWidth===256&&assets[(cfg.chapterAtlases&&cfg.chapterAtlases[chapter])||cfg.avatarAtlas].naturalHeight===400):true,sceneImages:cfg.chapterArts.length,footsteps:footsteps,trail:trail.length,camera:{x:camera.x,y:camera.y},avatar:(cfg.heroByChapter&&cfg.heroByChapter[chapter])||(cfg.id==='eden'&&chapter<2?'adam':data.avatar),direction:player.dir};},path:function(x,y){return path(player,{x:x,y:y});},validate:function(){var result=[];for(var i=0;i<C.length;i++){var old=chapter,prev=Object.assign({},player),oldDifficulty=data.difficulty;['discovery','adventure'].forEach(function(d){data.difficulty=d;chapter=i;generate(i);var start={x:(Math.floor(W/2)|1),y:H-4},all=books.every(function(b){return !!path(start,b);})&&!!path(start,exit);result.push({chapter:i+1,mode:d,valid:all,width:W,height:H,books:books.length});});data.difficulty=oldDifficulty;chapter=old;if(old>=0){generate(old);player=prev;}}return result;},start:startChapter};
 }());
