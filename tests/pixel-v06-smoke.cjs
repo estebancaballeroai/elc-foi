@@ -27,7 +27,7 @@ async function world(browser,address,id,width,height){
  await page.waitForTimeout(240);
  let s=await page.evaluate(()=>window.PixelEngineTest.snapshot());
  check(s.world===id,id+' correct engine config '+width);
- check(s.visualVersion==='shared-0.6',id+' runs Pixel engine 0.5 '+width);
+ check(s.visualVersion==='shared-0.6',id+' runs Pixel engine 0.6 '+width);
  if(id!=='eden'){
   check(s.heroAtlas===(id==='moses'?'sister-atlas-v05':id==='david'?'david-atlas-v06':id+'-atlas-v04'),id+' original chapter hero art loaded '+width);
   check(s.heroAtlasLoaded,id+' 20 pose hero atlas 256x400 decoded '+width);
@@ -60,8 +60,8 @@ async function world(browser,address,id,width,height){
      const facts=await page.evaluate(()=>{const c=window.PIXEL_CHAPTERS;return {events:c.reduce((n,x)=>n+x.events.length,0),refs:c.every(x=>x.ref.includes('Exode')&&x.events.every(e=>e.ref&&e.notice)),questions:c.every(x=>x.question.answers.length===3&&x.question.correct>=0&&x.question.correct<3),atlas:window.PIXEL_CONFIG.chapterAtlases.length};});
      check(facts.events===15&&facts.refs&&facts.questions&&facts.atlas===5,'Moses 15 discoveries, Bible references and 5 chapter portraits');
      const heroes=await page.evaluate(()=>{const result=[];for(let i=0;i<5;i++){window.PixelEngineTest.start(i);const x=window.PixelEngineTest.snapshot();result.push({chapter:i,hero:x.avatar,atlas:x.heroAtlas,loaded:x.heroAtlasLoaded});}return result;});
-     check(heroes[0].hero==='sister'&&heroes[0].atlas==='sister-atlas-v06'&&heroes[0].loaded,'Moses first chapter features the protective sister, not adult Moses');
-     check(heroes.slice(1).every(x=>x.hero==='moses'&&x.atlas==='moses-atlas-v06'&&x.loaded),'Moses adult appears in chapters 2–5 with 20-frame sprite');
+     check(heroes[0].hero==='sister'&&heroes[0].atlas==='sister-atlas-v05'&&heroes[0].loaded,'Moses first chapter features the protective sister, not adult Moses');
+     check(heroes.slice(1).every(x=>x.hero==='moses'&&x.atlas==='moses-atlas-v05'&&x.loaded),'Moses adult appears in chapters 2–5 with 20-frame sprite');
    }
    await page.evaluate(()=>window.PixelEngineTest.start(0));
    s=await page.evaluate(()=>window.PixelEngineTest.snapshot());
