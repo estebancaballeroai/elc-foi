@@ -141,4 +141,59 @@ async function gallery(browser,address){
  await page.screenshot({path:path.resolve(root,'pixel-lab-v05-screenshots/quality-compare.png'),fullPage:true});
  await page.close();
 }
-(async()=>{await new Promise(ok=>server.listen(0,'127.0.0.1',ok));const address='http://127.0.0.1:'+server.address().port+'/';const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});try{for(const id of ['eden','noe','joseph','moses']){await world(browser,address,id,390,844);await world(browser,address,id,360,740);await world(browser,address,id,768,1024);}await gallery(browser,address);console.log('PIXEL V0.5 QA PASS: '+checks.length+' checks');checks.forEach(x=>console.log(' ✓ '+x));}finally{await browser.close();server.close();}})().catch(e=>{console.error('PIXEL V0.5 QA FAIL:',e.stack||e);process.exitCode=1;server.close();});
+/* Full gameplay path: discover all 3 books, answer the first question and persist
+   completion. This tests actual keyboard navigation, dialogs and save behavior. */
+async function completeMosesChapter(browser,address){
+ const page=await browser.newPage({viewport:{width:390,height:844},isMobile:true,hasTouch:true,locale:'fr-FR'});
+ const errors=[];page.on('pageerror',e=>errors.push(e.message));
+ await page.goto(address+'pixel-lab-v05/moses/',{waitUntil:'load'});
+ await page.waitForFunction(()=>window.PixelEngineTest&&document.querySelectorAll('#chapters button').length===5);
+ await page.locator('#resume').click();
+ await page.waitForFunction(()=>window.PixelEngineTest.snapshot().ready);
+ // Reduced-quality graphics are optional and make the QA walk quicker.
+ await page.evaluate(()=>{const c=document.getElementById('lightMode');c.checked=true;c.dispatchEvent(new Event('change',{bubbles:true}));});
+ async function navigate(target){
+  for(let attempts=0;attempts<1700;attempts++){
+   const st=await page.evaluate(()=>window.PixelEngineTest.snapshot());
+   if(st.player.x===target.x&&st.player.y===target.y)return;
+   const first=await page.evaluate(pt=>{const route=window.PixelEngineTest.path(pt.x,pt.y);return route&&route[0];},target);
+   if(!first)throw Error('No navigable first step towards '+JSON.stringify(target));
+   const dx=first.x-st.player.x,dy=first.y-st.player.y;
+   const key=dx===1?'ArrowRight':dx===-1?'ArrowLeft':dy===1?'ArrowDown':'ArrowUp';
+   await page.locator('#game').focus();await page.keyboard.press(key);
+   await page.waitForFunction(pt=>{const st=window.PixelEngineTest.snapshot();return st.player.x===pt.x&&st.player.y===pt.y;},first,{timeout:5000});
+   if(await page.locator('#overlay').isVisible()){
+    const title=await page.locator('#dialogTitle').innerText();
+    if(title.includes('Te souviens-tu'))return;
+    if(title.includes('Découverte')||title.includes('panier')||title.length) {
+      check((await page.locator('#dialogRef').innerText()).length>2,'Moses discovery dialog references a passage');
+      await page.locator('#continue').click();
+    }
+   }
+  }
+  throw Error('Navigation limit reached for '+JSON.stringify(target));
+ }
+ for(let stage=0;stage<3;stage++){
+  const st=await page.evaluate(()=>window.PixelEngineTest.snapshot());
+  const idx=st.targets.findIndex((p,i)=>!st.books.includes(i));
+  if(idx<0)break;
+  await navigate(st.targets[idx]);
+ }
+ let state=await page.evaluate(()=>window.PixelEngineTest.snapshot());
+ check(state.books.length===3,'Moses chapter 1: all three narrative discoveries collected through gameplay');
+ await navigate(state.exit);
+ check(await page.locator('#overlay').isVisible(),'Moses exit presents the biblical comprehension question');
+ check((await page.locator('#choices button').count())===3,'Moses comprehension offers three understandable answers');
+ await page.locator('#choices button').nth(0).click();
+ await page.waitForFunction(()=>window.PixelEngineTest.snapshot().complete,{timeout:5000});
+ check((await page.locator('#dialogTitle').innerText()).includes('Souvenir'),'Moses correct answer unlocks a chapter memory');
+ const saved=await page.evaluate(()=>{const s=window.PixelEngineTest.snapshot();return JSON.parse(localStorage.getItem(s.storage));});
+ check(saved.levels['0'].complete===true,'Moses completion is persisted in local storage');
+ await page.reload({waitUntil:'load'});
+ check(await page.locator('#home').isVisible(),'Moses game restarts on chapter selection');
+ const persistent=await page.evaluate(()=>{const k='bible-aventure-pixel-shared-v05-moses';return JSON.parse(localStorage.getItem(k));});
+ check(persistent.levels['0'].complete===true,'Moses completed chapter survives a page reload');
+ check(errors.length===0,'Moses full chapter no JavaScript errors '+errors.join(' | '));
+ await page.close();
+}
+(async()=>{await new Promise(ok=>server.listen(0,'127.0.0.1',ok));const address='http://127.0.0.1:'+server.address().port+'/';const browser=await chromium.launch({headless:true,args:['--no-sandbox','--disable-dev-shm-usage']});try{for(const id of ['eden','noe','joseph','moses']){await world(browser,address,id,390,844);await world(browser,address,id,360,740);await world(browser,address,id,768,1024);}await gallery(browser,address);await completeMosesChapter(browser,address);console.log('PIXEL V0.5 QA PASS: '+checks.length+' checks');checks.forEach(x=>console.log(' ✓ '+x));}finally{await browser.close();server.close();}})().catch(e=>{console.error('PIXEL V0.5 QA FAIL:',e.stack||e);process.exitCode=1;server.close();});
