@@ -118,6 +118,8 @@ async function gallery(browser,address){
  check((await page.locator('#ratingResult').innerText()).includes('Validations humaines à compléter'),'quality gallery: score alone never certifies acceptance');
  await page.locator('#gateText').check();await page.locator('#gatePhone').check();await page.locator('#gateChild').check();
  check((await page.locator('#ratingResult').innerText()).includes('Seuil atteint'),'quality gallery: quality gate opens only with all human checks');
+ await inputs.first().evaluate(el=>{el.value='10';el.dispatchEvent(new Event('input',{bubbles:true}));});
+ check((await page.locator('#ratingResult').innerText()).includes('critère sous 60 %'),'quality gallery: low artistic category blocks 85/100 release');
  await page.locator('#resetRating').click();
  check((await page.locator('#ratingResult').innerText()).includes('Évaluation incomplète'),'quality gallery: reset clears weighted evaluation');
  await page.locator('#rubric input').first().check();
