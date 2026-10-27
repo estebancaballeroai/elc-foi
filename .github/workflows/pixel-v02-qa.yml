@@ -1,0 +1,36 @@
+name: Pixel Lab v0.2 mobile QA
+on:
+  push:
+    branches: [experimental/pixel-lab-v0.2]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mobile-regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check JavaScript syntax
+        run: |
+          node --check pixel-lab-v02/shared/engine.js
+          node --check pixel-lab-v02/shared/art-factory.js
+          node --check pixel-lab-v02/stories/noe-upgrade.js
+          node --check pixel-lab-v02/stories/joseph-upgrade.js
+          node --check tests/pixel-v02-smoke.cjs
+      - name: Install Chromium and Playwright
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Test Pixel v0.2 on 3 screen widths
+        run: node tests/pixel-v02-smoke.cjs
+      - name: Save mobile screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-v02-screen-tests
+          path: pixel-lab-v02-screenshots/
+          if-no-files-found: ignore
