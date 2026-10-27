@@ -1,45 +1,46 @@
-# Bible Aventure · Pixel Lab v0.5 — quatrième monde : Moïse
+# Bible Aventure — Pixel Lab v0.6 : David et Goliath
 
-Version expérimentale autonome basée sur le standard v0.4 d'Éden. **Aucun des anciens dossiers** `bible-aventure/`, `pixel-lab/`, `pixel-lab-v02/`, `pixel-lab-v03/` ou `pixel-lab-v04/` n'est modifié.
+## État
 
-## Nouveauté majeure
+**Cinquième récit jouable expérimental** sur le moteur Pixel commun. La v0.6 est conservée séparément des versions v0.1 à v0.5 et du jeu principal.
 
-Le quatrième récit jouable est **Moïse et l'Exode**. Cinq chapitres issus du contenu préexistant dans `bible-aventure/index.html` (réécriture originale des notices de fiction, références vérifiées avec le récit de l'Exode), répartis en **15 découvertes et 5 questions**.
+Les cinq mondes sont : Éden, Noé, Joseph, Moïse et David. Chaque monde présente **cinq chapitres et deux difficultés**. Soit cinquante variantes de labyrinthes accessibles via un même code de génération et de recherche d'itinéraire.
 
-| Chapitre | Référence | Figure jouée | Monde illustré |
+## Nouveau récit : David et Goliath (1 Samuel 16–17)
+
+| Chapitre | Référence principale | Ambiance | Question |
 | --- | --- | --- | --- |
-| 1. Un panier sur le Nil | Exode 2,1–10 | Sœur de Moïse | Nil, roseaux, corbeille |
-| 2. La voix dans le buisson | Exode 3,1–4,17 | Moïse | Horeb, moutons, buisson lumineux |
-| 3. Face au Pharaon | Exode 5–11 | Moïse | Cours et architecture égyptienne imaginaire |
-| 4. La nuit du départ | Exode 12,1–13,22 | Moïse | Pâque, départ et colonne de feu |
-| 5. Un passage au milieu de la mer | Exode 14 | Moïse | Mer ouverte, route sèche, peuple en marche |
+| 1. Un jeune berger | 1 Samuel 16,1–13 ; 17,12–15 | Pâturages, collines, brebis | Où David se trouve-t-il ? |
+| 2. Samuel choisit David | 1 Samuel 16,6–13 | Bethléhem, huile et rencontre | Qui reçoit l’onction ? |
+| 3. Deux armées dans la vallée | 1 Samuel 17,1–30 | Vallée d’Éla, camps, provisions | Comment les Israélites réagissent-ils ? |
+| 4. Cinq pierres polies | 1 Samuel 17,31–40 | Ruisseau et pierres | Pourquoi David retire-t-il l’armure ? |
+| 5. Un courage inattendu | 1 Samuel 17,41–54 | Aube et vallée après le défi | Quelle arme David utilise-t-il ? |
 
-## Art et animation
+Le contenu reprend les cinq chapitres pédagogiques et les références déjà préparés dans `bible-aventure/index.html`, avec **15 découvertes**, cinq questions et des notices qui identifient les éléments artistiques.
 
-`shared/moses-art.js` contient les fonctions **éditables, reproductibles et sans téléchargement distant** qui créent deux atlas de personnages de 256 × 400 pixels, **20 poses pour chacun** : Moïse adulte et la sœur de Moïse (figure du chapitre 1). Les cinq grands tableaux de 800 × 600 pixels sont des SVG originaux en couches, chacun avec une composition différente. Les accessoires sont des ressources SVG de 64 × 64 pixels (panier, roseaux, buisson, bâton, piliers, pain, eau, lumière, nuée).
+## Créations graphiques
 
-Le moteur unique `shared/engine.js` (Canvas, 32 px/case) reprend le pilotage tactile, la caméra, la recherche de chemin, les livres, les questions, les sauvegardes et les dix variantes de labyrinthes pour chaque récit. Le terrain de Moïse utilise des thèmes narratifs propres à chaque chapitre ; **une décoration ne modifie jamais les collisions**.
+- `shared/david-art.js` : un atlas de personnage David (256 × 400 px, **20 poses directionnelles**), cinq scènes originales SVG (800 × 600 px), dix accessoires narratifs (brebis, bâton, huile, parchemin, bouclier, provisions, armure, pierres, fronde, soleil).
+- `stories/david-upgrade.js` : enregistre les images locales, la palette et les objets du récit.
+- `shared/engine.js` : conserve le moteur Canvas, les flèches tactiles, la caméra, les trois livres par chapitre, la progression et les sauvegardes locales ; ajoute les terrains propres à David.
+- `david/index.html` : interface mobile-first identique à la collection.
 
-## Point de vigilance biblique
+**Les objets symboliques ne doivent pas être confondus avec une reconstitution.** La forme de la fronde, les maisons, les visages et les couleurs des vêtements sont inventés. Le combat n’est jamais joué en tant qu’action violente et aucune blessure n’est représentée graphiquement. Le jeu explique que la confiance de David ne garantit pas automatiquement une victoire personnelle dans toutes les situations.
 
-Le chapitre du panier fait jouer **la sœur qui observe le bébé**, sans prétendre que le texte d'Exode 2 donne ici son nom. Le buisson ardent est représenté **sans image de Dieu**. Les plaies, la Pâque et la mer sont expliquées avec sérieux et sans transformer les souffrances en spectacle. Le joueur **ne commande pas** le passage de la mer. Les silhouettes, la couleur des vêtements, l'architecture, l'implantation des roseaux et les itinéraires restent des éléments artistiques signalés.
+## Cadre d’évaluation
 
-Les textes sont des paraphrases pédagogiques originales, non des reproductions de traductions modernes protégées. La forme historique précise des décors n'est pas connue.
+Éden demeure la référence esthétique. La grille `quality/` permet de noter chacun des cinq mondes sur 100 : direction artistique /25 ; illustrations /20 ; personnages /15 ; contenu biblique /15 ; ergonomie mobile /15 ; cohérence moteur /10.
 
-## Quatre mondes sur un moteur
+**Seuil de passage : au moins 85/100, aucun critère sous 60 %, aucun problème bloquant**, vérification biblique et essais humains (smartphone et public cible). Une batterie de tests automatiques valide le fonctionnement et non la beauté des scènes.
 
-Éden, Noé, Joseph et Moïse partagent les mêmes contrôles, composants et mécanismes. Les trois mondes historiques gardent leurs graphismes et contenus précédents. Moïse dispose d'un pack propre et n'exige aucune intégration d'IA ni connexion à un service externe.
+## Vérification
 
-## Tests et seuil qualité
+Workflow GitHub Actions : `.github/workflows/pixel-v06-qa.yml`. Script Playwright : `tests/pixel-v06-smoke.cjs`. Il parcourt les cinq récits, les 50 labyrinthes théoriques (5 mondes × 5 chapitres × 2 difficultés), vérifie le chargement des images, les déplacements clavier/tactiles, les sauvegardes et le comparateur, puis joue les premiers chapitres de Moïse et de David jusqu’à la question et au souvenir.
 
-Le workflow `.github/workflows/pixel-v05-qa.yml` vérifie quatre mondes, trois formats d'écran et les 10 variantes de labyrinthes par récit (**40 parcours possibles**, 5 chapitres × 2 difficultés × 4 mondes), le rendu des illustrations, les atlas, les commandes tactiles réelles simulées dans Chromium, les sauvegardes et le comparateur de qualité.
+## Déploiement et conservation
 
-Le seuil d'extension est **85/100 avec aucun critère en dessous de 60 %**, référence Éden, validé par un évaluateur sur un vrai smartphone et lors d'un essai adapté avec des enfants. **Les tests automatisés ne certifient pas la qualité esthétique**.
+Après validation, l'essai est proposé dans `pixel-lab-v06/` sur GitHub Pages. Toutes les versions précédentes restent disponibles : aucune modification de `bible-aventure/`, `pixel-lab-v05/` ou des dossiers plus anciens.
 
-- Jouer au portail `pixel-lab-v05/`.
-- Comparer les quatre récits : `pixel-lab-v05/quality/`.
-- Outil qualité réutilisable : `quality/standard.json`.
+## Étape suivante
 
-## Suite des récits
-
-Après revue des scores, prochain récit : **David et Goliath**, puis Jonas et Ninive. Chaque nouveau monde sera isolé, alimenté par les données bibliques du jeu existant, accompagné d'illustrations originales et d'un contrôle de régression complet, avant diffusion à des enfants.
+Après les essais de David et la comparaison visuelle avec Éden, appliquer le même protocole à **Jonas et Ninive**, sans sacrifier la profondeur biblique ni la lisibilité pour les enfants.
