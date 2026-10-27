@@ -1,0 +1,36 @@
+name: Pixel Lab v0.3 — mobile and visual QA
+on:
+  push:
+    branches: [experimental/pixel-lab-v0.3]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Validate JavaScript syntax
+        run: |
+          node --check pixel-lab-v03/shared/engine.js
+          node --check pixel-lab-v03/shared/art-factory.js
+          node --check pixel-lab-v03/stories/noe-upgrade.js
+          node --check pixel-lab-v03/stories/joseph-upgrade.js
+          node --check tests/pixel-v03-smoke.cjs
+      - name: Install Playwright browser
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Run 3 worlds on mobile/tablet
+        run: node tests/pixel-v03-smoke.cjs
+      - name: Upload visual screenshot evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-v03-visual-screenshots
+          path: pixel-lab-v03-screenshots/
+          if-no-files-found: ignore
