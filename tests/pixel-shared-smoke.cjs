@@ -18,7 +18,7 @@ async function world(browser,address,id,width,height){
  page.on('pageerror',e=>errors.push(e.message));
  page.on('console',msg=>{if(msg.type()==='error'&&!msg.text().includes('favicon'))errors.push(msg.text())});
  await page.goto(address+'pixel-lab/'+id+'/',{waitUntil:'load'});
- await page.waitForFunction(()=>window.PixelEngineTest&&document.querySelectorAll('#chapters button').length===5);
+ await page.waitForFunction(()=>window.PixelEngineTest&&document.querySelectorAll('#chapters button').length===5,{timeout:7000}).catch(async()=>{throw Error(id+' initialization failed: '+JSON.stringify(await page.evaluate(()=>({pack:!!window.PIXEL_CONFIG,chapters:window.PIXEL_CHAPTERS?.length,engine:!!window.PixelEngineTest,cardCount:document.querySelectorAll('#chapters button').length,html:document.querySelector('#chapters')?.innerText?.slice(0,100)})))+' | errors: '+errors.join(' | '));});
  check((await page.locator('#chapters button').count())===5,id+' five chapters '+width);
  check(await page.locator('.intro h1').innerText() !=='Les sentiers d’Éden'||id==='eden',id+' correct title '+width);
  check((await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth))<=3,id+' home no overflow '+width);
