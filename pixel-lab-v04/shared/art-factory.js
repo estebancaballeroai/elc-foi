@@ -1,4 +1,4 @@
-/* Bible Aventure Pixel - hand-authored SVG sprite and scene factory v0.3.
+/* Bible Aventure Pixel - hand-authored SVG sprite and scene factory v0.4.
    Assets are deterministic, offline, do not call third-party providers.
    Original illustrations: artistic interpretation, not biblical evidence. */
 (function(){
@@ -180,13 +180,72 @@ function prop(who,type){
  return svg(64,64,s);
 }
 
+
+/* Quality pass v0.4. Original layered pixel illustrations: procedural art
+   uses the same 800x600 viewbox across five chapters. No network requests.
+   The illustrations are imagined and not reconstructions of biblical events. */
+function grainMotifs(who,n){
+ var noah=who==='noah',out='';
+ for(var i=0;i<390;i++){
+  var x=(i*149+23+n*73)%800,y=(i*61+47+n*31)%600;
+  if(y<290)continue;
+  var near=y>460,sz=near?2+(i%5):1+(i%3);
+  var col=noah?(i%3===0?'#477d5a':i%3===1?'#d5be86':'#8aae69'):(i%3===0?'#c49b5b':i%3===1?'#efce8b':'#a98e60');
+  out+=r(x,y,sz,1+(near?i%3:0),col);
+ }
+ for(var b=0;b<34;b++){
+  var bx=(b*139+n*71)%800,by=360+(b*83)%205;
+  if(noah&&n===2){out+=e(bx,by,21+b%3*10,2,'#c6d4da');}
+  else if(!noah&&n===1){out+=p('M'+bx+' '+by+' q22 -11 55 -5 q-17 13 -55 5Z','#edc48c');}
+  else{out+=r(bx,by,4+b%3*3,3, noah?'#659b63':'#c8a369',1);}
+ }
+ return out;
+}
+function floraSilhouettes(who,n){
+ var noah=who==='noah',out='';
+ for(var i=0;i<22;i++){
+  var x=(i*131+n*53)%820-10,y=360+(i*43+n*17)%160,scale=.32+(i%4)*.12;
+  if(noah&&n!==2&&n!==3&&i%3===0)out+=tree(x,y,scale);
+  else if(!noah&&n!==2&&i%4===0)out+=palm(x,y,scale*.6);
+  else out+=p('M'+x+' '+y+' l-7 -18 l7 9 l4 -23 l2 32 Z',noah?'#61865d':'#ad8b58');
+ }
+ return out;
+}
+function illuminatedDetails(who,n){
+ var noah=who==='noah',out='';
+ if(noah){
+  if(n===0){for(var i=0;i<20;i++)out+=r(364+(i%5)*55,348+Math.floor(i/5)*22,48,3,'#e6b57f');}
+  if(n===1){for(var j=0;j<14;j++)out+=sparkle(150+j*39,314+j%3*13,2,'#fff3c9');}
+  if(n===2){out+=p('M500 0 L430 215 L487 215 L458 325 L583 158 L519 165 L575 0 Z','#f6e6aa');for(var k=0;k<120;k++){var rx=(k*61)%800,ry=(k*37)%520;out+=r(rx,ry,2,13,'#c8e0ea');}}
+  if(n===3){for(var w=0;w<36;w++)out+=e((w*107)%800,438+(w%7)*17,27,3,'#b7d6cf');}
+  if(n===4){out+=e(400,261,207,111,'#fff5d5');}
+ }else{
+  if(n===0){for(var star=0;star<11;star++)out+=sparkle(246+star*23,74+star%3*16,4+star%2,'#fff7c9');}
+  if(n===1){for(var dune=0;dune<20;dune++)out+=p('M'+(dune*49)+' '+(430+dune%3*24)+' q45 -16 90 0 q-50 8 -90 0Z','#d6b07b');}
+  if(n===2){for(var shadow=0;shadow<6;shadow++)out+=r(230+shadow*64,298,12,120,'#856e5c');}
+  if(n===3){for(var jar=0;jar<15;jar++){var x=40+jar*49;out+=e(x,478,12,4,'#81542e')+p('M'+(x-9)+' 448 Q'+(x-17)+' 473 '+x+' 474 Q'+(x+16)+' 472 '+(x+9)+' 448Z','#bb8651');}}
+  if(n===4){for(var light=0;light<24;light++)out+=sparkle((light*79)%800,260+(light%5)*39,2+light%2,'#fff3b9');}
+ }
+ return out;
+}
+function pixelFrames(who,n){
+ var noah=who==='noah',colors=noah?['#274e48','#315f57','#8db99a']:['#655036','#9a7544','#e4c08a'],out='';
+ // Architectural and environmental edge highlights, very light on the view.
+ for(var i=0;i<22;i++){
+  var px=(i*101+47*n)%800,py=356+(i*37)%190;
+  out+=r(px,py,2+i%4,2,colors[i%3]);
+ }
+ out+=p('M0 549 Q150 525 300 545 T600 544 T800 538 V600H0Z',noah?'#426b57':'#8e6b47');
+ return out;
+}
+
 function scene(who,n){
  var isNoah=who==='noah',sky=isNoah?(n===2?'#6e92ae':n===3?'#a6c3c9':'#8bcbd7'):(n<2?'#9dd1de':'#a6c6d0');
  var ground=isNoah?(n===2?'#466575':'#75a15b'):(n>=2?'#d7b47b':'#a8ac69');
  var out=baseAtmosphere(who,n)+
  p('M0 342L120 220 230 328 383 205 510 322 650 209 800 315V600H0Z',isNoah?'#85a1a0':'#d4b88b')+
  p('M0 417Q200 340 425 392T800 369V600H0Z',ground);
- for(var i=0;i<120;i++){var x=(i*173+57)%800,y=375+(i*61+23)%205;out+=r(x,y,4+(i%3)*3,2,i%2?'#bdad80':'#6e9e68');}
+ out+=floraSilhouettes(who,n)+grainMotifs(who,n);
  if(isNoah){
   if(n===0){out+=ark(480,340,.9)+tree(112,386,.74);for(var a=0;a<7;a++)out+=r(46+a*35,467+(a%2)*13,55,17,'#9c653e');out+=figure(267,391,'noah',1.6);}
   if(n===1){out+=ark(475,338,.98);for(var b=0;b<4;b++)out+=sheep(126+b*87,447+(b%2)*35,.8);out+=figure(285,383,'noah',1.4);}
@@ -216,8 +275,8 @@ function scene(who,n){
   if(n===3){out+=palm(45,411,.6);for(var ct=0;ct<7;ct++)out+=r(94+ct*106,492,39,22,'#b47e4d',3);}
   if(n===4){out+=palm(749,420,.55);out+=palm(72,417,.55);out+=sparkle(465,170,8,'#fff0a7');}
  }
- out+=foreground(who,n);
+ out+=illuminatedDetails(who,n)+foreground(who,n)+pixelFrames(who,n);
  return svg(800,600,out);
 }
-window.PixelArtFactory={atlas:makeAtlas,scene:scene,prop:prop,version:'0.3',spriteWidth:64,spriteHeight:80,cols:4,rows:5};
+window.PixelArtFactory={atlas:makeAtlas,scene:scene,prop:prop,version:'0.4',spriteWidth:64,spriteHeight:80,cols:4,rows:5};
 }());
