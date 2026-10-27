@@ -1,0 +1,36 @@
+name: Pixel v0.4 art harmonization and Android QA
+on:
+  push:
+    branches: [experimental/pixel-lab-v0.4-quality-gate]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  release-gate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: JavaScript syntax checks
+        run: |
+          node --check pixel-lab-v04/shared/engine.js
+          node --check pixel-lab-v04/shared/art-factory.js
+          node --check pixel-lab-v04/stories/noe-upgrade.js
+          node --check pixel-lab-v04/stories/joseph-upgrade.js
+          node --check tests/pixel-v04-smoke.cjs
+      - name: Install Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Test mobile and comparative art gallery
+        run: node tests/pixel-v04-smoke.cjs
+      - name: Preserve screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-v04-comparison-and-mobile
+          path: pixel-lab-v04-screenshots/
+          if-no-files-found: ignore
