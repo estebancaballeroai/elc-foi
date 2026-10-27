@@ -114,7 +114,7 @@ async function gallery(browser,address){
  check((await page.locator('#ratingResult').innerText()).includes('Évaluation incomplète'),'quality gallery: not auto-scored as complete');
  await page.locator('#ratedWorld').selectOption('noe');
  const inputs=page.locator('#ratingInputs input');
- for(let i=0;i<6;i++){await inputs.nth(i).fill(String([25,20,15,15,15,10][i]));}
+ for(let i=0;i<6;i++){await inputs.nth(i).evaluate((el,value)=>{el.value=String(value);el.dispatchEvent(new Event('input',{bubbles:true}));},[25,20,15,15,15,10][i]);}
  check((await page.locator('#ratingResult').innerText()).includes('Validations humaines à compléter'),'quality gallery: score alone never certifies acceptance');
  await page.locator('#gateText').check();await page.locator('#gatePhone').check();await page.locator('#gateChild').check();
  check((await page.locator('#ratingResult').innerText()).includes('Seuil atteint'),'quality gallery: quality gate opens only with all human checks');
