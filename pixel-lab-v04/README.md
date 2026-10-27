@@ -1,31 +1,62 @@
-# Bible Aventure — Pixel Lab v0.3
+# Bible Aventure — Pixel Lab v0.4 · Standard artistique de la collection
 
-Une version de **perfectionnement visuel**, isolée des versions `pixel-lab/` et `pixel-lab-v02/`. Les récits et les règles de jeu ne sont pas modifiés.
+## But de cette version
+Faire d'Éden la **référence artistique** de toute la collection. La v0.4 perfectionne les mondes Noé et Joseph sans modifier les cinq chapitres bibliques, la progression, les collisions ou la difficulté des labyrinthes.
 
-## Trois mondes, un moteur
+**À ne pas confondre :** un test automatisé qui passe valide le chargement et le fonctionnement, mais n'attribue pas une note artistique. Les anciennes estimations de 92/100, 78/100 et 75/100 n'étaient pas des scores calculés et vérifiés. Le présent document fixe un barème reproductible et une revue manuelle.
 
-- **Éden** reste le témoin graphique avec Adam et Ève, cinq chapitres et leurs illustrations historiques.
-- **Noé** utilise les mêmes commandes et le même Canvas, mais avec un sprite Noé plus détaillé, cinq scènes enrichies et un rendu thématique : chantier, animaux, pluie, eaux qui se retirent et promesse.
-- **Joseph** dispose d'un sprite dédié et de cinq scènes supplémentaires : Canaan, route d'Égypte, épreuves, greniers et retrouvailles.
+## Feuille de route et état de réalisation
 
-## Ce qui change en v0.3
+| Lot | Livrable | Validation |
+| --- | --- | --- |
+| 1 — Architecture | Nouveau dossier isolé `pixel-lab-v04/`, moteur Canvas conservé, sauvegardes autonomes v0.4 avec migration v0.3 | Automatique |
+| 2 — Illustration | Cinq scènes par récit ; reliefs, végétation, lumières et objets narratifs approfondis dans `shared/art-factory.js` | Technique + comparaison visuelle |
+| 3 — Personnages | Noé et Joseph avec atlas de 20 poses / héros (256 × 400 px), détails de silhouettes et vêtements | Technique + inspection humaine |
+| 4 — Terrains | Objets propres à chaque histoire, absence de Noé dupliqué et de moutons dans Joseph | Inspection + régression |
+| 5 — Interface | Pages de récit, grille des chapitres, contraste, commandes mobiles, grille de comparaison `quality/` | Chromum + revue humaine |
+| 6 — Pédagogie | Distinction claire entre récit biblique et mise en scène imaginée | Relecture humaine |
+| 7 — Publication | Tests Chromium/Playwright, screenshots, publication GitHub Pages indépendante | Automatique + essai Android réel |
 
-1. **Personnages** : enrichissement de l'atlas de 20 poses (4 colonnes × 5 lignes), coiffures, textures, ceintures, contrastes et ombrages supplémentaires. Génération locale et reproductible en SVG.
-2. **Illustrations** : nouvelles couches atmosphériques, reliefs en arrière-plan, végétation, premiers et derniers plans pour chaque chapitre. Ce sont des images originales produites par le moteur local, pas des photographies ni des reconstructions historiques.
-3. **Décors jouables** : ajout de textures des chemins et d'objets de récit : bois, roseaux et poissons pour Noé ; gerbes, jarres, tentes et palmiers pour Joseph.
-4. **Cohérence** : le personnage Noé n'est plus dupliqué à la sortie ; les moutons décoratifs arbitraires sont retirés du parcours de Joseph.
-5. **Mobile** : davantage de lisibilité dans les cartes, contrastes, légendes, boutons de direction et focus clavier.
+## Standard qualité à réutiliser pour les sept autres récits
 
-## Pédagogie biblique
+Échelle sur 100 points :
 
-Les textes des chapitres restent ceux de la version précédemment validée, basés sur Genèse 2–3, 6–9 et 37–45. Les couleurs du vêtement de Joseph, les plans de l'arche, les détails des bâtiments et des personnages ne sont pas présentés comme des certitudes bibliques. Aucune représentation nouvelle n'est censée compléter le texte inspiré.
+| Critère | Maximum | Mesures à examiner |
+| --- | ---: | --- |
+| Direction artistique | 25 | Identité (10), beauté perçue (10), mémorisation (5) |
+| Illustrations | 20 | Différenciation des cinq chapitres (10), détails (5), profondeur (5) |
+| Personnages | 15 | Silhouette mobile (5), poses (5), cohérence de style (5) |
+| Pédagogie biblique | 15 | Clarté (5), fidélité (5), distinction récit/interprétation (5) |
+| Ergonomie mobile | 15 | Commandes (5), lisibilité (5), fluidité (5) |
+| Moteur et collection | 10 | Compatibilité (5), unité visuelle (5) |
 
-## Tests
+Conditions impératives d'ouverture de la production d'un nouveau récit :
+1. **85/100 minimum** après revue documentée, sans critère obligatoire sous 60 %.
+2. Aucun défaut bloquant de déplacement, sauvegarde, chapitre, accès aux livres ou sortie.
+3. Tous les événements bibliques vérifiés dans les passages et aucune affirmation visuelle présentée comme fait lorsque le texte est silencieux.
+4. Validation sur au moins un smartphone physique et un petit test d'utilisation par un enfant du public visé.
+5. Conservation de la précédente version et plan de retour arrière.
 
-`tests/pixel-v03-smoke.cjs` valide le moteur commun et l'affichage sur 360, 390 et 768 px avec Chromium/Playwright. Les contrôles vérifient les 5 chapitres, les deux variantes de difficulté, l'accessibilité des destinations, les textures, les 20 poses des nouveaux personnages, les 5 scènes 800 × 600, les commandes et les sauvegardes. Des captures PNG sont déposées comme artefacts GitHub Actions.
+L'atelier comparateur est disponible à `pixel-lab-v04/quality/`. Les huit critères de perception se cochent sur le téléphone de l'évaluateur ; ils ne constituent pas automatiquement une note sur 100.
 
-**Les essais sur un vrai smartphone sont à réaliser avant d'intégrer cette version à la production principale.**
+## État vérifiable
 
-## Architecture et préservation
+- Les trois récits emploient le même moteur Canvas et leurs cinq chapitres existants.
+- Éden conserve ses planches et images d'origine, qui servent de référence.
+- Noé et Joseph utilisent un atelier SVG local avec des fonds à couches et des motifs propres à chaque chapitre.
+- 20 poses sont disponibles sur chacune des nouvelles planches de 256 × 400 pixels ; les images de chapitre mesurent 800 × 600 pixels.
+- Aucun service tiers n'est nécessaire au fonctionnement.
+- Les images sont des **interprétations artistiques** ; elles ne reconstituent pas avec certitude l'Égypte ancienne, l'arche ou les vêtements historiques.
 
-Les dossiers `pixel-lab/`, `pixel-lab-v02/`, `bible-aventure/` et les versions historiques de Noé/Éden ne sont pas modifiés. Les sauvegardes v0.3 utilisent la clé locale `bible-aventure-pixel-shared-v03-<id>` avec reprise des données v0.2 quand elles existent.
+**La certification des notes n'est pas faite avant la revue visuelle et le test physique.** Ce document ne revendique donc pas que Noé ou Joseph ont atteint 85/100.
+
+## Tester
+
+- Ouvrir `pixel-lab-v04/` pour choisir un récit.
+- Ouvrir `pixel-lab-v04/quality/` pour comparer les cinq chapitres d'Éden, Noé et Joseph.
+- La CI `.github/workflows/pixel-v04-qa.yml` exécute `tests/pixel-v04-smoke.cjs`, contrôle 3 tailles d'écran, les commandes et les dix variantes de labyrinthes, ainsi que les illustrations comparées.
+- Inspecter les captures d'écran de la CI : elles n'impliquent pas à elles seules une homologation artistique.
+
+## À industrialiser ensuite
+
+Le prochain pack narratif (Moïse) ne sera ouvert qu'après accord sur les résultats de qualité. Chaque pack devra fournir : cinq chapitres vérifiés, cinq scènes, un atlas principal de 20 poses, objets thématiques documentés, charte locale de couleurs et suite de tests de régression. Cette règle s'appliquera ensuite à David, Jonas et aux autres récits.
