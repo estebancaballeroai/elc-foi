@@ -110,6 +110,16 @@ async function gallery(browser,address){
   check(await page.evaluate(()=>window.PixelCompareTest.chapter())===i,'quality gallery: chapter '+(i+1)+' responds');
  }
  check(await page.locator('#rubric input').count()===8,'quality gallery: eight human assessment items');
+ check(await page.evaluate(()=>window.PixelRatingTest.criteriaCount())===6,'quality gallery: weighted six-axis review present');
+ check((await page.locator('#ratingResult').innerText()).includes('Évaluation incomplète'),'quality gallery: not auto-scored as complete');
+ await page.locator('#ratedWorld').selectOption('noe');
+ const inputs=page.locator('#ratingInputs input');
+ for(let i=0;i<6;i++){await inputs.nth(i).fill(String([25,20,15,15,15,10][i]));}
+ check((await page.locator('#ratingResult').innerText()).includes('Validations humaines à compléter'),'quality gallery: score alone never certifies acceptance');
+ await page.locator('#gateText').check();await page.locator('#gatePhone').check();await page.locator('#gateChild').check();
+ check((await page.locator('#ratingResult').innerText()).includes('Seuil atteint'),'quality gallery: quality gate opens only with all human checks');
+ await page.locator('#resetRating').click();
+ check((await page.locator('#ratingResult').innerText()).includes('Évaluation incomplète'),'quality gallery: reset clears weighted evaluation');
  await page.locator('#rubric input').first().check();
  check((await page.locator('#score').innerText()).includes('1/8'),'quality gallery: evaluation is user-controlled');
  await page.locator('#reset').click();
