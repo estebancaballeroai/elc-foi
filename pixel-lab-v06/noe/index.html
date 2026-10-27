@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><meta name="theme-color" content="#2d5149"><meta name="robots" content="noindex,nofollow"><meta name="description" content="Éden, une aventure biblique Pixel Art en cinq chapitres pour enfants de 7 à 11 ans."><title>Bible Aventure Pixel · Moteur commun</title><link rel="stylesheet" href="../shared/style.css"></head>
+<body>
+<div class="shell">
+<header class="top"><div class="identity"><img src="" alt="" width="40" height="40"><div><strong>Bible Aventure</strong><span>ÉDEN · LES SENTIERS DU JARDIN</span></div></div><span class="experimental">V2.5 · ÉDEN PIXEL LAB</span><button id="sound" class="iconbtn" aria-pressed="false">♪ Son : non</button></header>
+<main>
+<section id="home" class="home" aria-label="Choisir un chapitre">
+ <div class="intro"><div class="intro-text"><span class="eyebrow">GENÈSE 2–3 · 7–11 ANS</span><h1>Les sentiers d’Éden</h1><p>Explore le jardin, ses habitants, un choix difficile et un chemin nouveau. Cinq chapitres à découvrir !</p><div class="intro-actions"><button id="resume" class="primary">▶ Reprendre l'aventure</button><button id="albumHome">✦ Mon carnet</button></div><div class="overall" id="overall">0 chapitre terminé</div></div><div class="cover-frame"><img class="intro-cover-art" src="" alt="Illustration du jardin d’Éden, une reconstitution artistique"><span>UN MONDE À EXPLORER</span></div></div>
+ <div class="section-heading"><h2>Choisis un chapitre</h2><span>Tu peux explorer librement</span></div><div id="chapters" class="chapters"></div>
+ <div class="settings"><label for="difficulty">Labyrinthe :</label><select id="difficulty"><option value="discovery">Découverte</option><option value="adventure">Aventure</option></select><label for="fontSize">Texte :</label><select id="fontSize"><option value="normal">Normal</option><option value="large">Grand</option><option value="xlarge">Très grand</option></select><label class="avatar-label" for="avatar">Personnage :</label><select id="avatar"><option value="adam">Adam</option><option value="eve">Ève (dès le chap. 3)</option></select><label class="low"><input id="lightMode" type="checkbox"> Mode graphique léger</label></div>
+ <p class="sourceNote">Adaptation pédagogique originale de Genèse 2–3 (Louis Segond 1910). Les chemins, animaux, fruits dessinés et livres sont imaginés. La Bible ne dit pas que le fruit était une pomme.</p>
+ </section>
+<section id="play" class="play-screen" hidden aria-label="Chapitre en cours">
+ <div class="play-top"><button id="back" class="textbtn">← Histoires</button><div class="chapter-crumb"><span id="chapterNo">Chapitre 1 / 5</span><strong id="chapterTitle">Le jardin s’éveille</strong></div><button id="albumPlay" class="textbtn">✦ Carnet</button></div>
+ <div class="play-layout"><div class="scene-col">
+  <div id="stage" class="stage"><canvas id="game" width="500" height="360" tabindex="0" aria-label="Labyrinthe d’Éden. Utilise les flèches, ZQSD, le toucher ou Observer pour explorer."></canvas>
+   <div class="game-top"><span class="place-pill" id="area">Le jardin d’Éden</span><div class="progress-pills"><span class="books-pill" id="count" aria-live="polite">0 / 3 livres</span><span class="stars-pill" id="starHud" aria-label="Étoiles">✦ 0</span></div></div>
+   <div class="game-controls" aria-label="Commandes de déplacement"><div class="dpad"><button class="up" data-dir="up" aria-label="Monter">▲</button><button class="left" data-dir="left" aria-label="Aller à gauche">◀</button><button class="right" data-dir="right" aria-label="Aller à droite">▶</button><button class="down" data-dir="down" aria-label="Descendre">▼</button></div><div class="actions"><button id="interact" class="observe" aria-label="Observer un objet proche"><span class="action-glyph" aria-hidden="true">👁</span><span>Observer</span></button><button id="hint" class="hintbtn" aria-label="Montrer un indice"><span class="action-glyph" aria-hidden="true">💡</span><span>Indice</span></button></div></div>
+   <div id="toast" class="toast" role="status" hidden></div>
+  </div>
+  <details class="mission" id="missionPanel" open><summary><span>🎯 Ta mission</span><span id="missionShort">Explore et découvre</span></summary><p id="mission"></p><div class="mission-tools"><button id="help">❔ Comment jouer</button><p class="world-note">Décors imaginés, récit inspiré de Genèse 2–3.</p></div></details>
+  <div class="saveStatus" id="saveStatus" role="alert" hidden>⚠️ La partie n'a pas pu être enregistrée sur cet appareil. <button id="retry">Réessayer</button></div>
+ </div>
+ <aside class="sidebar"><button id="switchAvatar" type="button">Personnage : Adam ↔</button><div class="side-intro"><img src="" width="48" height="70" alt="Illustration d’un arbre"><div><span class="eyebrow">HISTOIRE BIBLIQUE</span><h2 id="sideTitle">Le jardin s’éveille</h2><small id="sideRef">Genèse 6</small></div></div><p id="introText"></p><img id="sceneIllustration" class="scene-illustration" src="" alt="Illustration artistique du chapitre"><div class="book-progress"><h3>📖 Mes découvertes</h3><div id="entries"></div></div><div id="reward" class="reward"><div class="medal">✦</div><div><strong id="rewardTitle">La première étoile t'attend</strong><p id="rewardText">Trouve les livres et termine le chapitre.</p></div></div><p class="readNote">Le décor illustre le récit, sans ajouter de faits à la Bible.</p></aside>
+ </div><div class="next-row"><button id="next" class="primary" hidden>Chapitre suivant →</button></div>
+ </section>
+<footer>Une aventure tranquille, sans chronomètre, sans publicité et sans compte. <span>ELC Foi · Pixel Art LAB</span></footer>
+</main></div>
+<div class="overlay" id="overlay" hidden><section class="dialog" role="dialog" aria-modal="true" aria-labelledby="dialogTitle" tabindex="-1"><button id="close" class="close" aria-label="Fermer">×</button><img id="dialogArt" src="" alt=""><p class="eyebrow" id="dialogRef"></p><h2 id="dialogTitle"></h2><div id="dialogBody"></div><div id="choices"></div><p id="feedback" role="status"></p><button id="listen" type="button">🔊 Écouter en français</button><button class="primary" id="continue">Continuer</button></section></div>
+
+<script src="../stories/noe.js"></script><script src="../shared/art-factory.js"></script><script src="../stories/noe-upgrade.js"></script><script src="../shared/engine.js"></script>
+</body></html>
