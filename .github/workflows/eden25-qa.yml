@@ -1,0 +1,30 @@
+name: Validate Eden Pixel v2.5
+on:
+  push:
+    branches:
+      - experimental/bible-aventure-eden-pixel-v2.5
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  mobile-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Run Eden Pixel mobile functional checks
+        run: node tests/eden25-smoke.cjs
+      - name: Upload screenshots for visual inspection
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: eden-v25-screenshots
+          path: eden-v25-screenshots/
+          if-no-files-found: ignore
