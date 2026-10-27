@@ -27,7 +27,7 @@ async function world(browser,address,id,width,height){
  await page.waitForTimeout(240);
  let s=await page.evaluate(()=>window.PixelEngineTest.snapshot());
  check(s.world===id,id+' correct engine config '+width);
- check(s.visualVersion==='shared-0.3',id+' runs Pixel engine 0.2 '+width);
+ check(s.visualVersion==='shared-0.3',id+' runs Pixel engine 0.3 '+width);
  if(id!=='eden'){
   check(s.heroAtlas===id+'-atlas-v03',id+' original hero art loaded '+width);
   check(s.heroAtlasLoaded,id+' 20 pose hero atlas 256x400 decoded '+width);
@@ -56,6 +56,18 @@ async function world(browser,address,id,width,height){
    await page.locator('#game').focus();await page.keyboard.press(move[2]);await page.waitForTimeout(310);
    const moved=await page.evaluate(()=>window.PixelEngineTest.snapshot());
    check(moved.player.x===s.player.x+move[0]&&moved.player.y===s.player.y+move[1],id+' keyboard movement');
+   if(width===390){
+    // Exercise an actual touch event on the Android D-pad, not just its CSS.
+    const tappedStart=await page.evaluate(()=>window.PixelEngineTest.snapshot());
+    const nextTap=[[0,-1,'up'],[1,0,'right'],[0,1,'down'],[-1,0,'left']].find(([dx,dy])=>tappedStart.cells[(tappedStart.player.y+dy)*tappedStart.width+tappedStart.player.x+dx]===1);
+    check(!!nextTap,id+' touch route exists');
+    await page.locator('[data-dir="'+nextTap[2]+'"]').tap();
+    await page.waitForTimeout(310);
+    const tappedEnd=await page.evaluate(()=>window.PixelEngineTest.snapshot());
+    check(tappedEnd.player.x===tappedStart.player.x+nextTap[0]&&tappedEnd.player.y===tappedStart.player.y+nextTap[1],id+' real Android pointer/touch arrow movement');
+    if(await page.locator('#overlay').isVisible())await page.locator('#close').click();
+   }
+
    await page.locator('#back').click();
    check(await page.locator('#home').isVisible(),id+' navigates home');
    await page.locator('#resume').click();
