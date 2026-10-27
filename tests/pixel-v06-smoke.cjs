@@ -199,7 +199,7 @@ async function completeMosesChapter(browser,address,storyId='moses'){
  check(saved.levels['0'].complete===true,'Moses completion is persisted in local storage');
  await page.reload({waitUntil:'load'});
  check(await page.locator('#home').isVisible(),'Moses game restarts on chapter selection');
- const persistent=await page.evaluate(()=>{const k='bible-aventure-pixel-shared-v06-'+storyId;return JSON.parse(localStorage.getItem(k));});
+ const persistent=await page.evaluate(id=>{const k='bible-aventure-pixel-shared-v06-'+id;return JSON.parse(localStorage.getItem(k));},storyId);
  check(persistent.levels['0'].complete===true,'Moses completed chapter survives a page reload');
  check(errors.length===0,'Moses full chapter no JavaScript errors '+errors.join(' | '));
  await page.close();
