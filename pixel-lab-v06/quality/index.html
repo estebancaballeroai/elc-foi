@@ -1,0 +1,90 @@
+<!doctype html><html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,nofollow"><title>Comparateur qualité · Bible Aventure Pixel v0.6</title>
+<style>
+:root{font-family:system-ui,-apple-system,Arial;color:#244138;background:#edf2e7}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 0 0,#fff3d7,#e4efde 55%,#dae6e1)}main{max-width:1280px;padding:22px 16px 70px;margin:auto}header{display:flex;gap:15px;flex-wrap:wrap;justify-content:space-between;align-items:start}a{color:#175a4d;font-weight:800}h1{font-family:Georgia,serif;font-size:clamp(29px,5vw,54px);margin:14px 0;color:#174d41}p{line-height:1.5}.muted{color:#556c60;font-size:14px}.chapters{display:flex;flex-wrap:wrap;gap:8px;margin:20px 0}.chapters button{padding:12px 14px;border:2px solid #acc6ad;border-radius:13px;background:#fffdf4;color:#27594a;font-weight:800;cursor:pointer}.chapters button[aria-pressed="true"]{background:#216651;color:white;border-color:#216651}.compare{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}.world{background:#fffaf0;padding:13px;border:2px solid #d3d3b8;border-radius:20px;box-shadow:0 9px 23px #2b493521}.world[data-id="eden"]{border-color:#80aa78}.world[data-id="noe"]{border-color:#78aeb0}.world[data-id="joseph"]{border-color:#d9af72}.world h2{margin:4px 0 9px;font-family:Georgia,serif;font-size:23px}.art{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:12px;display:block;background:#bfd6a9;image-rendering:auto}.row{display:flex;align-items:center;gap:8px;padding:10px 0 0;min-height:83px}.avatar{width:52px;height:68px;object-fit:contain;image-rendering:pixelated;flex-shrink:0}.caption{font-size:13px;color:#64756b}.panel{margin-top:22px;padding:20px;border-radius:17px;background:#fffdf5;border:1px solid #cad7bd}.rubric{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px 25px}.rubric label{display:flex;align-items:center;gap:9px;padding:11px;border-radius:9px;background:#f0f3e9;font-size:14px}.rubric input{width:19px;height:19px;accent-color:#2e785b}.score{font-size:15px;font-weight:800}.score strong{font-size:21px;color:#2b604d}.btn{padding:10px 16px;background:#2b6855;color:#fff;border:0;border-radius:10px;font-weight:700;cursor:pointer}button:focus-visible,a:focus-visible,input:focus-visible{outline:4px solid #e8b951;outline-offset:3px}.small{font-size:12px;color:#66756b}.warning{padding:12px 16px;border-left:4px solid #b18d4c;background:#fff0c9;border-radius:8px}@media(max-width:900px){.compare{grid-template-columns:repeat(2,minmax(0,1fr))}}@media(max-width:580px){.compare{grid-template-columns:1fr}.rubric{grid-template-columns:1fr}.art{max-height:360px}main{padding:16px 12px 60px}}@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+</style><style>
+.rating-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:14px 0}.rating-item{background:#f0f4e9;border:1px solid #d7dfc8;border-radius:12px;padding:13px}.rating-item label{display:flex;gap:8px;justify-content:space-between;align-items:center;font-weight:750;font-size:14px}.rating-item input{display:block;width:100%;margin:16px 0 6px;accent-color:#28705d}.rating-controls{display:flex;flex-wrap:wrap;gap:12px;align-items:center}.rating-controls select{font-size:15px;padding:10px;border:2px solid #abc6b1;border-radius:10px;background:white}.rating-result{font-size:19px;line-height:1.4;font-weight:800;color:#235a48;margin-top:16px}.rating-criteria{display:flex;flex-direction:column;gap:8px;padding:8px 0}.rating-criteria label{font-size:14px;display:flex;gap:10px;align-items:center}.rating-criteria input{height:18px;width:18px;accent-color:#28705d}@media(max-width:620px){.rating-grid{grid-template-columns:1fr}}
+</style></head><body><main>
+<header><div><div class="muted">ELC FOI · DIRECTION ARTISTIQUE · V0.4</div><h1>Comparer les mondes Pixel</h1><p>Éden est notre référence. Compare les illustrations de Noé, Joseph, Moïse et David au même stade du récit, puis évalue la cohérence artistique avant la production des autres mondes.</p></div><a href="../">← Retour aux jeux</a></header>
+<nav class="chapters" aria-label="Comparer les chapitres">
+<button type="button" data-step="0" aria-pressed="true">1 · Début</button><button type="button" data-step="1" aria-pressed="false">2 · Rencontres</button><button type="button" data-step="2" aria-pressed="false">3 · Épreuve</button><button type="button" data-step="3" aria-pressed="false">4 · Changement</button><button type="button" data-step="4" aria-pressed="false">5 · Fin</button>
+</nav>
+<section class="compare" aria-label="Comparaison des cinq univers"><article class="world" data-id="eden"><h2>🌳 Éden <span class="muted">— référence</span></h2><img class="art" id="art-eden" alt="Illustration d'Éden"><div class="row"><canvas class="avatar" id="hero-eden" width="64" height="80" aria-label="Personnage d'Adam"></canvas><div><strong>Adam</strong><div class="caption">Planche de poses du jeu de référence</div></div></div><p class="caption" id="story-eden"></p><a href="../eden/">Jouer à Éden</a></article>
+<article class="world" data-id="noe"><h2>🕊️ Noé <span class="muted">— harmonisé</span></h2><img class="art" id="art-noe" alt="Illustration de Noé"><div class="row"><canvas class="avatar" id="hero-noe" width="64" height="80" aria-label="Personnage de Noé"></canvas><div><strong>Noé</strong><div class="caption">20 poses · quatre directions</div></div></div><p class="caption" id="story-noe"></p><a href="../noe/">Jouer à Noé</a></article>
+<article class="world" data-id="joseph"><h2>🌾 Joseph <span class="muted">— harmonisé</span></h2><img class="art" id="art-joseph" alt="Illustration de Joseph"><div class="row"><canvas class="avatar" id="hero-joseph" width="64" height="80" aria-label="Personnage de Joseph"></canvas><div><strong>Joseph</strong><div class="caption">20 poses · quatre directions</div></div></div><p class="caption" id="story-joseph"></p><a href="../joseph/">Jouer à Joseph</a></article>
+<article class="world" data-id="moses"><h2>🌊 Moïse <span class="muted">— nouveau récit</span></h2><img class="art" id="art-moses" alt="Illustration de Moïse"><div class="row"><canvas class="avatar" id="hero-moses" width="64" height="80" aria-label="Personnage du récit de Moïse"></canvas><div><strong id="label-moses">La sœur de Moïse</strong><div class="caption">20 poses pour chaque personnage</div></div></div><p class="caption" id="story-moses"></p><a href="../moses/">Jouer à Moïse</a></article><article class="world" data-id="david"><h2>🐑 David <span class="muted">— nouveau récit</span></h2><img class="art" id="art-david" alt="Illustration de David"><div class="row"><canvas class="avatar" id="hero-david" width="64" height="80" aria-label="Personnage de David"></canvas><div><strong>David</strong><div class="caption">20 poses et 5 décors bibliques stylisés</div></div></div><p class="caption" id="story-david"></p><a href="../david/">Jouer à David</a></article></section>
+<section class="panel" aria-labelledby="qtitle"><h2 id="qtitle">Grille de validation artistique</h2><p class="muted">Contrôle de perception humaine : les tests techniques ne peuvent pas garantir la beauté ni la cohérence artistique. Coche les critères lorsque les cinq univers atteignent un niveau comparable.</p>
+<div class="rubric" id="rubric">
+<label><input type="checkbox">Personnages reconnaissables à petite taille</label>
+<label><input type="checkbox">Quatre directions et poses lisibles</label>
+<label><input type="checkbox">Chaque chapitre identifiable sans titre</label>
+<label><input type="checkbox">Décors variés, sans répétition excessive</label>
+<label><input type="checkbox">Profondeur de scène et ambiance cohérentes</label>
+<label><input type="checkbox">Texte, contraste et commandes utilisables sur mobile</label>
+<label><input type="checkbox">Images artistiques distinguées des faits bibliques</label>
+<label><input type="checkbox">Unité de style dans la collection</label>
+</div><p class="score" id="score" role="status">0/8 critères examinés et validés</p><button type="button" class="btn" id="reset">Réinitialiser la grille</button><p class="small">Ces coches restent locales à cet appareil et ne constituent pas une certification ni une note automatique /100.</p></section>
+<section class="panel" id="rating" aria-labelledby="rating-title">
+<h2 id="rating-title">Attribuer une note documentée /100</h2>
+<p class="muted">Cette évaluation est à remplir après examen visuel et essai réel. Les notes ne sont pas automatiques, et l'outil n'enregistre rien sur un serveur.</p>
+<div class="rating-controls"><label for="ratedWorld"><strong>Récit évalué</strong></label><select id="ratedWorld"><option value="eden">Éden · référence</option><option value="noe">Noé</option><option value="joseph">Joseph</option><option value="moses">Moïse</option><option value="david">David</option></select><button id="resetRating" type="button" class="btn">Effacer cette évaluation</button></div>
+<div class="rating-grid" id="ratingInputs"></div>
+<div class="rating-criteria">
+<label><input type="checkbox" id="gateText">Références et fidélité bibliques vérifiées par une personne</label>
+<label><input type="checkbox" id="gatePhone">Essai réussi sur un véritable téléphone</label>
+<label><input type="checkbox" id="gateChild">Essai adapté avec un enfant du public cible</label>
+</div>
+<p class="rating-result" id="ratingResult" role="status">Aucune note attribuée.</p>
+<p class="small">Le seuil pour ouvrir la production d'autres récits est 85/100, sans défaut bloquant, avec les trois validations humaines réalisées. Ce score mesure une revue documentée, pas une vérité objective sur la beauté.</p>
+</section><p class="warning">Attention : les illustrations représentent une interprétation artistique. Elles ne précisent pas des faits absents des textes bibliques, comme la couleur certaine de la tunique de Joseph ou la forme historique précise de l'arche.</p>
+</main>
+<script src="../stories/eden.js"></script><script>window.COMPARE={eden:{cfg:window.PIXEL_CONFIG,imgs:window.PIXEL_IMAGES,chap:window.PIXEL_CHAPTERS}};</script>
+<script src="../stories/noe.js"></script><script src="../shared/art-factory.js"></script><script src="../stories/noe-upgrade.js"></script><script>window.COMPARE.noe={cfg:window.PIXEL_CONFIG,imgs:window.PIXEL_IMAGES,chap:window.PIXEL_CHAPTERS};</script>
+<script src="../stories/joseph.js"></script><script src="../stories/joseph-upgrade.js"></script><script>window.COMPARE.joseph={cfg:window.PIXEL_CONFIG,imgs:window.PIXEL_IMAGES,chap:window.PIXEL_CHAPTERS};</script>
+<script src="../stories/moses.js"></script><script src="../shared/moses-art.js"></script><script src="../stories/moses-upgrade.js"></script><script>window.COMPARE.moses={cfg:window.PIXEL_CONFIG,imgs:window.PIXEL_IMAGES,chap:window.PIXEL_CHAPTERS};</script>
+<script src="../stories/david.js"></script><script src="../shared/david-art.js"></script><script src="../stories/david-upgrade.js"></script><script>window.COMPARE.david={cfg:window.PIXEL_CONFIG,imgs:window.PIXEL_IMAGES,chap:window.PIXEL_CHAPTERS};</script>
+<script>
+(function(){'use strict';
+var worlds=['eden','noe','joseph','moses','david'],controls=[].slice.call(document.querySelectorAll('[data-step]'));var chapter=0;
+function render(n){chapter=n;controls.forEach(function(b){b.setAttribute('aria-pressed',String(Number(b.dataset.step)===n));});worlds.forEach(function(w){var p=COMPARE[w],im=p.imgs[p.cfg.chapterArts[n]],art=document.getElementById('art-'+w);art.src=im;art.alt='Chapitre '+(n+1)+' : '+p.chap[n].title+' — illustration artistique de '+w;document.getElementById('story-'+w).textContent=p.chap[n].title+' · '+p.chap[n].ref;});document.getElementById('label-moses').textContent=n===0?'La sœur de Moïse':'Moïse';hero('moses');}
+controls.forEach(function(b){b.addEventListener('click',function(){render(Number(b.dataset.step));});});
+function hero(w){var p=COMPARE[w],key=w==='eden'?'adam-atlas':(w==='moses'&&chapter===0?'sister-atlas-v05':p.cfg.avatarAtlas),source=p.imgs[key];var im=new Image();im.onload=function(){var c=document.getElementById('hero-'+w),ctx=c.getContext('2d');ctx.clearRect(0,0,64,80);ctx.imageSmoothingEnabled=false;ctx.drawImage(im,64,0,64,80,0,0,64,80);};im.src=source;}
+worlds.forEach(hero);render(0);
+var checks=[].slice.call(document.querySelectorAll('#rubric input'));try{var prior=JSON.parse(localStorage.getItem('pixel-v04-quality-rubric')||'[]');checks.forEach(function(c,i){c.checked=!!prior[i];});}catch(e){}
+function score(){var n=checks.filter(function(c){return c.checked;}).length;document.getElementById('score').textContent=n+'/8 critères examinés et validés';try{localStorage.setItem('pixel-v04-quality-rubric',JSON.stringify(checks.map(function(c){return c.checked;})));}catch(e){}}
+checks.forEach(function(c){c.addEventListener('change',score);});document.getElementById('reset').addEventListener('click',function(){checks.forEach(function(c){c.checked=false;});score();});score();
+window.PixelCompareTest={chapter:function(){return chapter;},worlds:function(){return worlds.slice();},arts:function(){return worlds.map(function(w){return document.getElementById('art-'+w).complete&&document.getElementById('art-'+w).naturalWidth>0;});}};
+}());
+</script><script>
+(function(){'use strict';
+var dimensions=[['Direction artistique',25],['Illustrations',20],['Personnages',15],['Pédagogie biblique',15],['Expérience mobile',15],['Moteur / collection',10]];
+var area=document.getElementById('ratingInputs'),world=document.getElementById('ratedWorld');
+var gates=['gateText','gatePhone','gateChild'].map(function(id){return document.getElementById(id);});
+var sliders=[];
+dimensions.forEach(function(d,i){var div=document.createElement('div');div.className='rating-item';
+var l=document.createElement('label');l.htmlFor='qualityScore'+i;l.textContent=d[0]+' (/ '+d[1]+')';
+var out=document.createElement('span');out.textContent='—';l.appendChild(out);
+var input=document.createElement('input');input.id='qualityScore'+i;input.type='range';input.min='0';input.max=String(d[1]);input.step='1';input.value='0';
+div.appendChild(l);div.appendChild(input);area.appendChild(div);sliders.push({input:input,out:out});
+input.addEventListener('input',function(){input.dataset.touched='yes';out.textContent=input.value;update();});
+});
+function key(){return 'pixel-v04-assessment-'+world.value;}
+function load(){var data={};try{data=JSON.parse(localStorage.getItem(key())||'{}');}catch(e){}
+sliders.forEach(function(s,i){var v=data.values&&data.values[i];s.input.value=Number.isFinite(v)?String(v):'0';s.input.dataset.touched=Number.isFinite(v)?'yes':'';s.out.textContent=Number.isFinite(v)?String(v):'—';});
+gates.forEach(function(g,i){g.checked=!!(data.gates&&data.gates[i]);});update(false);
+}
+function update(persist){var touched=sliders.every(function(s){return s.input.dataset.touched==='yes';});
+var values=sliders.map(function(s){return s.input.dataset.touched==='yes'?Number(s.input.value):null;});
+var total=values.reduce(function(a,b){return a+(b||0);},0);
+var gateOK=gates.every(function(x){return x.checked;});var floorsOK=values.every(function(v,i){return v!==null&&v>=Math.ceil(dimensions[i][1]*.6);});
+var msg=!touched?'Évaluation incomplète · '+values.filter(function(v){return v!==null;}).length+'/6 critères notés':
+total+' /100 · '+(total>=85&&gateOK&&floorsOK?'Seuil atteint sous réserve d’absence de défaut bloquant':total<85||!floorsOK?'Améliorations nécessaires ou critère sous 60 %':'Validations humaines à compléter');
+document.getElementById('ratingResult').textContent=msg;
+if(persist!==false){try{localStorage.setItem(key(),JSON.stringify({values:values,gates:gates.map(function(g){return g.checked;})}));}catch(e){}}
+}
+gates.forEach(function(g){g.addEventListener('change',function(){update();});});
+world.addEventListener('change',load);
+document.getElementById('resetRating').addEventListener('click',function(){try{localStorage.removeItem(key());}catch(e){}load();});
+load();
+window.PixelRatingTest={world:function(){return world.value;},score:function(){return document.getElementById('ratingResult').textContent;},criteriaCount:function(){return sliders.length;}};
+}());
+</script></body></html>

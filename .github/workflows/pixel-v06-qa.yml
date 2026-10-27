@@ -1,0 +1,38 @@
+name: Pixel Lab v0.6 - David five-world QA
+on:
+  push:
+    branches: [experimental/pixel-lab-v0.6-david]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Check engine and art JavaScript syntax
+        run: |
+          node --check pixel-lab-v06/shared/engine.js
+          node --check pixel-lab-v06/shared/art-factory.js
+          node --check pixel-lab-v06/shared/moses-art.js
+          node --check pixel-lab-v06/shared/david-art.js
+          node --check pixel-lab-v06/stories/david.js
+          node --check pixel-lab-v06/stories/david-upgrade.js
+          node --check tests/pixel-v06-smoke.cjs
+      - name: Install Playwright browser
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Run five-world QA on mobile and tablet
+        run: node tests/pixel-v06-smoke.cjs
+      - name: Upload screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-v06-five-world-visuals
+          path: pixel-lab-v06-screenshots/
+          if-no-files-found: ignore
