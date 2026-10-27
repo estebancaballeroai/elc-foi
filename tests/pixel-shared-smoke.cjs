@@ -23,7 +23,7 @@ async function world(browser,address,id,width,height){
  check(await page.locator('.intro h1').innerText() !=='Les sentiers d’Éden'||id==='eden',id+' correct title '+width);
  check((await page.evaluate(()=>document.documentElement.scrollWidth-window.innerWidth))<=3,id+' home no overflow '+width);
  await page.locator('#resume').click();
- await page.waitForFunction(()=>window.PixelEngineTest.snapshot().ready,{timeout:30000});
+ await page.waitForFunction(()=>window.PixelEngineTest.snapshot().ready||window.PixelEngineTest.snapshot().error,{timeout:12000}).catch(async err=>{throw Error(id+' assets never became ready: '+JSON.stringify(await page.evaluate(()=>window.PixelEngineTest.snapshot()))+' | '+errors.join(' | '));});check(!(await page.evaluate(()=>window.PixelEngineTest.snapshot().error)),id+' no missing embedded asset '+width+': '+errors.join(' | '));
  await page.waitForTimeout(240);
  let s=await page.evaluate(()=>window.PixelEngineTest.snapshot());
  check(s.world===id,id+' correct engine config '+width);
