@@ -1,37 +1,36 @@
-# Bible Aventure · Moteur Pixel commun 0.1
+# Bible Aventure — Pixel Lab v0.2
 
-Architecture experimentale de trois mondes bibliques jouables en autonomie, mobile-first, hors service distant.
+Version experimentale et independante du moteur commun v0.1. Les versions principales et `pixel-lab/` sont preservees.
 
-## Sources
+## Livrables
 
-- `shared/engine.js` : moteur Canvas 2D derive d'Eden Pixel 2.5 (deplacement, generation de cartes, recherche BFS, camera, collisions, animation, interactions, sauvegarde locale et points de controle pour tests).
-- `shared/style.css` : styles mobiles et variations graphiques selon le monde.
-- `stories/eden.js` : cinq chapitres et images originales conservees d'Eden 2.5.
-- `stories/noe.js` : cinq chapitres et images originales conservees de Noe 2.3.1.
-- `stories/joseph.js` : cinq chapitres de Joseph issus du jeu v2.0 et cinq illustrations SVG originales dans les tons du Nil et de Canaan.
-- `eden/index.html`, `noe/index.html`, `joseph/index.html` : interfaces reutilisant les memes composants.
+- `shared/engine.js` : moteur Canvas commun, deplacements mobiles, itineraires BFS, progression, sauvegarde locale, camera amortie, ombres, animation et effets atmospheriques.
+- `shared/art-factory.js` : atelier **sans IA integree**, sans reseau, qui produit a la demande des sprites SVG de 256 x 400 pixels (20 poses, 4 colonnes, 5 lignes) et des illustrations de scenes SVG 800 x 600 pixels.
+- `stories/noe-upgrade.js` et `stories/joseph-upgrade.js` : modules qui remplacent le personnage generique par un avatar dedie, avec cinq nouvelles scenes.
+- `stories/eden.js` : contenu de reference v2.5 preserve.
+- `stories/noe.js` : contenu biblique du pilote Noe preserve, 18 decouvertes.
+- `stories/joseph.js` : contenu biblique v2.0 preserve, 20 decouvertes.
 
-## Etat graphique
+## Direction artistique
 
-Eden : deux personnages animes en planche 20 poses chacun ; cinq grandes illustrations.
-Noe : reutilisation des sprites de Noe et de ses textures ; ajout du nouveau moteur de camera et de traces de pas ; cinq ambiances de decor. Ces ameli orations n'ajoutent pas encore un nouveau sprite de Noe jouable.
-Joseph : premier pilote, dont le decor et les cinq illustrations sont propres au recit. Sprite d'explorateur provisoire reutilise de Noe, a remplacer par un personnage Joseph dedie.
+Noe : personnage age avec barbe blanche et robe marron, cinq ambiances: chantier, animaux, deluge, eaux qui se retirent, arc-en-ciel. Pluie et vagues discretes selon les scenes.
 
-## Donnees bibliques
+Joseph : personnage plus jeune au vetement bleu et or (representation artistique), cinq environnements: Canaan, route, maison/epreuves, greniers, retrouvailles. Animations directionnelles.
 
-Recits bases sur Genese 2-3, 6-9 et 37-45. Les citations textuelles des traductions protegees ont ete evitees dans les nouveaux contenus. Les descriptions sont des paraphrases pedagogiques ; chemins, accessoires et paysages decoratifs sont imagines. Le jeu doit distinguer les faits du texte biblique des interpretations et des illustrations.
+Eden : conserve les images historiques, les deux planches d'Adam et Eve et les cinq chapitres.
 
-## Regression
+## Frontiere Bible / fiction
 
-Le test `tests/pixel-shared-smoke.cjs` lance Chromium pour 390, 360 et 768 px. Il verifie le chargement des trois packs, les cinq chapitres, les dix cartes procedurales par recit, les déplacements, les contrôles Android, l'accessibilite des destinations, la sauvegarde et les erreurs JavaScript. L'execution continue se declenche sur la branche experimentale.
+Le jeu propose des paraphrases originales des passages bibliques et distingue explicitement ses objets et paysages imagines. La couleur de la tunique de Joseph, les formes de l'arche et les monuments ne sont pas presentes comme des details historiques certains.
 
-## Isolation
+## Verification
 
-Ce laboratoire n'ecrase ni `bible-aventure/`, ni les essais Eden/Noe precedents. Chaque monde utilise sa propre cle locale `bible-aventure-pixel-shared-v01-<id>`.
+`node tests/pixel-v02-smoke.cjs` (Playwright et Chromium requis) verifie chaque monde en 390, 360 et 768 pixels de largeur, la presence des atlas de personnage, le chargement des cinq illustrations, les dix variantes de labyrinthes, la sauvegarde et les deplacements. Des captures d'ecran sont stockees en artefact GitHub Actions.
 
-## Etapes suivantes
+Cette version est un prototype pour validation visuelle sur smartphone. Aucune connexion a un service externe, publicite ou compte n'est requis pour jouer.
 
-1. Validation sur smartphones physiques.
-2. Remplacement des graphismes provisoires de Joseph et animation de nouveaux PNJ de Noe.
-3. Harmonisation complete des sprites et des atlas.
-4. Migration vers les sept autres recits bibliques seulement apres validation pedagogique et technique.
+## Suite
+
+1. Revue visuelle sur smartphone Android et correction eventuelle des graphismes.
+2. Affiner les planches (transitions, proportions, silhouettes) selon retour utilisateur.
+3. Passer aux autres recits bibliques en reemployant les packs narratifs et le moteur commun.
