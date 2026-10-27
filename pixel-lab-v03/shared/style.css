@@ -120,3 +120,34 @@ body[data-world] .intro .cover-frame{min-height:220px;}
 body[data-world] .settings .avatar-label[hidden],body[data-world] #avatar[hidden],body[data-world] #switchAvatar[hidden]{display:none!important;}
 body[data-world] .chapter-card:focus-visible{outline:3px solid #d69b3b;}
 @media(prefers-reduced-motion:reduce){body[data-world] *,body[data-world] *:before,body[data-world] *:after{scroll-behavior:auto!important;animation-duration:.01ms!important;}}
+
+/* v0.3 - visual polish: better reading contrast, richer covers, mobile ergonomics. */
+body[data-world="noe"]{--ink:#243c3c;--accent:#245f6d;background:radial-gradient(ellipse at 83% 2%,#d0e6db 0,transparent 48%),linear-gradient(160deg,#e6f2e9,#e9e6cc);}
+body[data-world="joseph"]{--ink:#443624;--accent:#89572e;background:radial-gradient(ellipse at 83% 2%,#f7e9b7 0,transparent 47%),linear-gradient(160deg,#f5edda,#e9d2aa);}
+body[data-world="noe"] .intro{background:linear-gradient(115deg,#f5ffed,#d6e6d4 65%,#accfbd);border:2px solid #92c3ad;}
+body[data-world="joseph"] .intro{background:linear-gradient(115deg,#fff6dd,#f2e2b7 68%,#deb984);border:2px solid #d2b37d;}
+body[data-world="noe"] .intro-cover-art,body[data-world="joseph"] .intro-cover-art{object-fit:cover;width:100%;height:100%;image-rendering:auto;}
+body[data-world="noe"] .intro .cover-frame:after{background:linear-gradient(0deg,#123f496e,transparent 48%),linear-gradient(125deg,#fcfcdb3a,transparent 45%);}
+body[data-world="joseph"] .intro .cover-frame:after{background:linear-gradient(0deg,#55372388,transparent 45%),linear-gradient(115deg,#ffe6af60,transparent 43%);}
+body[data-world="noe"] .chapter-card,body[data-world="joseph"] .chapter-card{background:#fffcf1;border-radius:20px;box-shadow:0 5px 0 #c1c7aa,0 11px 25px #2d473c20;transition:transform .16s ease,box-shadow .16s ease;}
+body[data-world="noe"] .chapter-card .card-scene,body[data-world="joseph"] .chapter-card .card-scene{min-height:125px;background:#a6c5a2;position:relative;overflow:hidden;}
+body[data-world="noe"] .chapter-card .card-scene img,body[data-world="joseph"] .chapter-card .card-scene img{filter:saturate(1.12) contrast(1.06);object-position:center;}
+body[data-world="noe"] .chapter-card .card-scene:after,body[data-world="joseph"] .chapter-card .card-scene:after{background:linear-gradient(0deg,#102d357a,transparent 46%);content:"";inset:0;position:absolute;pointer-events:none;}
+body[data-world="noe"] .chapter-card strong,body[data-world="joseph"] .chapter-card strong{line-height:1.22;color:#26433a;}
+body[data-world="joseph"] .chapter-card strong{color:#69452c;}
+body[data-world="noe"] .chapter-card:focus-visible,body[data-world="joseph"] .chapter-card:focus-visible{outline:4px solid #e1b463;outline-offset:3px;}
+body[data-world="noe"] .chapter-card:hover,body[data-world="joseph"] .chapter-card:hover{transform:translateY(-2px);}
+body[data-world="noe"] .stage,body[data-world="joseph"] .stage{border:3px solid #dac69a;box-shadow:0 0 0 4px #e8dcbd,0 16px 35px #28413833;}
+body[data-world="joseph"] .stage{border-color:#c6a876;box-shadow:0 0 0 4px #efd8b4,0 16px 35px #63472d44;}
+body[data-world="noe"] .game-top .place-pill{background:#255869eb;color:#fff;}
+body[data-world="joseph"] .game-top .place-pill{background:#765333eb;color:#fff;}
+body[data-world="noe"] .sidebar,body[data-world="joseph"] .sidebar{border-radius:20px;box-shadow:0 12px 30px #464e3a1b;}
+body[data-world="noe"] .game-controls .dpad button,body[data-world="joseph"] .game-controls .dpad button{border-radius:16px;min-width:52px;min-height:52px;touch-action:none;}
+body[data-world="noe"] .game-controls button:focus-visible,body[data-world="joseph"] .game-controls button:focus-visible{outline:4px solid #ffd06b;outline-offset:3px;}
+@media(max-width:600px){
+ body[data-world="noe"] .intro .cover-frame,body[data-world="joseph"] .intro .cover-frame{min-height:170px;}
+ body[data-world="noe"] .chapter-card .card-scene,body[data-world="joseph"] .chapter-card .card-scene{min-height:145px;}
+ body[data-world="noe"] .game-controls .dpad button,body[data-world="joseph"] .game-controls .dpad button{min-height:54px;min-width:54px;}
+ body[data-world="noe"] .sidebar,body[data-world="joseph"] .sidebar{padding:16px;}
+}
+@media(prefers-reduced-motion:reduce){body[data-world] .chapter-card{transition:none!important;transform:none!important;}}
