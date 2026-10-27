@@ -1,0 +1,39 @@
+name: Pixel Lab v0.5 - Exodus four-world QA
+on:
+  push:
+    branches: [experimental/pixel-lab-v0.5-moses]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  browser-qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 17
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Syntax of shared engine, art and story modules
+        run: |
+          node --check pixel-lab-v05/shared/engine.js
+          node --check pixel-lab-v05/shared/art-factory.js
+          node --check pixel-lab-v05/shared/moses-art.js
+          node --check pixel-lab-v05/stories/moses.js
+          node --check pixel-lab-v05/stories/moses-upgrade.js
+          node --check pixel-lab-v05/stories/noe-upgrade.js
+          node --check pixel-lab-v05/stories/joseph-upgrade.js
+          node --check tests/pixel-v05-smoke.cjs
+      - name: Install Playwright and Chromium
+        run: |
+          npm install --no-save playwright
+          npx playwright install --with-deps chromium
+      - name: Test four worlds, touch buttons, 40 labyrinths and image comparison
+        run: node tests/pixel-v05-smoke.cjs
+      - name: Save test screenshots
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: pixel-v05-mobile-and-art
+          path: pixel-lab-v05-screenshots/
+          if-no-files-found: ignore
