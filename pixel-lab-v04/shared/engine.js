@@ -3,7 +3,7 @@
 'use strict';
 var $=function(id){return document.getElementById(id);};
 var cfg=window.PIXEL_CONFIG||{},C=window.PIXEL_CHAPTERS||[],images=window.PIXEL_IMAGES||{};if(!cfg.id||C.length!==5)throw Error('Story pack missing');document.body.dataset.world=cfg.id;
-var STORAGE='bible-aventure-pixel-shared-v03-'+cfg.id,OLD_STORAGE='bible-aventure-pixel-shared-v02-'+cfg.id;
+var STORAGE='bible-aventure-pixel-shared-v04-'+cfg.id,OLD_STORAGE='bible-aventure-pixel-shared-v03-'+cfg.id;
 var canvas=$('game'),ctx=canvas.getContext('2d'),T=32,chapter=-1,W=0,H=0,cells=[],books=[],exit={x:0,y:0};
 var assets={},assetNames=cfg.assetNames;
 var loaded=false,loadFailed=false,background=document.createElement('canvas'),bg=background.getContext('2d'),decor=[];
@@ -430,7 +430,7 @@ var waiting=assetNames.length;assetNames.forEach(function(name){var im=new Image
 (function(){
  document.title='Bible Aventure · '+cfg.shortTitle+' Pixel v0.3 · 5 chapitres';
  document.querySelector('.identity span').textContent=cfg.tagline;
- document.querySelector('.experimental').textContent='LAB · PIXEL 0.3';
+ document.querySelector('.experimental').textContent='LAB · PIXEL 0.4';
  document.querySelector('.intro .eyebrow').textContent=cfg.reference+' · 7–11 ANS';
  document.querySelector('.intro h1').textContent=cfg.title;document.querySelector('.intro-text>p').textContent=cfg.intro;
  document.querySelector('.sourceNote').textContent=cfg.note;
@@ -441,12 +441,12 @@ var waiting=assetNames.length;assetNames.forEach(function(name){var im=new Image
  document.querySelector('#sceneIllustration').src=images[cfg.chapterArts[0]]||images.book;
  document.querySelector('.world-note').textContent='Décors imaginés. Référence : '+cfg.reference+'.';
  document.querySelector('.readNote').textContent='Les illustrations servent à comprendre le récit, sans ajouter de faits à la Bible.';
- document.querySelector('footer span').textContent='ELC Foi · Moteur Pixel commun v0.3';
+ document.querySelector('footer span').textContent='ELC Foi · Moteur Pixel commun v0.4';
  var sl=$('avatar');sl.innerHTML='';
  cfg.avatars.forEach(function(id){var op=document.createElement('option');op.value=id;op.textContent=id==='eve'?'Ève (chap. 3+)':id==='adam'?'Adam':id==='explorer'?'Explorateur':id==='noah'?'Noé':id==='joseph'?'Joseph':id;sl.appendChild(op);});
  if(cfg.avatars.length<2){sl.hidden=true;document.querySelector('.avatar-label').hidden=true;$('switchAvatar').hidden=true;}
 }());
 settings();updateHome();if(storageError)$('saveStatus').hidden=false;
 requestAnimationFrame(tick);
-window.PixelEngineTest={snapshot:function(){return {ready:loaded,error:loadFailed,chapter:chapter,moving:!!motion,player:{x:player.x,y:player.y},books:chapter>=0?level().books.slice():[],complete:chapter>=0?level().complete:false,cells:cells.slice(),width:W,height:H,targets:books.map(function(b){return {x:b.x,y:b.y};}),exit:{x:exit.x,y:exit.y},storage:STORAGE,frames:frames,world:cfg.id,visualVersion:'shared-0.3',worldProps:(cfg.worldProps||[]).length,decorations:decor.length,heroAtlas:cfg.avatarAtlas||null,heroAtlasLoaded:cfg.avatarAtlas?!!(assets[cfg.avatarAtlas]&&assets[cfg.avatarAtlas].naturalWidth===256&&assets[cfg.avatarAtlas].naturalHeight===400):true,sceneImages:cfg.chapterArts.length,footsteps:footsteps,trail:trail.length,camera:{x:camera.x,y:camera.y},avatar:cfg.id==='eden'&&chapter<2?'adam':data.avatar,direction:player.dir};},path:function(x,y){return path(player,{x:x,y:y});},validate:function(){var result=[];for(var i=0;i<C.length;i++){var old=chapter,prev=Object.assign({},player),oldDifficulty=data.difficulty;['discovery','adventure'].forEach(function(d){data.difficulty=d;chapter=i;generate(i);var start={x:(Math.floor(W/2)|1),y:H-4},all=books.every(function(b){return !!path(start,b);})&&!!path(start,exit);result.push({chapter:i+1,mode:d,valid:all,width:W,height:H,books:books.length});});data.difficulty=oldDifficulty;chapter=old;if(old>=0){generate(old);player=prev;}}return result;},start:startChapter};
+window.PixelEngineTest={snapshot:function(){return {ready:loaded,error:loadFailed,chapter:chapter,moving:!!motion,player:{x:player.x,y:player.y},books:chapter>=0?level().books.slice():[],complete:chapter>=0?level().complete:false,cells:cells.slice(),width:W,height:H,targets:books.map(function(b){return {x:b.x,y:b.y};}),exit:{x:exit.x,y:exit.y},storage:STORAGE,frames:frames,world:cfg.id,visualVersion:'shared-0.4',worldProps:(cfg.worldProps||[]).length,decorations:decor.length,heroAtlas:cfg.avatarAtlas||null,heroAtlasLoaded:cfg.avatarAtlas?!!(assets[cfg.avatarAtlas]&&assets[cfg.avatarAtlas].naturalWidth===256&&assets[cfg.avatarAtlas].naturalHeight===400):true,sceneImages:cfg.chapterArts.length,footsteps:footsteps,trail:trail.length,camera:{x:camera.x,y:camera.y},avatar:cfg.id==='eden'&&chapter<2?'adam':data.avatar,direction:player.dir};},path:function(x,y){return path(player,{x:x,y:y});},validate:function(){var result=[];for(var i=0;i<C.length;i++){var old=chapter,prev=Object.assign({},player),oldDifficulty=data.difficulty;['discovery','adventure'].forEach(function(d){data.difficulty=d;chapter=i;generate(i);var start={x:(Math.floor(W/2)|1),y:H-4},all=books.every(function(b){return !!path(start,b);})&&!!path(start,exit);result.push({chapter:i+1,mode:d,valid:all,width:W,height:H,books:books.length});});data.difficulty=oldDifficulty;chapter=old;if(old>=0){generate(old);player=prev;}}return result;},start:startChapter};
 }());
